@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.jpa.dao.CompanyRepository;
@@ -28,6 +29,11 @@ public class RobotController {
 	@Autowired
 	CompanyRepository companyRepository;
 
+	@RequestMapping(value = "/login", method = RequestMethod.GET)
+	  public String handleLogin() {
+	    return "login";
+	  }
+	
 	@RequestMapping(value = { "/", "list" })
 	public String index(Model model) {
 		List<RobotModel> robots = robotRepository.findAll();
