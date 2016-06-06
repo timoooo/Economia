@@ -101,6 +101,13 @@
 		</div>
 		<!--  list all robots ----------------------------------------------------------- -->
 	</div>
+	
+  <footer class="footer">
+      <div class="container">
+        <p class="text-muted">Place sticky footer content here.</p>
+      </div>
+    </footer>
+	
 	<!--  end of container -->
 	<%@include file="includes/bootstrapJs.js"%>
 </body>
