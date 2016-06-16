@@ -99,14 +99,14 @@
 				</table>
 			</div>
 		</div>
-		<!--  list all robots ----------------------------------------------------------- -->
+		<!--  list all players ----------------------------------------------------------- -->
 	</div>
 	
-  <footer class="footer">
+  <div class="footer">
       <div class="container">
-        <p class="text-muted">Place sticky footer content here.</p>
+        <p class="text-muted">Link zu History, Link zu TownView, Link zu BuildView, Link zu FightView, Link zu AdminPage(if amdmin is logged in)</p>
       </div>
-    </footer>
+    </div>
 	
 	<!--  end of container -->
 	<%@include file="includes/bootstrapJs.js"%>
