@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@include file="includes/bootstrapMeta.inc"%>
-<title>Robot Manager Spring Data JPA</title>
+<title>Player Spring Data JPA</title>
 <%@include file="includes/bootstrapCss.css"%>
 <%@include file="includes/treeView.css"%>
 
@@ -67,32 +67,32 @@
 		<!--  list all robots ----------------------------------------------------------- -->
 		<div class="row">
 			<div class="col-md-10 col-md-offset-1">
-				<h1>Robots</h1>
+				<h1>Player</h1>
 				<table data-toggle="table" class="table table-striped">
 					<thead>
 						<tr>
-							<th>ID</th>
-							<th>First Name</th>
-							<th>Last Name</th>
-							<th>Nick Name</th>
+							<th>Name</th>
+							<th>E-mail</th>
+							<th>Password</th>
+						    <th>Nick Name</th>
 							<th>Company</th>
-							<th>DOB</th>
-							<th>Action <a href="fill"><button type="button"
-										class="btn btn-success">Fill List</button></a>
+							<th>DOB</th> 
+							 <th>Action <a href="fill"><button type="button"
+										class="btn btn-success">Fill List</button></a> -->
 							</th>
 						</tr>
 					</thead>
 					<tbody>
-						<c:forEach items="${robots}" var="robot">
+						<c:forEach items="${robots}" var="player">
 							<tr>
-								<td>${robot.id}</td>
-								<td>${robot.firstName}</td>
-								<td>${robot.lastName}</td>
-								<td>${robot.nickName}</td>
-								<td>${robot.company.name}</td>
-								<td><fmt:formatDate value="${robot.dayOfBirth}"
+								<td>${player.id}</td>
+								<td>${player.firstName}</td>
+								<td>${player.lastName}</td>
+								<td>${player.nickName}</td>
+								<td>${player.company.name}</td>
+								<td><fmt:formatDate value="${player.dayOfBirth}"
 										pattern="dd.MM.yyyy" />
-								<td><a href="delete?id=${robot.id}">Delete</a></td>
+								<td><a href="delete?id=${player.id}">Delete</a></td>
 							</tr>
 						</c:forEach>
 					</tbody>
