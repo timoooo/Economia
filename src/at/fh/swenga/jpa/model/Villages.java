@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 
+/*
 @Entity
 @Table(name = "Villages")
 public class Villages implements java.io.Serializable {
@@ -27,9 +28,12 @@ public class Villages implements java.io.Serializable {
     @OrderBy("name")
     private List<Buildings> buildings;
 	
+	/*
 	@OneToMany (cascade = CascadeType.PERSIST)
 	Buildings buildings2;
-
+*/
+/*
+	
 	public Villages(int name, List<Buildings> buildings) {
 		super();
 		this.name = name;
@@ -55,3 +59,4 @@ public class Villages implements java.io.Serializable {
 	
 	
 }
+*/

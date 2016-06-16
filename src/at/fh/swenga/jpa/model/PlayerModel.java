@@ -39,8 +39,6 @@ public class PlayerModel implements java.io.Serializable {
 	@OneToOne (cascade = CascadeType.PERSIST)
 	RessourseModel ressourseModel;
 	
-	@OneToMany (cascade = CascadeType.PERSIST)
-	Villages villages;
 
 
 	public PlayerModel() {
@@ -78,6 +76,8 @@ public class PlayerModel implements java.io.Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+	
 
 
 }
