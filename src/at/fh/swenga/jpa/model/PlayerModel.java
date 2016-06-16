@@ -1,10 +1,13 @@
 package at.fh.swenga.jpa.model;
 
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -13,15 +16,14 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Version;
 
 @Entity
-@Table(name = "Player")
-
-public class PlayerModel implements java.io.Serializable {
-
+public class PlayerModel {
 
 	@Id
 	@Column(name = "name")
@@ -35,9 +37,16 @@ public class PlayerModel implements java.io.Serializable {
 	String password;
 
 
+    @OneToMany(mappedBy="player",fetch=FetchType.LAZY)
+    @OrderBy("name")
+    private Set<BuildingModel> buildings;
 
-	@OneToOne (cascade = CascadeType.PERSIST)
-	RessourseModel ressourseModel;
+	@OneToOne(mappedBy="player",fetch=FetchType.LAZY)
+	@OrderBy("name")
+	private RessourseModel ressourseModel;
+	
+	@Version 
+	long version;
 	
 
 
@@ -75,6 +84,21 @@ public class PlayerModel implements java.io.Serializable {
 
 	public void setPassword(String password) {
 		this.password = password;
+	}
+	
+	public Set<BuildingModel> getBuildings() {
+		return buildings;
+	}
+
+	public void setBuildings(Set<BuildingModel> buildings) {
+		this.buildings = buildings;
+	}
+	
+	public void addBuilding(BuildingModel building) {
+		if (buildings==null) {
+			buildings= new HashSet<BuildingModel>();
+		}
+		buildings.add(building);
 	}
 	
 	

@@ -10,6 +10,9 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
@@ -18,6 +21,19 @@ import javax.persistence.Version;
 
 @Entity
 @Table(name = "Ressourse")
+
+//NamedQueries here
+
+@NamedQueries (
+		{
+			@NamedQuery(
+					name="RessourseModel.findByDoALike",
+					query="select e from BuildingModel e where e.firstName like :name or e.lastName like :name")
+		}
+
+		)
+
+
 public class RessourseModel implements java.io.Serializable {
 	
 	@Id
@@ -42,8 +58,8 @@ public class RessourseModel implements java.io.Serializable {
 
     
  
-	@Version
-	long version;
+	@OneToOne (cascade = CascadeType.PERSIST)
+	PlayerModel player;
     
     
     public RessourseModel() {
@@ -119,6 +135,15 @@ public class RessourseModel implements java.io.Serializable {
 
 	public void setMilitaryUnits(int militaryUnits) {
 		this.militaryUnits = militaryUnits;
+	}
+	
+	
+	public PlayerModel getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(PlayerModel player) {
+		this.player=player;
 	}
     
 
