@@ -20,11 +20,15 @@
             </tr>
             <tr>
                 <td>User Name:</td>
-                <td>${userForm.username}</td>
+                <td>${username}</td>
             </tr>
             <tr>
                 <td>E-mail:</td>
-                <td>${userForm.email}</td>
+                <td>${email}</td>
+            </tr>
+              <tr>
+                <td>Password</td>
+                <td>${password}</td>
             </tr>
 
 
