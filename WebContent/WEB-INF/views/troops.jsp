@@ -29,7 +29,7 @@
 						<li>
 							<a href="buildings">Buildings</a>
 						</li>
-						<li>
+						<li class="active">
 							<a href="troops">Troops</a>
 						</li>
 						<li>
@@ -45,7 +45,7 @@
 					
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a class="btn btn-info disabled" href="history"><font color=#fff>History</font></a>
+							<a class="btn btn-info" href="history"><font color=#fff>History</font></a>
 						</li>
 						<li>
 						`

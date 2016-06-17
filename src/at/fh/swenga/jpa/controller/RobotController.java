@@ -39,6 +39,28 @@ public class RobotController {
 	    return "history";
 	  }
 	
+	@RequestMapping(value = "/buildings", method = RequestMethod.GET)
+	  public String handleBuildings() {
+	    return "buildings";
+	  }
+	
+	@RequestMapping(value = "/troops", method = RequestMethod.GET)
+	  public String handleTroops() {
+	    return "troops";
+	  }
+	
+	@RequestMapping(value = "/trade", method = RequestMethod.GET)
+	  public String handleTrade() {
+	    return "trade";
+	  }
+	
+	@RequestMapping(value = "/fight", method = RequestMethod.GET)
+	  public String handleFight() {
+	    return "fight";
+	  }
+	
+
+	
 	@RequestMapping(value = { "/", "list" })
 	public String index(Model model) {
 		List<RobotModel> robots = robotRepository.findAll();

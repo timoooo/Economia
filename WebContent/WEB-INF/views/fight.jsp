@@ -35,7 +35,7 @@
 						<li>
 							<a href="trade">Trade</a>
 						</li>
-						<li>
+						<li class="active">
 							<a href="fight">Fight</a>
 						</li>
 
@@ -45,7 +45,7 @@
 					
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a class="btn btn-info disabled" href="history"><font color=#fff>History</font></a>
+							<a class="btn btn-info" href="history"><font color=#fff>History</font></a>
 						</li>
 						<li>
 						`
