@@ -34,6 +34,11 @@ public class RobotController {
 	    return "login";
 	  }
 	
+	@RequestMapping(value = "/history", method = RequestMethod.GET)
+	  public String handleHistory() {
+	    return "history";
+	  }
+	
 	@RequestMapping(value = { "/", "list" })
 	public String index(Model model) {
 		List<RobotModel> robots = robotRepository.findAll();
