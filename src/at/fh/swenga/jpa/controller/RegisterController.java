@@ -1,18 +1,20 @@
 package at.fh.swenga.jpa.controller;
 
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import at.fh.swenga.jpa.dao.PlayerRepository;
 import at.fh.swenga.jpa.model.PlayerModel;
 
 @Controller
 public class RegisterController {
+
+	@Autowired
+	PlayerRepository playerRepository;
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registration() {
@@ -20,13 +22,6 @@ public class RegisterController {
 		return "reg";
 	}
 
-	// @RequestMapping(value = "/regProcess", method = RequestMethod.GET)
-	// public String registrationProcess(@ModelAttribute("player") PlayerModel
-	// player, Map map, HttpServletRequest request){
-	// System.out.println("HELP");
-	// System.out.println("username: " +player.getName());
-	// return "regSuccess";
-	// }
 	@RequestMapping(value = "/regProcess")
 	public String registrationProcess(Model model, @RequestParam String username, @RequestParam String email,
 			@RequestParam String password) {
@@ -36,6 +31,7 @@ public class RegisterController {
 		model.addAttribute("email", email);
 		model.addAttribute("password", password);
 
+		// Validation eher schlecht als recht
 		if (username.isEmpty() || email.isEmpty() || password.isEmpty() == true) {
 			model.addAttribute("errorMessage", "Please fill up all fields");
 
@@ -51,14 +47,27 @@ public class RegisterController {
 			model.addAttribute("errorMessage", "Please dont use special characters in your username");
 			return "regFail";
 		}
-
+		// überprüfen ob der Username schon vorhanden ist
 		PlayerModel player = new PlayerModel();
-
-		player.setName(username);
+		
+		player.setUsername(username);
 		player.setEmail(email);
 		player.setPassword(password);
+		
 
-		return "regSuccess";
+		System.out.println(player.toString());
+
+			
+		if (playerRepository.findByUsername(username) == null) {
+	
+			playerRepository.save(player); //speichern in die db
+			return "regSuccess";
+		} else {
+			System.out.println("failed");
+			model.addAttribute("errorMessage", "The username is already taken.");
+			return "regFail";
+		}
+
 	}
 
 }

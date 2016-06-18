@@ -1,41 +1,42 @@
 package at.fh.swenga.jpa.model;
 
-import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.springframework.data.annotation.Persistent;
+
 @Entity
-public class PlayerModel {
+@Table(name = "Player" )
+
+
+public class PlayerModel implements java.io.Serializable {
 
 	@Id
-	@Column(name = "name")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private String name;
+	@Column(name = "username")
+	private String username;
 
+	
+	
 	@Column(nullable = false, length = 70)
 	String email;
 
 	@Column(nullable = false, length = 30)
 	String password;
 
+	
+	
 	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
 	@OrderBy("name")
 	private Set<BuildingModel> buildings;
@@ -50,19 +51,19 @@ public class PlayerModel {
 	public PlayerModel() {
 	}
 
-	public PlayerModel(String name, String email, String password) {
+	public PlayerModel(String username, String email, String password) {
 		super();
-		this.name = name;
+		this.username = username;
 		this.email = email;
 		this.password = password;
 	}
 	
-	public String getName() {
-		return name;
+	public String getUsername() {
+		return username;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 	public String getEmail() {
@@ -99,7 +100,7 @@ public class PlayerModel {
 	@Override
 	public String toString() {
 
-		return "Subscriber [name=" + name + ", email=" + email + ", passwd=" + password+"]";
+		return "User [name=" + username + ", email=" + email + ", passwd=" + password+"]";
 
 	}
 
