@@ -29,7 +29,7 @@
 						<li>
 							<a href="buildings">Buildings</a>
 						</li>
-						<li>
+						<li class="active">
 							<a href="troops">Troops</a>
 						</li>
 						<li>
@@ -45,7 +45,7 @@
 					
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a class="btn btn-info disabled" href="history"><font color=#fff>History</font></a>
+							<a class="btn btn-info" href="history"><font color=#fff>History</font></a>
 						</li>
 						<li>
 						`
@@ -56,20 +56,50 @@
 						<li>
 						<a></a>
 						</li>
+						
 					</ul>
 				</div>
 				
 			</nav>
 			<div class="jumbotron">
 				<h2>
-					Hello, world!
+					Prepare for fight.
 				</h2>
 				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+					Drill militants to win against your enemys and save your castle
 				</p>
 				<p>
-					<a class="btn btn-primary btn-large" href="#">Learn more</a>
-				</p>
+						<a class="btn btn-success btn-large" href="#">prepare troops for action</a>
+					</p>
+				<h2>Your troops</h2>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<table data-toggle="table" class="table table-striped">
+							<thead>
+								<tr>
+									<th>Type</th>
+									<th>Power Per Unity</th>
+									<th>Precision</th>
+									<th>Speed</th>
+									<th>Quantity</th>
+									<th>Total Power</th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${robots}" var="player">
+									<tr>
+										<td>${player.firstName}</td>
+										<td>${player.id}</td>
+										<td>${player.lastName}</td>
+										<td>${player.nickName}</td>
+										<td>${player.nickName}</td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<hr>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

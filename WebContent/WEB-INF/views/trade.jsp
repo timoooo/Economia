@@ -32,7 +32,7 @@
 						<li>
 							<a href="troops">Troops</a>
 						</li>
-						<li>
+						<li class="active">
 							<a href="trade">Trade</a>
 						</li>
 						<li>
@@ -45,7 +45,7 @@
 					
 					<ul class="nav navbar-nav navbar-right">
 						<li>
-							<a class="btn btn-info disabled" href="history"><font color=#fff>History</font></a>
+							<a class="btn btn-info" href="history"><font color=#fff>History</font></a>
 						</li>
 						<li>
 						`
@@ -56,6 +56,7 @@
 						<li>
 						<a></a>
 						</li>
+						
 					</ul>
 				</div>
 				

@@ -26,13 +26,19 @@
 				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
 						<li class="active">
-							<a href="#">My Castle</a>
+							<a href="list">My Castle</a>
 						</li>
 						<li>
-							<a href="#">Build</a>
+							<a href="buildings">Buildings</a>
 						</li>
 						<li>
-							<a href="#">Fight</a>
+							<a href="troops">Troops</a>
+						</li>
+						<li>
+							<a href="trade">Trade</a>
+						</li>
+						<li>
+							<a href="fight">Fight</a>
 						</li>
 
 						
