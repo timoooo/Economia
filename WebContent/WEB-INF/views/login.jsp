@@ -21,7 +21,7 @@
 							<c:out value="${SPRING_SECURITY_LAST_EXCEPTION.message}" />
 						</div>
 					</c:if>
-					<label for="inputEmail" class="sr-only">Username</label> <input
+					<label for="username" class="sr-only">Username</label> <input
 						type="text" id="username" class="form-control" placeholder="User"
 						required autofocus name="username"> <label
 						for="inputPassword" class="sr-only">Password</label> <input
@@ -31,10 +31,11 @@
 						in</button>
 				</form>
 				<form action="register" method="get">
-				<input type="submit" class="btn btn-lg btn-primary btn-block" value="Register here!" />
+					<input type="submit" class="btn btn-lg btn-primary btn-block"
+						value="Register here!" />
 				</form>
 
-				
+
 
 
 			</div>
