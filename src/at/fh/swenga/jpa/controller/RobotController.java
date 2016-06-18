@@ -30,37 +30,35 @@ public class RobotController {
 	CompanyRepository companyRepository;
 
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	  public String handleLogin() {
-	    return "login";
-	  }
-	
-	@RequestMapping(value = "/history", method = RequestMethod.GET)
-	  public String handleHistory() {
-	    return "history";
-	  }
-	
-	@RequestMapping(value = "/buildings", method = RequestMethod.GET)
-	  public String handleBuildings() {
-	    return "buildings";
-	  }
-	
-	@RequestMapping(value = "/troops", method = RequestMethod.GET)
-	  public String handleTroops() {
-	    return "troops";
-	  }
-	
-	@RequestMapping(value = "/trade", method = RequestMethod.GET)
-	  public String handleTrade() {
-	    return "trade";
-	  }
-	
-	@RequestMapping(value = "/fight", method = RequestMethod.GET)
-	  public String handleFight() {
-	    return "fight";
-	  }
-	
+	public String handleLogin() {
+		return "login";
+	}
 
-	
+	@RequestMapping(value = "/history", method = RequestMethod.GET)
+	public String handleHistory() {
+		return "history";
+	}
+
+	@RequestMapping(value = "/buildings", method = RequestMethod.GET)
+	public String handleBuildings() {
+		return "buildings";
+	}
+
+	@RequestMapping(value = "/troops", method = RequestMethod.GET)
+	public String handleTroops() {
+		return "troops";
+	}
+
+	@RequestMapping(value = "/trade", method = RequestMethod.GET)
+	public String handleTrade() {
+		return "trade";
+	}
+
+	@RequestMapping(value = "/fight", method = RequestMethod.GET)
+	public String handleFight() {
+		return "fight";
+	}
+
 	@RequestMapping(value = { "/", "list" })
 	public String index(Model model) {
 		List<RobotModel> robots = robotRepository.findAll();
@@ -103,33 +101,31 @@ public class RobotController {
 
 		case "findByFirstNameEndsWith":
 			robots = robotRepository.findByFirstNameEndsWith(searchString);
-			break;	
-			
+			break;
+
 		case "findByLastNameEndsWith":
 			robots = robotRepository.findByLastNameEndsWith(searchString);
-			break;	
-			
+			break;
+
 		case "findByOrderByLastNameAsc":
 			robots = robotRepository.findByOrderByLastNameAsc();
-			break;	
-			
+			break;
+
 		case "findTop10ByOrderByFirstNameAsc":
 			robots = robotRepository.findTop10ByOrderByFirstNameAsc();
 			break;
-			
+
 		case "findTop10ByOrderByLastNameAsc":
 			robots = robotRepository.findTop10ByOrderByLastNameAsc();
 			break;
-			
+
 		case "findByOrderByFirstNameAsc":
 			robots = robotRepository.findByOrderByFirstNameAsc();
 			break;
-			
+
 		case "findBySomething":
 			robots = robotRepository.findBySomething(searchString);
 			break;
-			
-	
 
 		default:
 			robots = robotRepository.findAll();
