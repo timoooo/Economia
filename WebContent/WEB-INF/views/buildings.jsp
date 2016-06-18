@@ -63,14 +63,47 @@
 			</nav>
 			<div class="jumbotron">
 				<h2>
-					Hello, world!
+					Upgrade your Castle!
 				</h2>
 				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
+					Build new buildings, upgrade them and freak out about their stats.
 				</p>
 				<p>
-					<a class="btn btn-primary btn-large" href="#">Learn more</a>
+					<a class="btn btn-success btn-large" href="#">new construction</a>
 				</p>
+				<h3>Your Buildings</h3>
+				<div class="row">
+					<div class="col-md-10 col-md-offset-1">
+						<table data-toggle="table" class="table table-striped">
+							<thead>
+								<tr>
+									<th>Building</th>
+									<th>Date</th>
+									<th>Level</th>
+									<th>Properties</th>
+									<th></th>
+								</tr>
+							</thead>
+							<tbody>
+								<c:forEach items="${robots}" var="player">
+									<tr>
+										<td>${player.firstName}</td>
+										<td><fmt:formatDate value="${player.dayOfBirth}"
+												pattern="dd.MM.yyyy" /></td>
+										<td>${player.id}</td>
+										<td>${player.lastName}</td>
+										<td>${player.nickName}</td>
+										<td><fmt:formatDate value="${player.dayOfBirth}"
+												pattern="dd.MM.yyyy" />
+										<td><a href="Delete?id=${player.id}">Upgrade</a></td>
+									</tr>
+								</c:forEach>
+							</tbody>
+						</table>
+						<hr>
+					</div>
+				</div>
+				
 			</div>
 		</div>
 	</div>
