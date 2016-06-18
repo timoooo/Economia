@@ -10,82 +10,97 @@
 <title>Player Spring Data JPA</title>
 <%@include file="includes/bootstrapCss.css"%>
 <%@include file="includes/treeView.css"%>
-
-
 <body>
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-md-12">
-			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<nav class="navbar navbar-default navbar-fixed-top"
+					role="navigation">
 				<div class="navbar-header">
-					 <p class="navbar-text"><font color=#ee4d2e><b>Economia</b></font></p>
+					<p class="navbar-text">
+						<font color=#ee4d2e><b>Economia</b></font>
+					</p>
 				</div>
-				
-				<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
 					<ul class="nav navbar-nav">
-						<li>
-							<a href="list">My Castle</a>
-						</li>
-						<li>
-							<a href="buildings">Buildings</a>
-						</li>
-						<li>
-							<a href="troops">Troops</a>
-						</li>
-						<li>
-							<a href="trade">Trade</a>
-						</li>
-						<li class="active">
-							<a href="fight">Fight</a>
-						</li>
+						<li><a href="list">My Castle</a></li>
+						<li><a href="buildings">Buildings</a></li>
+						<li><a href="troops">Troops</a></li>
+						<li><a href="trade">Trade</a></li>
+						<li class="active"><a href="fight">Fight</a></li>
 
-						
+
 
 					</ul>
-					
+
 					<ul class="nav navbar-nav navbar-right">
-						<li>
-							<a class="btn btn-info" href="history"><font color=#fff>History</font></a>
-						</li>
-						<li>
-						`
-						</li>
-						<li>
-							<a class="btn btn-danger" href="logout"><font color=#fff>Logout</font></a>
-						</li>
-						<li>
-						<a></a>
-						</li>
-						
+						<li><a class="btn btn-info" href="history"><font
+								color=#fff>History</font></a></li>
+						<li>`</li>
+						<li><a class="btn btn-danger" href="logout"><font
+								color=#fff>Logout</font></a></li>
+						<li><a></a></li>
+
 					</ul>
 				</div>
-				
-			</nav>
-			<div class="jumbotron">
-				<h2>
-					Hello, world!
-				</h2>
-				<p>
-					This is a template for a simple marketing or informational website. It includes a large callout called the hero unit and three supporting pieces of content. Use it as a starting point to create something more unique.
-				</p>
-				<p>
-					<a class="btn btn-primary btn-large" href="#">Learn more</a>
-				</p>
+
+				</nav>
+
+
+				<div class="jumbotron">
+					<h2>Fight against your enemies!</h2>
+					<p>Here is a list of your opponents, you can battle with.</p>
+					<p>
+					</p>
+					
+					<div class="row">
+						<div class="col-md-10 col-md-offset-1">
+							<table data-toggle="table" class="table table-striped">
+								<thead>
+									<tr>
+										<th>Player</th>
+										<th>Castle</th>
+										<th>Last Fight</th>
+										<th>Buildings</th>
+										<th>tag</th>
+										<th></th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${robots}" var="player">
+										<tr>
+											<td>${player.firstName}</td>
+											<td>${player.firstName}</td>
+											<td><fmt:formatDate value="${player.dayOfBirth}"
+													pattern="dd.MM.yyyy" /></td>
+											<td>${player.lastName}</td>
+											<td>${player.nickName}</td>
+											<td><a class="btn btn-danger btn-large" href="FightAgainst?id=${player.id}">Fight</a></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<hr>
+						</div>
+					</div>
+
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<div id="footer">
+	<div id="footer">
 		<center>
-		<br>
-			Diverse Ressourcen wie Holz, Stein Gold, Einheiten blahblahblah
+			<br> Diverse Ressourcen wie Holz, Stein Gold, Einheiten
+			blahblahblah
 		</center>
 	</div>
-	
-	
-	
-		<!--  end of container -->
+
+
+
+	<!--  end of container -->
 	<%@include file="includes/bootstrapJs.js"%>
 
 </body>
