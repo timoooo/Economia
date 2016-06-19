@@ -87,7 +87,7 @@ public class PlayerModel implements java.io.Serializable {
 		this.password = password;
 	}
 
-<<<<<<< HEAD
+
 	public ResourceModel getResources() {
 		return resources;
 	}
@@ -110,17 +110,8 @@ public class PlayerModel implements java.io.Serializable {
 		}
 		actions.add(action);
 	}
-	
-=======
-	public String getRole() {
-		return role;
-	}
 
-	public void setRole(String role) {
-		this.role = role;
-	}
 
->>>>>>> pr/6
 	public Set<BuildingModel> getBuildings() {
 		return buildings;
 	}
@@ -135,15 +126,21 @@ public class PlayerModel implements java.io.Serializable {
 		}
 		buildings.add(building);
 	}
+	
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
 
 	@Override
 	public String toString() {
 
-<<<<<<< HEAD
-		return "User [name=" + username + ", email=" + email + ", passwd=" + password+ ", wood " + resources.wood + " ]";
-=======
-		return "User [name=" + username + ", email=" + email + ", passwd=" + password + ", role="+role+"]";
->>>>>>> pr/6
+
+	return "User [name=" + username + ", email=" + email + ", passwd=" + password + ", role="+role + ", wood " + resources.wood + " ]";
+
 
 	}
 
