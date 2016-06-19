@@ -1,5 +1,7 @@
 package at.fh.swenga.jpa.controller;
 
+import java.util.Set;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,7 +10,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.jpa.dao.PlayerRepository;
+import at.fh.swenga.jpa.model.ActionModel;
 import at.fh.swenga.jpa.model.PlayerModel;
+import at.fh.swenga.jpa.model.ResourceModel;
 
 @Controller
 public class RegisterController {
@@ -54,6 +58,24 @@ public class RegisterController {
 		player.setUsername(username);
 		player.setEmail(email);
 		player.setPassword(password);
+		
+		ResourceModel resourses = new ResourceModel();
+		resourses.setPlayer(player);
+		resourses.setFood(100);
+		resourses.setGold(4);
+		resourses.setStone(645);
+		resourses.setWood(57);
+		resourses.setMilitaryUnits(44);
+		
+		player.setResources(resourses);
+		
+		
+		ActionModel action = new ActionModel();
+		action.setId(0);
+		action.setTicksLeft(5);
+		action.setType('b');
+		action.setTypePropertyName("Tower1");
+		player.addAction(action);
 		
 
 		System.out.println(player.toString());

@@ -11,7 +11,7 @@ import at.fh.swenga.jpa.dao.PlayerRepository;
 import at.fh.swenga.jpa.model.PlayerModel;
 
 @Controller
-public class BuildingController {
+public class ActionController {
 
 	@Autowired
 	PlayerRepository playerRepository;

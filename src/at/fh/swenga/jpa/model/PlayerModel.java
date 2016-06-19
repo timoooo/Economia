@@ -38,12 +38,16 @@ public class PlayerModel implements java.io.Serializable {
 	
 	
 	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
-	@OrderBy("name")
+	@OrderBy("id")
 	private Set<BuildingModel> buildings;
 
-	@OneToOne(mappedBy = "player", fetch = FetchType.LAZY)
-	@OrderBy("name")
-	private RessourseModel ressourses;
+	@OneToOne(mappedBy = "player")
+	private ResourceModel resources;
+	
+	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
+	@OrderBy("id")
+	private Set<ActionModel> actions;
+
 
 	@Version
 	long version;
@@ -82,8 +86,27 @@ public class PlayerModel implements java.io.Serializable {
 		this.password = password;
 	}
 
-	public RessourseModel getRessources() {
-		return ressourses;
+	public ResourceModel getResources() {
+		return resources;
+	}
+	
+	public void setResources(ResourceModel resources){
+		this.resources = resources;
+	}
+	
+	public Set<ActionModel> getActions() {
+		return actions;
+	}
+																	//fehlt die remove funktion!!!!
+	public void setActions(Set<ActionModel> actions) {
+		this.actions = actions;
+	}
+
+	public void addAction(ActionModel action) {
+		if (actions == null) {
+			actions = new HashSet<ActionModel>();
+		}
+		actions.add(action);
 	}
 	
 	public Set<BuildingModel> getBuildings() {
@@ -104,7 +127,7 @@ public class PlayerModel implements java.io.Serializable {
 	@Override
 	public String toString() {
 
-		return "User [name=" + username + ", email=" + email + ", passwd=" + password+"]";
+		return "User [name=" + username + ", email=" + email + ", passwd=" + password+ ", wood " + resources.wood + " ]";
 
 	}
 

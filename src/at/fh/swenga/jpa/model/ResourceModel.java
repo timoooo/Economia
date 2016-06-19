@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
@@ -18,6 +19,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Version;
+import javax.persistence.metamodel.StaticMetamodel;
 
 @Entity
 @Table(name = "Ressourse")
@@ -32,59 +34,62 @@ import javax.persistence.Version;
 		}
 
 		)
+
+*
+public class User {
+    @OneToOne(mappedBy = "user")
+    private Status status;
+    // ...
+}
+
+public class Status {
+    @OneToOne
+    @JoinColumn(name = "frn_user_id")
+    private User user;
+    // ...
+}
+*
 */
 
-public class RessourseModel implements java.io.Serializable {
-	
+
+
+public class ResourceModel implements java.io.Serializable{
 	@Id
-	@Column(name = "id")
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	@OneToOne (cascade = CascadeType.PERSIST)
+    @JoinColumn(name = "username")
+    private PlayerModel player;
+	
+
     
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     int wood = 0;
     
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     int stone = 0;
     
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     int food = 0;
     
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     int gold = 0;
     
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false)
     int militaryUnits = 0;
-
     
+	@Version
+	long version;
+
+	public ResourceModel() {
+	}
  
-	@OneToOne (cascade = CascadeType.PERSIST)
-	PlayerModel player;
-    
-    
-    public RessourseModel() {
-		
-    }
-
-
-	public RessourseModel(int id, int wood, int stone, int food, int gold, int militaryUnits) {
+	public ResourceModel(PlayerModel player, int wood, int stone, int food, int gold, int militaryUnits) {
 		super();
-		this.id = id;
+		this.player = player;
 		this.wood = wood;
 		this.stone = stone;
 		this.food = food;
 		this.gold = gold;
 		this.militaryUnits = militaryUnits;
-	}
-
-
-	public int getId() {
-		return id;
-	}
-
-
-	public void setId(int id) {
-		this.id = id;
 	}
 
 
@@ -136,16 +141,19 @@ public class RessourseModel implements java.io.Serializable {
 	public void setMilitaryUnits(int militaryUnits) {
 		this.militaryUnits = militaryUnits;
 	}
-	
-	
+
+
 	public PlayerModel getPlayer() {
 		return player;
 	}
 
+
 	public void setPlayer(PlayerModel player) {
-		this.player=player;
+		this.player = player;
 	}
-    
+	
+	
+
 
 	
     

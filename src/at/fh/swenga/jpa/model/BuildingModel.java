@@ -6,9 +6,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,48 +19,52 @@ import javax.persistence.Table;
 // NamedQueries here
 
 public class BuildingModel implements java.io.Serializable {
-
 	@Id
-	@Column(name = "name")
+	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int name;
+	private int id;
 	
 	@Column(nullable = false, length = 30)
+	String name = "Bauhaus";
+	
+	@Column(nullable = false)
 	int neededTicks = 0;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false)
 	int neededWood = 0;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false)
 	int neededStone = 0;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false)
 	int neededFood = 0;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false)
 	int neededGold = 0;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false)
 	int neededMilitaryUnits = 0;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false)
 	int woodOutput = 0;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false)
 	int stoneOutput = 0;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false)
 	int foodOutput = 0;
 
-	@Column(nullable = false, length = 30)
+	@Column(nullable = false)
 	int goldOutput = 0;
 
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	PlayerModel player;
+	
+	
+	
 
-	public BuildingModel(int name, int neededTicks ,int neededWood, int neededStone, int neededFood, int neededGold,
-			int neededMilitaryUnits, int woodOutput, int stoneOutput, int foodOutput, int goldOutput,
-			PlayerModel player) {
+	public BuildingModel(String name, int neededTicks ,int neededWood, int neededStone, int neededFood, int neededGold,
+			int neededMilitaryUnits, int woodOutput, int stoneOutput, int foodOutput, int goldOutput) {
 		super();
 		this.name = name;
 		this.neededTicks = neededTicks;
@@ -71,15 +77,22 @@ public class BuildingModel implements java.io.Serializable {
 		this.stoneOutput = stoneOutput;
 		this.foodOutput = foodOutput;
 		this.goldOutput = goldOutput;
-		this.player = player;
 	}
 
-	public int getName() {
+	public String getName() {
 		return name;
 	}
 
-	public void setName(int name) {
+	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 	
 	public int getNeededTicks() {

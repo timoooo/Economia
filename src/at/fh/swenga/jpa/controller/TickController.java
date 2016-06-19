@@ -1,6 +1,7 @@
 package at.fh.swenga.jpa.controller;
 
 import java.util.List;
+import java.util.Set;
 
 import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,9 +13,11 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.jpa.dao.PlayerRepository;
+import at.fh.swenga.jpa.model.ActionModel;
 import at.fh.swenga.jpa.model.BuildingModel;
 import at.fh.swenga.jpa.model.CompanyModel;
 import at.fh.swenga.jpa.model.PlayerModel;
+import at.fh.swenga.jpa.model.ResourceModel;
 import at.fh.swenga.jpa.model.RobotModel;
 
 @Controller
@@ -25,9 +28,9 @@ public class TickController {
 	@Autowired
 	PlayerRepository playerRepository;
 
-	@RequestMapping("/tick")
+	@RequestMapping(value ="/tick" , method = RequestMethod.GET)
 	@Transactional
-	public long tick() {
+	public String tick() {
 		long count = 0;
 		List<PlayerModel> users = null;
 		users = playerRepository.findAll();
@@ -45,19 +48,40 @@ public class TickController {
 				foodGain += playerBuilding.getFoodOutput();
 				goldGain += playerBuilding.getGoldOutput();
 			}
+
+
+			ResourceModel resources = new ResourceModel();
+			resources.setPlayer(player);
+			resources.setWood(player.getResources().getWood() + woodGain);
+			resources.setStone(player.getResources().getStone() + stoneGain);
+			resources.setFood(player.getResources().getFood() + foodGain);
+			resources.setGold(player.getResources().getGold() + goldGain);
 			
-			player.getRessources().setWood(player.getRessources().getWood() + woodGain);
-			player.getRessources().setStone(player.getRessources().getStone() + stoneGain);
-			player.getRessources().setFood(player.getRessources().getFood() + foodGain);
-			player.getRessources().setGold(player.getRessources().getGold() + goldGain);
+			player.setResources(resources);
+			playerRepository.save(player);
 			
 			count +=1;
 			
+			//check for new construction action
+			Set<ActionModel> actions = player.getActions();
+			if(actions.size()>0){
+				for (ActionModel action: actions){
+					switch (action.getType()){
+						case 'b': System.out.println("create new Building");
+						case 'x': System.out.println("create new Troops");
+						case 'f': System.out.println("create new Fight");
+						case 't': System.out.println("create new Trade");
+					}
+						
+				}
+			}
+
 			//brauchen Datenbank für buildings und units, die erstellt werden können....
 			//brauchen Datenbank für aktuelle Actions! oda ka wies sonst gespeichert wird...
 		}
 		tick +=1;
 		if(tick==1000000000) tick = 0;
-		return tick; //count
+		System.out.println("New Tick: " + tick);
+		return "index"; //count
 	}
 }
