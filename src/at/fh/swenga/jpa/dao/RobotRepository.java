@@ -32,7 +32,6 @@ public interface RobotRepository extends JpaRepository<RobotModel, Integer> {
 	List<RobotModel> findByOrderByLastNameAsc();
 	
 	List<RobotModel> findByOrderByFirstNameAsc();
-
 	
 	List<RobotModel> findTop10ByOrderByFirstNameAsc();
 	

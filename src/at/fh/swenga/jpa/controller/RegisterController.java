@@ -47,6 +47,7 @@ public class RegisterController {
 			model.addAttribute("errorMessage", "Please dont use special characters in your username");
 			return "regFail";
 		}
+		
 		// überprüfen ob der Username schon vorhanden ist
 		PlayerModel player = new PlayerModel();
 		

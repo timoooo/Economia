@@ -43,7 +43,7 @@ public class PlayerModel implements java.io.Serializable {
 
 	@OneToOne(mappedBy = "player", fetch = FetchType.LAZY)
 	@OrderBy("name")
-	private RessourseModel ressourseModel;
+	private RessourseModel ressourses;
 
 	@Version
 	long version;
@@ -82,6 +82,10 @@ public class PlayerModel implements java.io.Serializable {
 		this.password = password;
 	}
 
+	public RessourseModel getRessources() {
+		return ressourses;
+	}
+	
 	public Set<BuildingModel> getBuildings() {
 		return buildings;
 	}

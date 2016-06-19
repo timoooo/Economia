@@ -14,45 +14,64 @@ import javax.persistence.Table;
 @Entity
 @Table(name = "Building")
 
-//NamedQueries here
+// NamedQueries here
 
+public class BuildingModel implements java.io.Serializable {
 
-
-public class BuildingModel implements java.io.Serializable{
-	
 	@Id
 	@Column(name = "name")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int name;
 	
-	
 	@Column(nullable = false, length = 30)
-    int neededWood = 0;
-	
+	int neededTicks = 0;
+
 	@Column(nullable = false, length = 30)
-    int neededStone = 0;
-	
+	int neededWood = 0;
+
 	@Column(nullable = false, length = 30)
-    int neededFood = 0;
-	
+	int neededStone = 0;
+
 	@Column(nullable = false, length = 30)
-    int neededGold = 0;
-	
+	int neededFood = 0;
+
 	@Column(nullable = false, length = 30)
-    int neededMilitaryUnits = 0;
-	
-	@ManyToOne (cascade = CascadeType.PERSIST)
+	int neededGold = 0;
+
+	@Column(nullable = false, length = 30)
+	int neededMilitaryUnits = 0;
+
+	@Column(nullable = false, length = 30)
+	int woodOutput = 0;
+
+	@Column(nullable = false, length = 30)
+	int stoneOutput = 0;
+
+	@Column(nullable = false, length = 30)
+	int foodOutput = 0;
+
+	@Column(nullable = false, length = 30)
+	int goldOutput = 0;
+
+	@ManyToOne(cascade = CascadeType.PERSIST)
 	PlayerModel player;
 
-	public BuildingModel(int name, int neededWood, int neededStone, int neededFood, int neededGold,
-			int neededMilitaryUnits) {
+	public BuildingModel(int name, int neededTicks ,int neededWood, int neededStone, int neededFood, int neededGold,
+			int neededMilitaryUnits, int woodOutput, int stoneOutput, int foodOutput, int goldOutput,
+			PlayerModel player) {
 		super();
 		this.name = name;
+		this.neededTicks = neededTicks;
 		this.neededWood = neededWood;
 		this.neededStone = neededStone;
 		this.neededFood = neededFood;
 		this.neededGold = neededGold;
 		this.neededMilitaryUnits = neededMilitaryUnits;
+		this.woodOutput = woodOutput;
+		this.stoneOutput = stoneOutput;
+		this.foodOutput = foodOutput;
+		this.goldOutput = goldOutput;
+		this.player = player;
 	}
 
 	public int getName() {
@@ -61,6 +80,14 @@ public class BuildingModel implements java.io.Serializable{
 
 	public void setName(int name) {
 		this.name = name;
+	}
+	
+	public int getNeededTicks() {
+		return neededTicks;
+	}
+
+	public void setNeededTicks(int neededTicks) {
+		this.neededTicks = neededTicks;
 	}
 
 	public int getNeededWood() {
@@ -102,15 +129,45 @@ public class BuildingModel implements java.io.Serializable{
 	public void setNeededMilitaryUnits(int neededMilitaryUnits) {
 		this.neededMilitaryUnits = neededMilitaryUnits;
 	}
-	
-	
+
+	public int getWoodOutput() {
+		return woodOutput;
+	}
+
+	public void setWoodOutput(int woodOutput) {
+		this.woodOutput = woodOutput;
+	}
+
+	public int getStoneOutput() {
+		return stoneOutput;
+	}
+
+	public void setStoneOutput(int stoneOutput) {
+		this.stoneOutput = stoneOutput;
+	}
+
+	public int getFoodOutput() {
+		return foodOutput;
+	}
+
+	public void setFoodOutput(int foodOutput) {
+		this.foodOutput = foodOutput;
+	}
+
+	public int getGoldOutput() {
+		return goldOutput;
+	}
+
+	public void setGoldOutput(int goldOutput) {
+		this.goldOutput = goldOutput;
+	}
+
 	public PlayerModel getPlayer() {
 		return player;
 	}
 
 	public void setPlayer(PlayerModel player) {
-		this.player=player;
+		this.player = player;
 	}
 
-	
 }
