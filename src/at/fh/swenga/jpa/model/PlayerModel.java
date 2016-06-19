@@ -139,7 +139,7 @@ public class PlayerModel implements java.io.Serializable {
 	public String toString() {
 
 
-	return "User [name=" + username + ", email=" + email + ", passwd=" + password + ", role="+role + ", wood " + resources.wood + " ]";
+	return "User [name=" + username + ", email=" + email + ", passwd=" + password + ", role="+role + ", wood " + " ]"; //resources.wood + " ]";
 
 
 	}
