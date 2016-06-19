@@ -26,11 +26,31 @@ public class RegisterController {
 	public String registrationProcess(Model model, @RequestParam String username, @RequestParam String email,
 			@RequestParam String password) {
 		System.out.println("HELP");
+		username = username.trim();
+		email = email.trim();
+		System.out.println("TRIMMED");
 
-		model.addAttribute("username", username);
-		model.addAttribute("email", email);
-		model.addAttribute("password", password);
-
+		
+		
+		
+		//initialisieren des Admin accounts Username: Admin   password: admin
+		if(playerRepository.findByUsername("admin") == null){
+			
+			System.out.println("CREATING ADMIN");
+			PlayerModel admin = new PlayerModel();
+			
+			admin.setUsername("admin");
+			admin.setEmail("economia@support.at");
+			admin.setPassword("admin");
+			admin.setRole("ADMIN");
+			playerRepository.save(admin);
+			
+		}
+		
+		
+		
+		System.out.println("VALIDATION");
+		
 		// Validation eher schlecht als recht
 		if (username.isEmpty() || email.isEmpty() || password.isEmpty() == true) {
 			model.addAttribute("errorMessage", "Please fill up all fields");
@@ -46,20 +66,22 @@ public class RegisterController {
 		} else if (username.matches("^[a-zA-Z0-9]+$") == false) {
 			model.addAttribute("errorMessage", "Please dont use special characters in your username");
 			return "regFail";
+		} else if (username == "admin"){
+			model.addAttribute("errorMessage", "Your username \"admin\" is invalid. There already exists an Admin with that username. Nice try tho :^)");
+			return "regFail";
 		}
-		// überprüfen ob der Username schon vorhanden ist
-		PlayerModel player = new PlayerModel();
 		
-		player.setUsername(username);
-		player.setEmail(email);
-		player.setPassword(password);
-		
-
-		System.out.println(player.toString());
-
-			
+		System.out.println("SAVE USER");
+		// überprüfen ob der Username schon vorhanden ist	
 		if (playerRepository.findByUsername(username) == null) {
-	
+			PlayerModel player = new PlayerModel();
+			model.addAttribute("username", username);
+			model.addAttribute("email", email);
+			player.setUsername(username);
+			player.setEmail(email);
+			player.setPassword(password);
+			player.setRole("USER");
+			System.out.println(player.toString());
 			playerRepository.save(player); //speichern in die db
 			return "regSuccess";
 		} else {

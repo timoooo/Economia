@@ -18,8 +18,7 @@ import javax.persistence.Version;
 import org.springframework.data.annotation.Persistent;
 
 @Entity
-@Table(name = "Player" )
-
+@Table(name = "Player")
 
 public class PlayerModel implements java.io.Serializable {
 
@@ -27,16 +26,17 @@ public class PlayerModel implements java.io.Serializable {
 	@Column(name = "username")
 	private String username;
 
-	
-	
 	@Column(nullable = false, length = 70)
 	String email;
 
 	@Column(nullable = false, length = 30)
 	String password;
 
+	@Column(nullable = false, length = 10)
+	String role;
 	
-	
+
+
 	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
 	@OrderBy("name")
 	private Set<BuildingModel> buildings;
@@ -51,13 +51,14 @@ public class PlayerModel implements java.io.Serializable {
 	public PlayerModel() {
 	}
 
-	public PlayerModel(String username, String email, String password) {
+	public PlayerModel(String username, String email, String password, String role) {
 		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
+		this.role = role;
 	}
-	
+
 	public String getUsername() {
 		return username;
 	}
@@ -82,6 +83,14 @@ public class PlayerModel implements java.io.Serializable {
 		this.password = password;
 	}
 
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
+	}
+
 	public Set<BuildingModel> getBuildings() {
 		return buildings;
 	}
@@ -100,7 +109,7 @@ public class PlayerModel implements java.io.Serializable {
 	@Override
 	public String toString() {
 
-		return "User [name=" + username + ", email=" + email + ", passwd=" + password+"]";
+		return "User [name=" + username + ", email=" + email + ", passwd=" + password + ", role="+role+"]";
 
 	}
 
