@@ -2,21 +2,27 @@
 <b:beans xmlns:b="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/security"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-4.0.xsd">
+	http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd">
 
 	<http>
 		<csrf disabled="true" />
-		<intercept-url pattern="/login" access="permitAll"/>
-		<intercept-url pattern="/register" access="permitAll"/>
-		<intercept-url pattern="/regProcess" access="permitAll"/>
-		<intercept-url pattern="/regSuccess" access="permitAll"/>
-		<intercept-url pattern="/regFail" access="permitAll"/>
-		<intercept-url pattern="/**" access="hasRole('USER')"/>
-		<intercept-url pattern="/townview" access="hasRole('ADMIN')"/>
-		<form-login login-page="/login"/>
+		<intercept-url pattern="/login" access="permitAll" />
+		<intercept-url pattern="/register" access="permitAll" />
+		<intercept-url pattern="/regProcess" access="permitAll" />
+		<intercept-url pattern="/regSuccess" access="permitAll" />
+		<intercept-url pattern="/regFail" access="permitAll" />
+		<intercept-url pattern="/**" access="hasRole('USER')" />
+		<intercept-url pattern="/townview" access="hasRole('ADMIN')" />
+		<form-login login-page="/login" />
 		<logout logout-success-url="/login" logout-url="/logout" />
 	</http>
 
+<!-- 	<authentication-manager>
+		<authentication-provider user-service-ref="AuthenticationManagerService">
+
+		</authentication-provider>
+	</authentication-manager> -->
+	
 	<authentication-manager>
 		<authentication-provider>
 			<user-service>
@@ -25,4 +31,7 @@
 			</user-service>
 		</authentication-provider>
 	</authentication-manager>
+	
+	
+
 </b:beans>
