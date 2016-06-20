@@ -10,12 +10,11 @@
 <title>Player Spring Data JPA</title>
 <%@include file="includes/bootstrapCss.css"%>
 <%@include file="includes/treeView.css"%>
-<body>
-	<div class="container-fluid">
-		<div class="row">
-			<div class="col-md-12">
-				<nav class="navbar navbar-default navbar-fixed-top"
-					role="navigation">
+<body class="" sytle="">
+	<div class="row">
+		<div class="col-md-12">
+			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+				<div class="container">
 				<div class="navbar-header">
 					<p class="navbar-text">
 						<font color=#ee4d2e><b>Economia</b></font>
@@ -27,7 +26,7 @@
 					<ul class="nav navbar-nav">
 						<li><a href="list">My Castle</a></li>
 						<li class="active"><a href="buildings">Buildings</a></li>
-						<li><a href="troops">Troops</a></li>
+						<li><a href="recruits">Recruits</a></li>
 						<li><a href="trade">Trade</a></li>
 						<li><a href="fight">Fight</a></li>
 
@@ -40,16 +39,17 @@
 								color=#fff>History</font></a></li>
 						<li>`</li>
 						<li><a class="btn btn-danger" href="logout"><font
-								color=#fff>Logout</font></a></li>
-						<li><a></a></li>
-
-					</ul>
+								color=#fff>Logout</font>							
+						</a></li>
+						</ul>
+					</div>
 				</div>
-
-				</nav>
-
-
-				<div class="jumbotron">
+			</nav>
+		</div>
+	</div>
+				
+	<div class="container">
+		<div class="jumbotron">
 					<h2>Upgrade your Castle!</h2>
 					<p>Build new buildings, upgrade them and freak out about their stats.</p>
 					<p>
@@ -97,16 +97,38 @@
 	</div>
 
 	<div id="footer">
-		<center>
-			<br> Diverse Ressourcen wie Holz, Stein Gold, Einheiten
-			blahblahblah
-		</center>
+		<div class="row">
+			<div class="col-md-6 col-md-offset-3">
+				<table class="table" style="background-color:#ee4d2e;">
+					<thead>
+						<tr>
+							<th>
+						        <div class="well well-sm" >
+								  <center>Wood: <b>${wood}</b></center>
+								</div>			
+							</th>
+							<th>
+						        <div class="well well-sm" >
+								  <center>Stone: <b>${stone}</b></center>
+								</div>			
+							</th>
+							<th>
+						        <div class="well well-sm" >
+								  <center>Food: <b>${food}</b></center>
+								</div>		
+							</th>
+							<th>
+						        <div class="well well-sm" >
+								  <center>Gold: <b>${gold}</b></center>
+								</div>			
+							</th>
+						</tr>
+					</thead>
+				</table>
+			</div>
+		 </div>
 	</div>
-
-
-
-	<!--  end of container -->
-	<%@include file="includes/bootstrapJs.js"%>
-
+<!--  end of container -->
+	<%@include file="includes/bootstrapJs.jsp"%>
 </body>
 </html>

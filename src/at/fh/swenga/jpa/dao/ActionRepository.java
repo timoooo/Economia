@@ -10,7 +10,6 @@ import org.springframework.transaction.annotation.Transactional;
 
 import at.fh.swenga.jpa.model.ActionModel;
 import at.fh.swenga.jpa.model.PlayerModel;
-import at.fh.swenga.jpa.model.ResourceModel;
 
 @Repository
 @Transactional

@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@include file="includes/bootstrapMeta.inc"%>
-<title>Economia Trade Ressources</title>
+<title>Economia Recruits</title>
 <%@include file="includes/bootstrapCss.css"%>
 <%@include file="includes/treeView.css"%>
 
@@ -29,10 +29,10 @@
 							<li>
 								<a href="buildings">Buildings</a>
 							</li>
-							<li>
+							<li class="active">
 								<a href="recruits">Recruits</a>
 							</li>
-							<li class="active">
+							<li>
 								<a href="trade">Trade</a>
 							</li>
 							<li>

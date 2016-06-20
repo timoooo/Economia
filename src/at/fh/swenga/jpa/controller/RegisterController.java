@@ -81,6 +81,7 @@ public class RegisterController {
 			player.setEmail(email);
 			player.setPassword(password);
 			player.setRole("USER");
+			
 			System.out.println(player.toString());
 			playerRepository.save(player); //speichern in die db
 			return "regSuccess";

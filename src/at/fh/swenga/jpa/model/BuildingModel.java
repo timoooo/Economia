@@ -43,9 +43,6 @@ public class BuildingModel implements java.io.Serializable {
 	int neededGold = 0;
 
 	@Column(nullable = false)
-	int neededMilitaryUnits = 0;
-
-	@Column(nullable = false)
 	int woodOutput = 0;
 
 	@Column(nullable = false)
@@ -60,11 +57,10 @@ public class BuildingModel implements java.io.Serializable {
 	@ManyToOne(cascade = CascadeType.PERSIST)
 	PlayerModel player;
 	
+	public BuildingModel(){}
 	
-	
-
 	public BuildingModel(String name, int neededTicks ,int neededWood, int neededStone, int neededFood, int neededGold,
-			int neededMilitaryUnits, int woodOutput, int stoneOutput, int foodOutput, int goldOutput) {
+			int woodOutput, int stoneOutput, int foodOutput, int goldOutput) {
 		super();
 		this.name = name;
 		this.neededTicks = neededTicks;
@@ -72,7 +68,6 @@ public class BuildingModel implements java.io.Serializable {
 		this.neededStone = neededStone;
 		this.neededFood = neededFood;
 		this.neededGold = neededGold;
-		this.neededMilitaryUnits = neededMilitaryUnits;
 		this.woodOutput = woodOutput;
 		this.stoneOutput = stoneOutput;
 		this.foodOutput = foodOutput;
@@ -133,14 +128,6 @@ public class BuildingModel implements java.io.Serializable {
 
 	public void setNeededGold(int neededGold) {
 		this.neededGold = neededGold;
-	}
-
-	public int getNeededMilitaryUnits() {
-		return neededMilitaryUnits;
-	}
-
-	public void setNeededMilitaryUnits(int neededMilitaryUnits) {
-		this.neededMilitaryUnits = neededMilitaryUnits;
 	}
 
 	public int getWoodOutput() {

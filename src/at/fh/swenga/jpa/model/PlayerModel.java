@@ -36,17 +36,26 @@ public class PlayerModel implements java.io.Serializable {
 	String role;
 	
 
+    @Column(nullable = false)
+    private int wood = 70;
+    
+    @Column(nullable = false)
+    private int stone = 40;
+    
+    @Column(nullable = false)
+    private int food = 20;
+    
+    @Column(nullable = false)
+    private int gold = 0;
+	
+
 
 	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
-	@OrderBy("id")
 	private Set<BuildingModel> buildings;
 
-	@OneToOne(mappedBy = "player")
-	private ResourceModel resources;
-	
 	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
-	@OrderBy("id")
 	private Set<ActionModel> actions;
+	
 
 
 	@Version
@@ -55,12 +64,17 @@ public class PlayerModel implements java.io.Serializable {
 	public PlayerModel() {
 	}
 
-	public PlayerModel(String username, String email, String password, String role) {
+	public PlayerModel(String username, String email, String password, String role, int wood, int stone, int food,
+			int gold) {
 		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
 		this.role = role;
+		this.wood = wood;
+		this.stone = stone;
+		this.food = food;
+		this.gold = gold;
 	}
 
 	public String getUsername() {
@@ -86,16 +100,39 @@ public class PlayerModel implements java.io.Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-
-
-	public ResourceModel getResources() {
-		return resources;
-	}
 	
-	public void setResources(ResourceModel resources){
-		this.resources = resources;
+	public int getWood() {
+		return wood;
 	}
-	
+
+	public void setWood(int wood) {
+		this.wood = wood;
+	}
+
+	public int getStone() {
+		return stone;
+	}
+
+	public void setStone(int stone) {
+		this.stone = stone;
+	}
+
+	public int getFood() {
+		return food;
+	}
+
+	public void setFood(int food) {
+		this.food = food;
+	}
+
+	public int getGold() {
+		return gold;
+	}
+
+	public void setGold(int gold) {
+		this.gold = gold;
+	}
+
 	public Set<ActionModel> getActions() {
 		return actions;
 	}

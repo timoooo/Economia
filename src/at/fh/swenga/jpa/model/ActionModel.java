@@ -42,30 +42,30 @@ public class ActionModel implements java.io.Serializable{
 	private int id;
     
 	@Column(nullable = false)
-	char type = 'b';		//newBuilding -> b | newTroops -> t | newFight -> f | newTrade -> |
+	private char type = 'b';		//newBuilding -> b | newRecruits -> r | newFight -> f | newTrade -> t|
 	
     @Column(nullable = false,  length = 60)
-    String typePropertyName = "";  	//buldingIdName | TroopIdName | FightEnemyName | TradePlayerName		
+    private String target = "";  	//buldingIdName | TroopName | FightEnemyName | TradePlayerName		
     
     @Column(nullable = false)
-    int ticksLeft = -1;		
+    private int ticksLeft = -1;		
 		
     @Column(nullable = false,  length = 420)
-    String additionalInfo = "";
+    private String additionalInfo = "";
     
 	@ManyToOne(cascade = CascadeType.PERSIST)
-	PlayerModel player;
+	private PlayerModel player;
     
 	@Version
-	long version;
+	private long version;
 	
 	public ActionModel() {
 	}
 
-	public ActionModel(char type, String typePropertyName, int ticksLeft, String additionalInfo) {
+	public ActionModel(char type, String target, int ticksLeft, String additionalInfo) {
 		super();
 		this.type = type;
-		this.typePropertyName = typePropertyName;
+		this.target = target;
 		this.ticksLeft = ticksLeft;
 		this.additionalInfo = additionalInfo;
 	}
@@ -86,12 +86,12 @@ public class ActionModel implements java.io.Serializable{
 		this.type = type;
 	}
 
-	public String getTypePropertyName() {
-		return typePropertyName;
+	public String getTarget() {
+		return target;
 	}
 
-	public void setTypePropertyName(String typePropertyName) {
-		this.typePropertyName = typePropertyName;
+	public void setTarget(String target) {
+		this.target = target;
 	}
 
 	public int getTicksLeft() {

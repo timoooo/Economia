@@ -15,10 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import at.fh.swenga.jpa.dao.PlayerRepository;
 import at.fh.swenga.jpa.model.ActionModel;
 import at.fh.swenga.jpa.model.BuildingModel;
-import at.fh.swenga.jpa.model.CompanyModel;
 import at.fh.swenga.jpa.model.PlayerModel;
-import at.fh.swenga.jpa.model.ResourceModel;
-import at.fh.swenga.jpa.model.RobotModel;
 
 @Controller
 public class TickController {
@@ -49,15 +46,16 @@ public class TickController {
 				goldGain += playerBuilding.getGoldOutput();
 			}
 
-
-			ResourceModel resources = new ResourceModel();
-			resources.setPlayer(player);
-			resources.setWood(player.getResources().getWood() + woodGain);
-			resources.setStone(player.getResources().getStone() + stoneGain);
-			resources.setFood(player.getResources().getFood() + foodGain);
-			resources.setGold(player.getResources().getGold() + goldGain);
+			player.setWood(player.getWood() + woodGain);
 			
-			player.setResources(resources);
+			System.out.println("Wood Setter: getWood: " + player.getWood() + "   Wood Gain: " + woodGain);
+			
+			player.setStone(player.getStone() + stoneGain);
+			player.setFood(player.getFood() + foodGain);
+			player.setGold(player.getGold() + goldGain);
+
+			
+			
 			playerRepository.save(player);
 			
 			count +=1;
@@ -68,11 +66,11 @@ public class TickController {
 				for (ActionModel action: actions){
 					switch (action.getType()){
 						case 'b': System.out.println("create new Building");
-						case 'x': System.out.println("create new Troops");
+						case 'r': System.out.println("create new Recruits");
 						case 'f': System.out.println("create new Fight");
 						case 't': System.out.println("create new Trade");
+						case 'u': System.out.println("Upgrade a building");
 					}
-						
 				}
 			}
 
@@ -82,6 +80,6 @@ public class TickController {
 		tick +=1;
 		if(tick==1000000000) tick = 0;
 		System.out.println("New Tick: " + tick);
-		return "index"; //count
+		return "forward: /list"; //count
 	}
 }

@@ -11,11 +11,12 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import at.fh.swenga.jpa.model.PlayerModel;
-import at.fh.swenga.jpa.model.RobotModel;
+
 
 @Repository
 @Transactional
 public interface PlayerRepository extends JpaRepository<PlayerModel, String> {
+	
 	
 //	@Modifying
 //	@Query("select p from Player p where p.username = :username")
@@ -27,8 +28,9 @@ public interface PlayerRepository extends JpaRepository<PlayerModel, String> {
 	
 	//	List<PlayerModel> findByUsernameAndRole(String username);
 	
-	PlayerModel findByUsername(String username);
-	
+	public PlayerModel findByUsername(String username);
+
+	public List<PlayerModel> findAll();
 
 
 }
