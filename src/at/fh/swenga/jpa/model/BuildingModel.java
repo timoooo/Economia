@@ -19,7 +19,7 @@ import javax.persistence.Table;
 
 // NamedQueries here
 
-public class BuildingModel implements java.io.Serializable {
+public class BuildingModel implements java.io.Serializable, Cloneable{
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -205,4 +205,22 @@ public class BuildingModel implements java.io.Serializable {
 		this.player = player;
 	}
 
+	public BuildingModel clone() {
+
+		BuildingModel obj = new BuildingModel();
+        
+		obj.setName(this.name);
+		obj.setIcon (this.icon);
+		obj.setTicksuntilReady (this.ticksuntilReady);
+		obj.setNeededWood (this.neededWood);
+		obj.setNeededStone (this.neededStone);
+		obj.setNeededFood (this.neededFood);
+		obj.setNeededGold (this.neededGold);
+		obj.setWoodOutput (this.woodOutput);
+		obj.setStoneOutput (this.stoneOutput);
+		obj.setFoodOutput (this.foodOutput);
+		obj.setGoldOutput (this.goldOutput);
+        return obj;
+    }
+	
 }

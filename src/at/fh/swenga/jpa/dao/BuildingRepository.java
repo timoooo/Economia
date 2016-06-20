@@ -20,6 +20,8 @@ public interface BuildingRepository extends JpaRepository<BuildingModel, String>
 	
 	List<BuildingModel> findByPlayerUsername(String username);
 
+	BuildingModel getBuildingById(int id);
+	
 	List<BuildingModel> findAll();
 
 }

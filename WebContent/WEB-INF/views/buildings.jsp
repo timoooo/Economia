@@ -48,15 +48,34 @@
 		</div>
 	</div>
 				
-	<div class="container">
+	<div class="container" role="main">
 		<div class="jumbotron">
 					<h2>Upgrade your Castle!</h2>
 					<p>Build new buildings, upgrade them and freak out about their stats.</p>
 					<br>
 					
+					
+					<c:if test="${not empty errorMessage}">
+						<div class="alert alert-danger" role="alert">${errorMessage}</div>
+					</c:if>
+					<!--  Error message ----------------------------------------------------------- -->
+			
+					<!--  Warning message ----------------------------------------------------------- -->
+					<c:if test="${not empty warningMessage}">
+						<div class="alert alert-warning" role="warning">
+							${warningMessage}</div>
+					</c:if>
+					<!--  Warning message ----------------------------------------------------------- -->
+			
+					<!--   message ----------------------------------------------------------- -->
+					<c:if test="${not empty message}">
+						<div class="alert alert-success" role="warning">${message}</div>
+					</c:if>
 					<p>
-						<a class="btn btn-success btn-large" href="#">new construction</a>
+						<a class="btn btn-success btn-large" href="addBuilding?id=1">new construction</a>
 					</p>
+					
+					
 					<h2>Your Buildings</h2>
 					<div align = "center">
 						<div class="label label-primary" align = "center">o. = output</div>
@@ -89,6 +108,8 @@
 											<!-- <td><fmt:formatDate value="${player.dayOfBirth}"
 													pattern="dd.MM.yyyy" /> -->
 											<td><a class="btn btn-success btn-large" href="Delete?id=${player.username}">Upgrade</a></td>
+										</tr>
+										<tr>
 										</tr>
 									</c:forEach>
 								</tbody>
