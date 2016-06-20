@@ -107,7 +107,7 @@
 				</div>
 	
 				<!--  Search + Fill ----------------------------------------------------------- -->
-				<h3>Admin Page (later)</h3>
+				<h1>Admin Page (later)</h1>
 			</center>
 	
 	
@@ -115,7 +115,7 @@
 			<!--  list all robots ----------------------------------------------------------- -->
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
-					<h1>Player</h1>
+					<h2>Players</h2>
 					<table data-toggle="table" class="table table-striped">
 						<thead>
 							<tr>
@@ -128,7 +128,7 @@
 								<th>Gold</th>
 								<!--  <th>Buildings</th>
 								<th>Recruits</th> -->
-								<th>Action <a href="fill"><button type="button"
+								<th><a href="fill"><button type="button"
 											class="btn btn-success">Fill List</button></a>
 								</th>
 							</tr>

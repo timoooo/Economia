@@ -21,7 +21,7 @@ import javax.persistence.Table;
 import javax.persistence.Version;
 
 @Entity
-@Table(name = "Action")
+@Table(name = "action")
 
 //NamedQueries here
 /*
@@ -53,8 +53,8 @@ public class ActionModel implements java.io.Serializable{
     @Column(nullable = false,  length = 420)
     private String additionalInfo = "";
     
-	@ManyToOne(cascade = CascadeType.PERSIST)
-	private PlayerModel player;
+	//@ManyToOne(cascade = CascadeType.PERSIST)
+	//private PlayerModel player;
     
 	@Version
 	private long version;

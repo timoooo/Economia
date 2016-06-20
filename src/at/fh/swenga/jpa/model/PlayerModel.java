@@ -18,7 +18,7 @@ import javax.persistence.Version;
 import org.springframework.data.annotation.Persistent;
 
 @Entity
-@Table(name = "Player")
+@Table(name = "player")
 
 public class PlayerModel implements java.io.Serializable {
 
@@ -50,11 +50,18 @@ public class PlayerModel implements java.io.Serializable {
 	
 
 
-	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
+	/*@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
 	private Set<BuildingModel> buildings;
+	*/
+    
+	@OneToMany(mappedBy="player",targetEntity=BuildingModel.class, fetch=FetchType.LAZY)
+	private Set<BuildingModel> buildings;
+	
+	@OneToMany(mappedBy="player",targetEntity=RecruitModel.class, fetch=FetchType.LAZY)
+	private Set<RecruitModel> recruits;
 
-	@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
-	private Set<ActionModel> actions;
+	//@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
+	//private Set<ActionModel> actions;
 	
 
 
@@ -133,6 +140,7 @@ public class PlayerModel implements java.io.Serializable {
 		this.gold = gold;
 	}
 
+	/*
 	public Set<ActionModel> getActions() {
 		return actions;
 	}
@@ -147,9 +155,9 @@ public class PlayerModel implements java.io.Serializable {
 		}
 		actions.add(action);
 	}
+*/
 
-
-	public Set<BuildingModel> getBuildings() {
+	public  Set<BuildingModel> getBuildings() {
 		return buildings;
 	}
 
@@ -162,6 +170,21 @@ public class PlayerModel implements java.io.Serializable {
 			buildings = new HashSet<BuildingModel>();
 		}
 		buildings.add(building);
+	}
+	
+	public  Set<RecruitModel> getRecruits() {
+		return recruits;
+	}
+	
+	public void setRecruits(Set<RecruitModel> recruits) {
+		this.recruits = recruits;
+	}
+
+	public void addRecruit(RecruitModel recruit) {
+		if (recruits == null) {
+			recruits = new HashSet<RecruitModel>();
+		}
+		recruits.add(recruit);
 	}
 	
 	public String getRole() {

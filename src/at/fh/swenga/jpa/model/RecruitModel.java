@@ -15,21 +15,21 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "building")
+@Table(name = "recruit")
 
 // NamedQueries here
 
-public class BuildingModel implements java.io.Serializable {
+public class RecruitModel implements java.io.Serializable {
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
-	@Column(nullable = false)
-	private String icon;
-	
 	@Column(nullable = false, length = 30)
 	private String name = "Bauhaus";
+	
+	@Column(nullable = false)
+	private String icon;
 	
 	@Column(nullable = false)
 	private int neededTicks = 0;
@@ -47,24 +47,24 @@ public class BuildingModel implements java.io.Serializable {
 	private int neededGold = 0;
 	
 	@Column(nullable = false)
-	private int level = 0;
+	private String neededBuilding = "Barack";
 
 
 	@Column(nullable = false)
-	private int woodOutput = 0;
+	private int power = 0;
 
 	@Column(nullable = false)
-	private int stoneOutput = 0;
+	private int criticalHit = 0;
 
 	@Column(nullable = false)
-	private int foodOutput = 0;
+	private int accuracy = 0;
 
 	@Column(nullable = false)
-	private int goldOutput = 0;
+	private int speed = 0;
 
 	
     @ManyToOne(optional=false)
-    @JoinColumn(name="username",referencedColumnName="username")
+    @JoinColumn(name="username",referencedColumnName="username") //links username ist Eintrag in dieser Table
     private PlayerModel player;
    
 	
@@ -75,22 +75,39 @@ public class BuildingModel implements java.io.Serializable {
 	 */
     
     
-	public BuildingModel(){}
+	public RecruitModel(){}
 	
-	public BuildingModel(String name, String icon, int neededTicks ,int neededWood, int neededStone, int neededFood, int neededGold,
-			int woodOutput, int stoneOutput, int foodOutput, int goldOutput) {
+	public RecruitModel(String name, String icon, int neededTicks, int neededWood, int neededStone, int neededFood, int neededGold,
+			String neededBuilding, int power, int criticalHit, int accuracy, int speed) {
 		super();
-		this.name = name;
 		this.icon = icon;
+		this.name = name;
 		this.neededTicks = neededTicks;
 		this.neededWood = neededWood;
 		this.neededStone = neededStone;
 		this.neededFood = neededFood;
 		this.neededGold = neededGold;
-		this.woodOutput = woodOutput;
-		this.stoneOutput = stoneOutput;
-		this.foodOutput = foodOutput;
-		this.goldOutput = goldOutput;
+		this.neededBuilding = neededBuilding;
+		this.power = power;
+		this.criticalHit = criticalHit;
+		this.accuracy = accuracy;
+		this.speed = speed;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+	
+	public String getIcon() {
+		return icon;
+	}
+
+	public void setIcon(String icon) {
+		this.icon = icon;
 	}
 
 	public String getName() {
@@ -100,23 +117,7 @@ public class BuildingModel implements java.io.Serializable {
 	public void setName(String name) {
 		this.name = name;
 	}
-	
-	public String getIcon() {
-		return icon;
-	}
-	
-	public void setIcon(String icon) {
-		this.icon = icon;
-	}
-	
-	public int getId() {
-		return id;
-	}
 
-	public void setId(int id) {
-		this.id = id;
-	}
-	
 	public int getNeededTicks() {
 		return neededTicks;
 	}
@@ -156,45 +157,45 @@ public class BuildingModel implements java.io.Serializable {
 	public void setNeededGold(int neededGold) {
 		this.neededGold = neededGold;
 	}
-	
-	public void levelUp(){
-		this.level +=1;
-	}
-	
-	public int getLevel(){
-		return this.level;
+
+	public String getNeededBuilding() {
+		return neededBuilding;
 	}
 
-	public int getWoodOutput() {
-		return woodOutput;
+	public void setNeededBuilding(String neededBuilding) {
+		this.neededBuilding = neededBuilding;
 	}
 
-	public void setWoodOutput(int woodOutput) {
-		this.woodOutput = woodOutput;
+	public int getPower() {
+		return power;
 	}
 
-	public int getStoneOutput() {
-		return stoneOutput;
+	public void setPower(int power) {
+		this.power = power;
 	}
 
-	public void setStoneOutput(int stoneOutput) {
-		this.stoneOutput = stoneOutput;
+	public int getCriticalHit() {
+		return criticalHit;
 	}
 
-	public int getFoodOutput() {
-		return foodOutput;
+	public void setCriticalHit(int criticalHit) {
+		this.criticalHit = criticalHit;
 	}
 
-	public void setFoodOutput(int foodOutput) {
-		this.foodOutput = foodOutput;
+	public int getAccuracy() {
+		return accuracy;
 	}
 
-	public int getGoldOutput() {
-		return goldOutput;
+	public void setAccuracy(int accuracy) {
+		this.accuracy = accuracy;
 	}
 
-	public void setGoldOutput(int goldOutput) {
-		this.goldOutput = goldOutput;
+	public int getSpeed() {
+		return speed;
+	}
+
+	public void setSpeed(int speed) {
+		this.speed = speed;
 	}
 
 	public PlayerModel getPlayer() {

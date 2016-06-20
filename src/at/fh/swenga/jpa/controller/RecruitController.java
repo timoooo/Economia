@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.ui.Model;
 
 import at.fh.swenga.jpa.dao.PlayerRepository;
+import at.fh.swenga.jpa.dao.RecruitRepository;
 import at.fh.swenga.jpa.model.PlayerModel;
 
 @Controller
@@ -17,6 +18,9 @@ public class RecruitController {
 	@Autowired
 	PlayerRepository playerRepository;
 	
+	@Autowired
+	RecruitRepository recruitRepository;
+	
 	@RequestMapping(value = "/recruits", method = RequestMethod.GET)
 	  public String handleRecruits(Model model, Principal principal ) {
 		 
@@ -24,7 +28,8 @@ public class RecruitController {
 	      PlayerModel player = playerRepository.findByUsername(name);
 	      model.addAttribute("player", player);
 
-	     
+	      model.addAttribute("recruits",recruitRepository.findByPlayerUsername(name));
+	      
 		return "recruits";
 	}
 }

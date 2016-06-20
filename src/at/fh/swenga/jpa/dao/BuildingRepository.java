@@ -10,29 +10,16 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import at.fh.swenga.jpa.model.BuildingModel;
 import at.fh.swenga.jpa.model.PlayerModel;
 
 
 @Repository
 @Transactional
-public interface PlayerRepository extends JpaRepository<PlayerModel, String> {
+public interface BuildingRepository extends JpaRepository<BuildingModel, String> {
 	
-	
-//	@Modifying
-//	@Query("select p from Player p where p.username = :username")
-//	List<PlayerModel> findByUsernameGetList(@Param("username")String username);
-	
-	
-//	String role="USER";
-//	List<PlayerModel> findByUsernameAndRole(String username);
-	
-	//	List<PlayerModel> findByUsernameAndRole(String username);
-	
-	PlayerModel findByUsername(String username);
+	List<BuildingModel> findByPlayerUsername(String username);
 
-	List<PlayerModel> findAll();
-	
-	
-
+	List<BuildingModel> findAll();
 
 }

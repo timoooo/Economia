@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@include file="includes/bootstrapMeta.inc"%>
-<title>Player Spring Data JPA</title>
+<title>Economia Building Page</title>
 <%@include file="includes/bootstrapCss.css"%>
 <%@include file="includes/treeView.css"%>
 <body class="" sytle="">
@@ -52,37 +52,43 @@
 		<div class="jumbotron">
 					<h2>Upgrade your Castle!</h2>
 					<p>Build new buildings, upgrade them and freak out about their stats.</p>
+					<br>
+					
 					<p>
 						<a class="btn btn-success btn-large" href="#">new construction</a>
 					</p>
 					<h2>Your Buildings</h2>
+					<div align = "center">
+						<div class="label label-primary" align = "center">o. = output</div>
+					</div>
+					<br>
 					<div class="row">
 						<div class="col-md-10 col-md-offset-1">
 							<table data-toggle="table" class="table table-striped">
 								<thead>
 									<tr>
-										<th>Nr</th>
-										<th>Building</th>
+										<th>Type</th>
 										<th>Level</th>
-										<th>Wood output</th>
-										<th>Stone output</th>
-										<th>Food output</th>
-										<th>Gold output</th>
-										<th></th>
+										<th>Wood o.</th>
+										<th>Stone o.</th>
+										<th>Food o.</th>
+										<th>Gold o.</th>
+										<th>Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${robots}" var="player">
+									<c:forEach items="${buildings}" var="building">
 										<tr>
-											<td>${player.firstName}</td>
-											<td><fmt:formatDate value="${player.dayOfBirth}"
-													pattern="dd.MM.yyyy" /></td>
-											<td>${player.id}</td>
-											<td>${player.lastName}</td>
-											<td>${player.nickName}</td>
-											<td><fmt:formatDate value="${player.dayOfBirth}"
-													pattern="dd.MM.yyyy" />
-											<td><a class="btn btn-success btn-large" href="Delete?id=${player.id}">Upgrade</a></td>
+											<td><img src="${building.icon}" alt="${building.name}" style="width:100;height:85px;">
+												<br><h5 align="center">${building.name}</h5></td>		
+											<td>${building.level}</td>
+											<td>${building.woodOutput}</td>
+											<td>${building.stoneOutput}</td>
+											<td>${building.foodOutput}</td>
+											<td>${building.goldOutput}</td>
+											<!-- <td><fmt:formatDate value="${player.dayOfBirth}"
+													pattern="dd.MM.yyyy" /> -->
+											<td><a class="btn btn-success btn-large" href="Delete?id=${player.username}">Upgrade</a></td>
 										</tr>
 									</c:forEach>
 								</tbody>

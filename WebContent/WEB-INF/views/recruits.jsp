@@ -77,22 +77,24 @@
 					<table data-toggle="table" class="table table-striped">
 						<thead>
 							<tr>
+								<th>Nr</th>
 								<th>Type</th>
-								<th>Power Per Unity</th>
 								<th>Precision</th>
 								<th>Speed</th>
 								<th>Quantity</th>
-								<th>Total Power</th>
+								<th>Power</th>
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${robots}" var="player">
+							<c:forEach items="${recruits}" var="recruit">
 								<tr>
-									<td>${player.firstName}</td>
-									<td>${player.id}</td>
-									<td>${player.lastName}</td>
-									<td>${player.nickName}</td>
-									<td>${player.nickName}</td>
+									<td>${recruit.id}</td>
+									<td><img src="${recruit.icon}" alt="" style="width:22px;height:93px;">
+										<br><h5 align="center">${recruit.name}</h5></td>
+									<td>${recruit.accuracy}</td>
+									<td>${recruit.criticalHit}</td>
+									<td>${recruit.speed}</td>
+									<td>${recruit.power}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
