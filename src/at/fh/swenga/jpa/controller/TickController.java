@@ -60,8 +60,10 @@ public class TickController {
 			
 			count +=1;
 			
+			
+			
 			//check for new construction action
-			/*Set<ActionModel> actions = player.getActions();
+			Set<ActionModel> actions = player.getActions();
 			if(actions.size()>0){
 				for (ActionModel action: actions){
 					switch (action.getType()){
@@ -72,14 +74,15 @@ public class TickController {
 						case 'u': System.out.println("Upgrade a building");
 					}
 				}
-			}*/
+			}
 
 			//brauchen Datenbank für buildings und units, die erstellt werden können....
 			//brauchen Datenbank für aktuelle Actions! oda ka wies sonst gespeichert wird...
 		}
 		tick +=1;
-		if(tick==1000000000) tick = 0;
+		if(tick>1000000000) tick = 1;
 		System.out.println("New Tick: " + tick);
 		return "forward: /list"; //count
 	}
+	
 }

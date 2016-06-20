@@ -60,8 +60,8 @@ public class PlayerModel implements java.io.Serializable {
 	@OneToMany(mappedBy="player",targetEntity=RecruitModel.class, fetch=FetchType.LAZY)
 	private Set<RecruitModel> recruits;
 
-	//@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
-	//private Set<ActionModel> actions;
+	@OneToMany(mappedBy = "player",targetEntity=ActionModel.class, fetch = FetchType.LAZY)
+	private Set<ActionModel> actions;
 	
 
 
@@ -140,7 +140,7 @@ public class PlayerModel implements java.io.Serializable {
 		this.gold = gold;
 	}
 
-	/*
+	
 	public Set<ActionModel> getActions() {
 		return actions;
 	}
@@ -155,7 +155,7 @@ public class PlayerModel implements java.io.Serializable {
 		}
 		actions.add(action);
 	}
-*/
+
 
 	public  Set<BuildingModel> getBuildings() {
 		return buildings;

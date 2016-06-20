@@ -32,6 +32,9 @@ public class RecruitModel implements java.io.Serializable {
 	private String icon;
 	
 	@Column(nullable = false)
+	private int count = 1;
+	
+	@Column(nullable = false)
 	private int neededTicks = 0;
 
 	@Column(nullable = false)
@@ -48,7 +51,6 @@ public class RecruitModel implements java.io.Serializable {
 	
 	@Column(nullable = false)
 	private String neededBuilding = "Barack";
-
 
 	@Column(nullable = false)
 	private int power = 0;
@@ -77,11 +79,12 @@ public class RecruitModel implements java.io.Serializable {
     
 	public RecruitModel(){}
 	
-	public RecruitModel(String name, String icon, int neededTicks, int neededWood, int neededStone, int neededFood, int neededGold,
+	public RecruitModel(String name, String icon, int count, int neededTicks, int neededWood, int neededStone, int neededFood, int neededGold,
 			String neededBuilding, int power, int criticalHit, int accuracy, int speed) {
 		super();
 		this.icon = icon;
 		this.name = name;
+		this.count = count;
 		this.neededTicks = neededTicks;
 		this.neededWood = neededWood;
 		this.neededStone = neededStone;
@@ -108,6 +111,18 @@ public class RecruitModel implements java.io.Serializable {
 
 	public void setIcon(String icon) {
 		this.icon = icon;
+	}
+	
+	public void addCount(int number) {
+		this.count += number;
+	}
+	
+	public void remCount(int number) {
+		this.count -= number;
+	}
+	
+	public int getCount() {
+		return this.count;
 	}
 
 	public String getName() {

@@ -23,17 +23,6 @@ import javax.persistence.Version;
 @Entity
 @Table(name = "action")
 
-//NamedQueries here
-/*
-@NamedQueries (
-		{
-			@NamedQuery(
-					name="RessourseModel.findByDoALike",
-					query="select e from BuildingModel e where e.firstName like :name or e.lastName like :name")
-		}
-
-		)
-*/
 
 public class ActionModel implements java.io.Serializable{
 	@Id
@@ -53,12 +42,14 @@ public class ActionModel implements java.io.Serializable{
     @Column(nullable = false,  length = 420)
     private String additionalInfo = "";
     
+    @ManyToOne(optional=false)
+    @JoinColumn(name="username",referencedColumnName="username")
+    private PlayerModel player;
+    
 	//@ManyToOne(cascade = CascadeType.PERSIST)
 	//private PlayerModel player;
     
-	@Version
-	private long version;
-	
+
 	public ActionModel() {
 	}
 

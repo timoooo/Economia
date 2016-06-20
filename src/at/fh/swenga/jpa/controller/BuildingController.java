@@ -2,16 +2,22 @@ package at.fh.swenga.jpa.controller;
 
 import java.security.Principal;
 
+import javax.validation.Valid;
+
 import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.jpa.dao.BuildingRepository;
 import at.fh.swenga.jpa.dao.PlayerRepository;
+import at.fh.swenga.jpa.model.BuildingModel;
 import at.fh.swenga.jpa.model.PlayerModel;
 
 @Controller
@@ -37,5 +43,42 @@ public class BuildingController {
 
 	      
 		return "buildings";
+		}
+		
+	@RequestMapping(value = "/addBuilding", method = RequestMethod.POST)
+	public String addBuilding(@Valid @ModelAttribute  BuildingModel newBuildingModel, BindingResult bindingResult,
+			Model model) {
+ 
+		if (bindingResult.hasErrors()) {
+			String errorMessage = "";
+			for (FieldError fieldError : bindingResult.getFieldErrors()) {
+				errorMessage += fieldError.getField() + " is invalid<br>";
+			}
+			model.addAttribute("errorMessage", errorMessage);
+			return "forward:/builings";
+		}
+ 
+		/*
+		BuildingModel building = BuildingRepository.getBuilding(newEmployeeModel.getSsn());
+ 
+		if (building != null) {
+			model.addAttribute("errorMessage", "Employee already exists!<br>");
+		} else {*/
+		
+		//employeeManager.addEmployee(newEmployeeModel);
+		//model.addAttribute("message", "New employee " + newEmployeeModel.getSsn() + " added.");
+		
+ 
+		return "forward:/buildingSuccess";
+		}
+	
+	
+	@RequestMapping(value = "/addBuilding", method = RequestMethod.GET)
+	public String showAddBuildingForm(Model model) {
+		return "newBuilding";
 	}
+	
+	
+	
+	
 }

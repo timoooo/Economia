@@ -77,7 +77,8 @@
 					<table data-toggle="table" class="table table-striped">
 						<thead>
 							<tr>
-								<th>Nr</th>
+								<th>Count</th>
+								<th>Icon</th>
 								<th>Type</th>
 								<th>Precision</th>
 								<th>Speed</th>
@@ -88,9 +89,9 @@
 						<tbody>
 							<c:forEach items="${recruits}" var="recruit">
 								<tr>
-									<td>${recruit.id}</td>
-									<td><img src="${recruit.icon}" alt="" style="width:22px;height:93px;">
-										<br><h5 align="center">${recruit.name}</h5></td>
+									<td>${recruit.count}</td>
+									<td><img src="${recruit.icon}" alt="" style="width:22px;height:93px;"></td>
+									<td>${recruit.name}</td>
 									<td>${recruit.accuracy}</td>
 									<td>${recruit.criticalHit}</td>
 									<td>${recruit.speed}</td>

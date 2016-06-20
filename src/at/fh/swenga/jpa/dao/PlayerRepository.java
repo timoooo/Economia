@@ -10,6 +10,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+
 import at.fh.swenga.jpa.model.PlayerModel;
 
 
@@ -29,7 +30,7 @@ public interface PlayerRepository extends JpaRepository<PlayerModel, String> {
 	//	List<PlayerModel> findByUsernameAndRole(String username);
 	
 	PlayerModel findByUsername(String username);
-
+	
 	List<PlayerModel> findAll();
 	
 	

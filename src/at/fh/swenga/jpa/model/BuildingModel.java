@@ -32,32 +32,32 @@ public class BuildingModel implements java.io.Serializable {
 	private String name = "Bauhaus";
 	
 	@Column(nullable = false)
-	private int neededTicks = 0;
+	private int ticksuntilReady = 5;
 
 	@Column(nullable = false)
-	private int neededWood = 0;
+	private int neededWood = 20;
 
 	@Column(nullable = false)
-	private int neededStone = 0;
+	private int neededStone = 10;
 
 	@Column(nullable = false)
-	private int neededFood = 0;
+	private int neededFood = 5;
 
 	@Column(nullable = false)
-	private int neededGold = 0;
+	private int neededGold = 1;
 	
 	@Column(nullable = false)
-	private int level = 0;
+	private int level = 1;
 
 
 	@Column(nullable = false)
-	private int woodOutput = 0;
+	private int woodOutput = 30;
 
 	@Column(nullable = false)
-	private int stoneOutput = 0;
+	private int stoneOutput = 20;
 
 	@Column(nullable = false)
-	private int foodOutput = 0;
+	private int foodOutput = 2;
 
 	@Column(nullable = false)
 	private int goldOutput = 0;
@@ -77,12 +77,12 @@ public class BuildingModel implements java.io.Serializable {
     
 	public BuildingModel(){}
 	
-	public BuildingModel(String name, String icon, int neededTicks ,int neededWood, int neededStone, int neededFood, int neededGold,
+	public BuildingModel(String name, String icon, int ticksuntilReady ,int neededWood, int neededStone, int neededFood, int neededGold,
 			int woodOutput, int stoneOutput, int foodOutput, int goldOutput) {
 		super();
 		this.name = name;
 		this.icon = icon;
-		this.neededTicks = neededTicks;
+		this.ticksuntilReady = ticksuntilReady;
 		this.neededWood = neededWood;
 		this.neededStone = neededStone;
 		this.neededFood = neededFood;
@@ -117,12 +117,12 @@ public class BuildingModel implements java.io.Serializable {
 		this.id = id;
 	}
 	
-	public int getNeededTicks() {
-		return neededTicks;
+	public int getTicksuntilReady() {
+		return ticksuntilReady;
 	}
 
-	public void setNeededTicks(int neededTicks) {
-		this.neededTicks = neededTicks;
+	public void setTicksuntilReady(int ticksuntilReady) {
+		this.ticksuntilReady = ticksuntilReady;
 	}
 
 	public int getNeededWood() {
