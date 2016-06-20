@@ -111,22 +111,22 @@
 						<tr>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Wood: <b>${wood}</b></center>
+								  <center>Wood: <b>${player.wood}</b></center>
 								</div>			
 							</th>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Stone: <b>${stone}</b></center>
+								  <center>Stone: <b>${player.stone}</b></center>
 								</div>			
 							</th>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Food: <b>${food}</b></center>
+								  <center>Food: <b>${player.food}</b></center>
 								</div>		
 							</th>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Gold: <b>${gold}</b></center>
+								  <center>Gold: <b>${player.gold}</b></center>
 								</div>			
 							</th>
 						</tr>

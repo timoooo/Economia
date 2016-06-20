@@ -21,14 +21,10 @@ public class RecruitController {
 	  public String handleRecruits(Model model, Principal principal ) {
 		 
 	      String name = principal.getName(); //get logged in username
-	      model.addAttribute("username", name);
-	      
 	      PlayerModel player = playerRepository.findByUsername(name);
-	      model.addAttribute("wood", player.getWood());
-	      model.addAttribute("stone", player.getStone());
-	      model.addAttribute("food", player.getFood());
-	      model.addAttribute("gold", player.getGold());
-	      
+	      model.addAttribute("player", player);
+
+	     
 		return "recruits";
 	}
 }

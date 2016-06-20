@@ -36,13 +36,9 @@ public class CastleController {
 		model.addAttribute("username", name);
 
 		PlayerModel player = playerRepository.findByUsername(name);
-		model.addAttribute("wood", player.getWood());
-		model.addAttribute("stone", player.getStone());
-		model.addAttribute("food", player.getFood());
-		model.addAttribute("gold", player.getGold());
-
 		List<PlayerModel> players = playerRepository.findAll();
 		model.addAttribute("players", players);
+		model.addAttribute("player", player);
 		//model.addAttribute("type", "findAll");
 		return "index";
 	}
