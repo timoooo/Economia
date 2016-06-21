@@ -118,8 +118,8 @@
 		<!--  list all players ----------------------------------------------------------- -->
 	</div>
 	
-	<div id="footer">
-		<div class="row">
+	<div id="footer" >
+		<div class="row" > <!--  style="z-index:110; -->
 			<div class="col-md-6 col-md-offset-3">
 				<table class="table" style="background-color:#ee4d2e;">
 					<thead>

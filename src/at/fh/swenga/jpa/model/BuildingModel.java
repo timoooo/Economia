@@ -31,8 +31,6 @@ public class BuildingModel implements java.io.Serializable, Cloneable{
 	@Column(nullable = false, length = 30)
 	private String name = "Bauhaus";
 	
-	@Column(nullable = false)
-	private int ticksuntilReady = 5;
 
 	@Column(nullable = false)
 	private int neededWood = 20;
@@ -77,12 +75,11 @@ public class BuildingModel implements java.io.Serializable, Cloneable{
     
 	public BuildingModel(){}
 	
-	public BuildingModel(String name, String icon, int ticksuntilReady ,int neededWood, int neededStone, int neededFood, int neededGold,
+	public BuildingModel(String name, String icon ,int neededWood, int neededStone, int neededFood, int neededGold,
 			int woodOutput, int stoneOutput, int foodOutput, int goldOutput) {
 		super();
 		this.name = name;
 		this.icon = icon;
-		this.ticksuntilReady = ticksuntilReady;
 		this.neededWood = neededWood;
 		this.neededStone = neededStone;
 		this.neededFood = neededFood;
@@ -117,13 +114,6 @@ public class BuildingModel implements java.io.Serializable, Cloneable{
 		this.id = id;
 	}
 	
-	public int getTicksuntilReady() {
-		return ticksuntilReady;
-	}
-
-	public void setTicksuntilReady(int ticksuntilReady) {
-		this.ticksuntilReady = ticksuntilReady;
-	}
 
 	public int getNeededWood() {
 		return neededWood;
@@ -211,7 +201,6 @@ public class BuildingModel implements java.io.Serializable, Cloneable{
         
 		obj.setName(this.name);
 		obj.setIcon (this.icon);
-		obj.setTicksuntilReady (this.ticksuntilReady);
 		obj.setNeededWood (this.neededWood);
 		obj.setNeededStone (this.neededStone);
 		obj.setNeededFood (this.neededFood);

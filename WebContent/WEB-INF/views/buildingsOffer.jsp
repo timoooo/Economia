@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@include file="includes/bootstrapMeta.inc"%>
-<title>Economia Building Page</title>
+<title>Economia Building Offers</title>
 <%@include file="includes/bootstrapCss.css"%>
 <%@include file="includes/treeView.css"%>
 <body class="" sytle="">
@@ -50,51 +50,18 @@
 				
 	<div class="container" role="main">
 		<div class="jumbotron">
-					<h2>Upgrade your Castle!</h2>
-			
-					<c:if test="${not empty errorMessage}">
-						<div class="alert alert-danger" role="alert">${errorMessage}</div>
-					</c:if>
-					<!--  Error message ----------------------------------------------------------- -->
-			
-					<!--  Warning message ----------------------------------------------------------- -->
-					<c:if test="${not empty warningMessage}">
-						<div class="alert alert-warning" role="warning">
-							${warningMessage}</div>
-					</c:if>
-					<!--  Warning message ----------------------------------------------------------- -->
-			
-					<!--   message ----------------------------------------------------------- -->
-					<c:if test="${not empty message}">
-						<div class="alert alert-success" role="warning">${message}</div>
-					</c:if>
-					
-					
-					<br>
-			
-					<p>Build new buildings, upgrade them and freak out about their stats.</p>
+					<h2>Following buildings are available:</h2>
+					<p>The agony of choice.</p>
 					<br>
 					
+					<a class="btn btn-primary btn-large" href="buildings">< Back </a>
 					
-					<p>
-						Klick here to let your kingdom grow:  </p>
-						
-						<div class="panel-body align="center"><div class="col-md-4 col-md-offset-4" >
-						<div class="well" style="background-color:black;" align="center"> <div class="panel panel-default"><a class="btn btn-primary btn-large" href="buildingsOffer">New Building</a> 
-						</div> 
-						</div> 
-						</div>
-						</div>
-					
-					
-					
-				
-					
-					<h2>Your Buildings:</h2>
 					<div align = "center">
 						<div class="label label-primary" align = "center">o. = output</div>
 					</div>
 					<br>
+					
+					<c:forEach items="${buildings}" var="building">
 					<div class="row">
 						<div class="col-md-10 col-md-offset-1">
 							<table data-toggle="table" class="table table-striped">
@@ -110,37 +77,53 @@
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${buildings}" var="building">
+									
 										<tr>
-											<td><img src="${building.icon}" alt="${building.name}" align="middle" style="width:120;height:100px;">
+											<td colspan="3"><img src="${building.icon}" alt="${building.name}" style="width:100;height:85px;">
 												<br><h5 align="center">${building.name}</h5></td>		
 											<td>${building.level}</td>
 											<td>${building.woodOutput}</td>
 											<td>${building.stoneOutput}</td>
 											<td>${building.foodOutput}</td>
 											<td>${building.goldOutput}</td>
-
-											<td><a class="btn btn-success btn-large" href="addOrUpgradeBuilding?id=${building.id}">Upgrade</a>
-											<h5><b>costs:</b></h5>
-												<h5 align="right">
-													${building.neededWood} Wood
-													<br>${building.neededStone} Stone
-													<br>${building.neededFood} Food
-													<br>${building.neededGold} Gold	
-												</h5>
-											</td>
+											<!-- <td><fmt:formatDate value="${player.dayOfBirth}"
+													pattern="dd.MM.yyyy" /> -->
+											<td><a class="btn btn-success btn-large" href="addOrUpgradeBuilding?id=${building.id}">Buy</a></td>
+										</tr>	
+										<tr>
+										<td></td>
+										<td> <h5 align="center"><b>Costs:</b>  </h5></td>
+											
+											
+											<td><h5>Wood</h5></td>
+											<td><h5>Stone</h5></td>
+											<td><h5>Food</h5></td>
+											<td><h5>Gold</h5></td>
+											
+										<td></td>
+											
 										</tr>
-									</c:forEach>
+										<tr>
+											<td></td>
+											<td></td>
+											<td>${building.neededWood}</td>
+											<td>${building.neededStone}</td>
+											<td>${building.neededWood}</td>
+											<td>${building.neededGold}</td>
+											<td></td>
+										</tr>										
+									
+									
 								</tbody>
 							</table>
 							<hr>
 						</div>
 					</div>
-
+</c:forEach>
 				</div>
 			</div>
-	
-	
+		</div>
+	</div>
 
 	<div id="footer">
 		<div class="row">
