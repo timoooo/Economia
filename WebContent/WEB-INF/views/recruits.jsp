@@ -10,135 +10,168 @@
 <title>Economia Recruits</title>
 <%@include file="includes/bootstrapCss.css"%>
 <%@include file="includes/treeView.css"%>
-
-
 <body class="" sytle="">
 	<div class="row">
 		<div class="col-md-12">
 			<nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-				<div class="container">
-					<div class="navbar-header">
-						 <p class="navbar-text"><font color=#ee4d2e><b>Economia</b></font></p>
-					</div>
-					
-					<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-						<ul class="nav navbar-nav">
-							<li>
-								<a href="list">My Castle</a>
-							</li>
-							<li>
-								<a href="buildings">Buildings</a>
-							</li>
-							<li class="active">
-								<a href="recruits">Recruits</a>
-							</li>
-							<li>
-								<a href="trade">Trade</a>
-							</li>
-							<li>
-								<a href="fight">Fight</a>
-							</li>
-	
-							
-	
-						</ul>
-						
-						<ul class="nav navbar-nav navbar-right">
-							<li>
-								<a class="btn btn-info" href="history"><font color=#fff>History</font></a>
-							</li>
-							<li>
-							`
-							</li>
-							<li>
-								<a class="btn btn-danger" href="logout"><font color=#fff>Logout</font></a>
-							</li>
-						</ul>
-					</div>
+			<div class="container">
+				<div class="navbar-header">
+					<p class="navbar-text">
+						<font color=#ee4d2e><b>Economia</b></font>
+					</p>
 				</div>
+
+				<div class="collapse navbar-collapse"
+					id="bs-example-navbar-collapse-1">
+					<ul class="nav navbar-nav">
+						<li><a href="list">My Castle</a></li>
+						<li><a href="buildings">Buildings</a></li>
+						<li class="active"><a href="recruits">Recruits</a></li>
+						<li><a href="trade">Trade</a></li>
+						<li><a href="fight">Fight</a></li>
+
+
+
+					</ul>
+
+					<ul class="nav navbar-nav navbar-right">
+						<li><a class="btn btn-info" href="history"><font
+								color=#fff>History</font></a></li>
+						<li>`</li>
+						<li><a class="btn btn-danger" href="logout"><font
+								color=#fff>Logout</font></a></li>
+					</ul>
+				</div>
+			</div>
 			</nav>
 		</div>
 	</div>
-				
+
 	<div class="container">
-		<div class="jumbotron">
-			<h2>
-				Prepare for fight.
-			</h2>
-			<p>
-				Drill militants to win against your enemys and save your castle
-			</p>
-			<p>
-					<a class="btn btn-success btn-large" href="#">prepare troops for action</a>
-				</p>
+		<div class="well">
+			<h2>Prepare for fight.</h2>
+			<p>Drill militants to win against your enemys and save your
+				castle</p>
+
 			<h2>Your Recruits</h2>
 			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<table data-toggle="table" class="table table-striped">
-						<thead>
-							<tr>
-								<th>Count</th>
-								<th>Icon</th>
-								<th>Type</th>
-								<th>Precision</th>
-								<th>Speed</th>
-								<th>Quantity</th>
-								<th>Power</th>
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${recruits}" var="recruit">
-								<tr>
-									<td>${recruit.count}</td>
-									<td><img src="${recruit.icon}" alt="" style="width:22px;height:93px;"></td>
-									<td>${recruit.name}</td>
-									<td>${recruit.accuracy}</td>
-									<td>${recruit.criticalHit}</td>
-									<td>${recruit.speed}</td>
-									<td>${recruit.power}</td>
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<hr>
+				<div class="col-md-12">
+					<form action="submitrecruits" method="get" modelAttribute="player">
+
+						<div class="col-md-12">
+
+							<table data-toggle="table"
+								class="table table-striped table-hover">
+
+								<thead>
+									<tr>
+										<th align="center" valign="middle">Icon</th>
+										<th align="center" valign="middle">Name</th>
+										<th align="center" valign="middle">Attack <img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/sword-icon.png"></th>
+										<th align="center" valign="middle">Defense <img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/shield-icon.png"></th>
+										<th align="center" valign="middle">Accuracy <img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/accuracy-icon.png"></th>
+										<th align="center" valign="middle">Quantity</th>
+										<th align="center" valign="middle">Wood<img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/wood-icon.png"></th>
+										<th align="center" valign="middle">Stone <img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/stone-icon.png"></th>
+										<th align="center" valign="middle">Food <img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/food-icon.png"></th>
+										<th align="center" valign="middle">Gold <img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/gold-icon.png"></th>
+										<th align="center" valign="middle">Add Units</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${recruits}" var="recruit">
+										<tr>
+											<td><img src="${recruit.icon}" align="center"
+												alt="${recruit.name}-Icon" style="${recruit.size}"></td>
+											<td><p class="coll-md-1">${recruit.name}</p></td>
+											<td><p align="center" valign="middle">${recruit.attackPower}</p></td>
+											<td><p align="center" valign="middle">${recruit.deffPower}</p></td>
+											<td><p align="center" valign="middle">${recruit.accuracy}
+												</p></td>
+											<td><p align="center" valign="middle">${recruit.count}</p></td>
+											<td><p align="center" valign="middle">${recruit.neededWood}</p></td>
+											<td><p align="center" valign="middle">${recruit.neededStone}</p></td>
+											<td><p align="center" valign="middle">${recruit.neededFood}</p></td>
+											<td><p align="center" valign="middle">${recruit.neededGold}</p></td>
+											<td><input align="center"
+												onkeypress='return event.charCode >= 48 && event.charCode <= 57'
+												valign="middle" type="text" placeholder="0" autofocus
+												value="0" class="form-control" id="addUnits${recruit.name}"
+												name="addUnit${recruit.unitID}"></td>
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+							<button type="submit"
+								class="btn btn-primary btn-success btn-lg pull-right"
+								action="submitrecruits" autofocus>prepare troops for
+								action</button>
+
+							<hr>
+						</div>
+						
+					</form>
+
 				</div>
 			</div>
 		</div>
 	</div>
-
+	</div>
 	<div id="footer">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3">
-				<table class="table" style="background-color:#ee4d2e;">
+				<table class="table" style="background-color: #ee4d2e;">
 					<thead>
 						<tr>
 							<th>
-						        <div class="well well-sm" >
-								  <center>Wood: <b>${player.wood}</b></center>
-								</div>			
+								<div class="well well-sm">
+									<center>
+										Wood: <b>${player.wood}</b>
+									</center>
+								</div>
 							</th>
 							<th>
-						        <div class="well well-sm" >
-								  <center>Stone: <b>${player.stone}</b></center>
-								</div>			
+								<div class="well well-sm">
+									<center>
+										Stone: <b>${player.stone}</b>
+									</center>
+								</div>
 							</th>
 							<th>
-						        <div class="well well-sm" >
-								  <center>Food: <b>${player.food}</b></center>
-								</div>		
+								<div class="well well-sm">
+									<center>
+										Food: <b>${player.food}</b>
+									</center>
+								</div>
 							</th>
 							<th>
-						        <div class="well well-sm" >
-								  <center>Gold: <b>${player.gold}</b></center>
-								</div>			
+								<div class="well well-sm">
+									<center>
+										Gold: <b>${player.gold}</b>
+									</center>
+								</div>
 							</th>
 						</tr>
 					</thead>
 				</table>
 			</div>
-		 </div>
-	</div>
-<!--  end of container -->
-	<%@include file="includes/bootstrapJs.jsp"%>
+
+		</div>
+		<!--  end of container -->
+		<%@include file="includes/bootstrapJs.jsp"%>
 </body>
 </html>
