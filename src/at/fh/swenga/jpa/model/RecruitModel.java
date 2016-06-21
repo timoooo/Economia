@@ -65,7 +65,7 @@ public class RecruitModel implements java.io.Serializable {
 	@Column(nullable=false)
 	private String size;
 	
-	List<RecruitModel> units = new ArrayList<RecruitModel>();
+	
   
     @ManyToOne(optional=false)
     @JoinColumn(name="username",referencedColumnName="username") //links username ist Eintrag in dieser Table

@@ -73,8 +73,6 @@
 								<tr>
 									<td>${player.firstName}</td>
 									<td>${player.firstName}</td>
-									<td><fmt:formatDate value="${player.dayOfBirth}"
-											pattern="dd.MM.yyyy" /></td>
 									<td>${player.lastName}</td>
 									<td>${player.nickName}</td>
 									<td><a class="btn btn-danger btn-large" href="FightAgainst?id=${player.id}">Fight</a></td>
