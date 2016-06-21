@@ -21,12 +21,11 @@
 						</div>
 					</c:if>
 					<input type="text" id="username" name="username"
-						class="form-control" autofocus placeholder="Username">
-					<input type="text" id="email" name="email" class="form-control" autofocus
-						placeholder="e-Mail"> 
-						<input type="password" id="password"
-						name="password" class="form-control" autofocus
-						placeholder="Password">
+						class="form-control" autofocus required placeholder="Username">
+					<input type="text" id="email" name="email" class="form-control"
+						autofocus required placeholder="e-Mail"> <input
+						type="password" id="password" name="password" class="form-control"
+						autofocus required placeholder="Password">
 
 					<button type="submit" action="regProcess"
 						class="btn btn-lg btn-primary btn-block">Sign up!</button>

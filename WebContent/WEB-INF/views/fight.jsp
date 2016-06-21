@@ -7,7 +7,7 @@
 <html>
 <head>
 <%@include file="includes/bootstrapMeta.inc"%>
-<title>Economia Warfear</title>
+<title>Economia Warfare</title>
 <%@include file="includes/bootstrapCss.css"%>
 <%@include file="includes/treeView.css"%>
 <body class="" sytle="">

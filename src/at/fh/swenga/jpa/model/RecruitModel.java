@@ -1,21 +1,19 @@
 package at.fh.swenga.jpa.model;
 
-import javax.persistence.CascadeType;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedQueries;
-import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "recruit")
+@Table(name = "recruits")
 
 // NamedQueries here
 
@@ -25,6 +23,9 @@ public class RecruitModel implements java.io.Serializable {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	
+	@Column(nullable=false)
+	private int unitID = 0;
+
 	@Column(nullable = false, length = 30)
 	private String name = "Bauhaus";
 	
@@ -53,23 +54,25 @@ public class RecruitModel implements java.io.Serializable {
 	private String neededBuilding = "Barack";
 
 	@Column(nullable = false)
-	private int power = 0;
+	private int attackPower = 0;
 
 	@Column(nullable = false)
-	private int criticalHit = 0;
+	private int deffPower = 0;
 
 	@Column(nullable = false)
 	private int accuracy = 0;
 
 	@Column(nullable = false)
 	private int speed = 0;
-
 	
+	@Column(nullable=false)
+	private String size;
+	
+
+  
     @ManyToOne(optional=false)
     @JoinColumn(name="username",referencedColumnName="username") //links username ist Eintrag in dieser Table
     private PlayerModel player;
-   
-	
     /*
 	@ManyToOne(cascade = CascadeType.PERSIST, fetch=FetchType.LAZY)
 	@JoinColumn(name="playerName")
@@ -79,9 +82,10 @@ public class RecruitModel implements java.io.Serializable {
     
 	public RecruitModel(){}
 	
-	public RecruitModel(String name, String icon, int count, int neededTicks, int neededWood, int neededStone, int neededFood, int neededGold,
-			String neededBuilding, int power, int criticalHit, int accuracy, int speed) {
+	public RecruitModel(int unitID, String name, String icon, int count, int neededTicks, int neededWood, int neededStone, int neededFood, int neededGold,
+			String neededBuilding, int attackPower, int deffPower, int accuracy, int speed) {
 		super();
+		this.unitID = unitID;
 		this.icon = icon;
 		this.name = name;
 		this.count = count;
@@ -91,12 +95,55 @@ public class RecruitModel implements java.io.Serializable {
 		this.neededFood = neededFood;
 		this.neededGold = neededGold;
 		this.neededBuilding = neededBuilding;
-		this.power = power;
-		this.criticalHit = criticalHit;
+		this.attackPower = attackPower;
+		this.deffPower = deffPower;
 		this.accuracy = accuracy;
 		this.speed = speed;
 	}
 
+	public int getAttackPower() {
+		return attackPower;
+	}
+
+	public void setAttackPower(int attackPower) {
+		this.attackPower = attackPower;
+	}
+
+	public int getDeffPower() {
+		return deffPower;
+	}
+
+	public void setDeffPower(int deffPower) {
+		this.deffPower = deffPower;
+	}
+
+	public void setCount(int count) {
+		this.count = count;
+	}
+	
+	
+//	
+//	
+
+	
+	  public String getSize() {
+			return size;
+		}
+
+		public void setSize(String size) {
+			this.size = size;
+		}
+	
+		
+		public int getUnitID() {
+			return unitID;
+		}
+
+		public void setUnitID(int unitID) {
+			this.unitID = unitID;
+		}
+
+	
 	public int getId() {
 		return id;
 	}
@@ -182,19 +229,19 @@ public class RecruitModel implements java.io.Serializable {
 	}
 
 	public int getPower() {
-		return power;
+		return attackPower;
 	}
 
 	public void setPower(int power) {
-		this.power = power;
+		this.attackPower = power;
 	}
 
 	public int getCriticalHit() {
-		return criticalHit;
+		return deffPower;
 	}
 
 	public void setCriticalHit(int criticalHit) {
-		this.criticalHit = criticalHit;
+		this.deffPower = criticalHit;
 	}
 
 	public int getAccuracy() {
