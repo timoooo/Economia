@@ -28,7 +28,7 @@ public class RegisterController {
 	public String registration() {
 		return "reg";
 	}
-
+	//COMMIT  KOMMI  WOOOOOHOHOOOO
 	@RequestMapping(value = "/regProcess")
 	public String registrationProcess(Model model, @RequestParam String username, @RequestParam String email,
 			@RequestParam String password) {
