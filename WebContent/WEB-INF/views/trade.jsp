@@ -63,36 +63,131 @@
 	<div class="container">
 		<div class="jumbotron">
 			<h2>
-				Prepare for fight.
+				Trade your resources! 
 			</h2>
 			<p>
-				Drill militants to win against your enemys and save your castle
+				Become a dealers and sell your goods to the rest of the world.
 			</p>
-			<p>
-					<a class="btn btn-success btn-large" href="#">prepare troops for action</a>
-				</p>
-			<h2>Your Recruits</h2>
+			<br>
+			
+			
+			<div class="row">
+	          <div class="col-lg-6">
+	            <div class="well bs-component">
+	              <form class="form-horizontal" method="post" action="${formAction}">
+					<fieldset>
+						<!-- Form Name -->
+						<legend>Make an offer they can't refuse:</legend>
+						<br>
+						<!-- Appended Input-->
+						<div class="col-md-1"></div>
+						<h4>Your resources:</h4>
+						<div class="form-group">
+						  <label class="col-md-3 control-label" for="wood"></label>
+						  <div class="col-md-7">
+						    <div class="input-group">
+						      <input id="wood" name="wood" class="form-control" placeholder="0" min=0 type="number">
+						      <span class="input-group-addon">Wood</span>
+						    </div>
+						    
+						  </div>
+						</div>
+						<!-- Appended Input-->
+						<div class="form-group">
+						  <label class="col-md-3 control-label" for="stone"></label>
+						  <div class="col-md-7">
+						    <div class="input-group">
+						      <input id="stone" name="stone" class="form-control" placeholder="0" min=0 type="number">
+						      <span class="input-group-addon">Stone</span>
+						    </div>
+						    
+						  </div>
+						</div>
+						<!-- Appended Input-->
+						<div class="form-group">
+						  <label class="col-md-3 control-label" for="food"></label>
+						  <div class="col-md-7">
+						    <div class="input-group">
+						      <input id="food" name="food" class="form-control" placeholder="0" min=0 type="number">
+						      <span class="input-group-addon">Food</span>
+						    </div>
+						    
+						  </div>
+						</div>
+						<div class="row"></div>
+						<br>
+						<!-- Appended Input-->
+						<div class="col-md-5">
+						<h4>Sell them for:</h4>
+						</div>
+						<div class="form-group">
+						  <label class="col-md-5 control-label" for="appendedtext"></label>
+						  <div class="col-md-6">
+						    <div class="input-group">
+						      <input id="price" name="price" class="form-control" placeholder="0" min=0 type="number">
+						      <span class="input-group-addon">Gold</span>
+						    </div>
+						    
+						  </div>
+						</div>
+						<br>
+						<div align="right">
+							<a class="btn btn-success btn-large"  href="#">Create</a>
+						</div>
+						<h5>
+							your offer holds for 48h 
+						</h5>
+							
+						</fieldset>
+						</form>
+					</div>
+				</div>
+			
+			
+			<div class="col-lg-4 col-lg-offset-1">
+				<form class="bs-component">
+				
+					<div class="cotainer">
+                	<img alt=""
+						style="width: 335px; height:300px;"
+						src="images/bigPics/market.png">
+					</div>
+
+					
+						
+					</form>
+				</div>
+      		</div>
+	
+
+				
+			<h2>Offers:</h2>
+			<br>
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
 					<table data-toggle="table" class="table table-striped">
 						<thead>
 							<tr>
-								<th>Type</th>
-								<th>Power Per Unity</th>
-								<th>Precision</th>
-								<th>Speed</th>
-								<th>Quantity</th>
-								<th>Total Power</th>
+								<th>Date</th>
+								<th>player</th>
+								<th>Wood</th>
+								<th>Stone</th>
+								<th>Food</th>
+								<th>Total Cost</th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>
 							<c:forEach items="${robots}" var="player">
 								<tr>
-									<td>${player.firstName}</td>
-									<td>${player.id}</td>
-									<td>${player.lastName}</td>
-									<td>${player.nickName}</td>
-									<td>${player.nickName}</td>
+									<td>
+									<fmt:formatDate value="${offer.date}"
+										pattern="dd.MM.yyyy" /></td>
+									<td>${offer.player}</td>
+									<td>${offer.wood}</td>
+									<td>${offer.stone}</td>
+									<td>${offer.food}</td>
+									<td>${offer.price}</td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -102,6 +197,7 @@
 			</div>
 		</div>
 	</div>
+	
 
 	<div id="footer">
 		<div class="row">
