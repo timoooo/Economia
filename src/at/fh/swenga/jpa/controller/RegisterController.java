@@ -1,5 +1,7 @@
 package at.fh.swenga.jpa.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,10 +10,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.jpa.dao.PlayerRepository;
+import at.fh.swenga.jpa.dao.RecruitRepository;
 import at.fh.swenga.jpa.model.PlayerModel;
+import at.fh.swenga.jpa.model.RecruitModel;
 
 @Controller
 public class RegisterController {
+
+//	@Autowired
+//	RecruitRepository recruitRepository;
 
 	@Autowired
 	PlayerRepository playerRepository;
@@ -30,27 +37,34 @@ public class RegisterController {
 		email = email.trim();
 		System.out.println("TRIMMED");
 
-		
-		
-		
-		//initialisieren des Admin accounts Username: Admin   password: admin
-		if(playerRepository.findByUsername("admin") == null){
-			
+		// initialisieren des Admin accounts Username: Admin password: admin
+		if (playerRepository.findByUsername("admin") == null) {
+
 			System.out.println("CREATING ADMIN");
 			PlayerModel admin = new PlayerModel();
-			
+
 			admin.setUsername("admin");
 			admin.setEmail("economia@support.at");
 			admin.setPassword("admin");
 			admin.setRole("ADMIN");
+
+			//System.out.println("SET UNITS");
+
 			playerRepository.save(admin);
-			
+			// anlegen eines users für testzwecke
+//			System.out.println("CREATING USER");
+//			PlayerModel user = new PlayerModel();
+//			user.setUsername("user");
+//			user.setEmail("user@gmail.com");
+//			user.setPassword("password");
+//			user.setRole("USER");
+//
+//			playerRepository.save(user);
+
 		}
-		
-		
-		
+
 		System.out.println("VALIDATION");
-		
+
 		// Validation eher schlecht als recht
 		if (username.isEmpty() || email.isEmpty() || password.isEmpty() == true) {
 			model.addAttribute("errorMessage", "Please fill up all fields");
@@ -66,13 +80,14 @@ public class RegisterController {
 		} else if (username.matches("^[a-zA-Z0-9]+$") == false) {
 			model.addAttribute("errorMessage", "Please dont use special characters in your username");
 			return "regFail";
-		} else if (username == "admin"){
-			model.addAttribute("errorMessage", "Your username \"admin\" is invalid. There already exists an Admin with that username. Nice try tho :^)");
+		} else if (username == "admin") {
+			model.addAttribute("errorMessage",
+					"Your username \"admin\" is invalid. There already exists an Admin with that username. Nice try tho :^)");
 			return "regFail";
 		}
-		
+
 		System.out.println("SAVE USER");
-		// überprüfen ob der Username schon vorhanden ist	
+		// überprüfen ob der Username schon vorhanden ist
 		if (playerRepository.findByUsername(username) == null) {
 			PlayerModel player = new PlayerModel();
 			model.addAttribute("username", username);
@@ -81,9 +96,9 @@ public class RegisterController {
 			player.setEmail(email);
 			player.setPassword(password);
 			player.setRole("USER");
-			
+			// player.setUnits();
 			System.out.println(player.toString());
-			playerRepository.save(player); //speichern in die db
+			playerRepository.save(player); // speichern in die db
 			return "regSuccess";
 		} else {
 			System.out.println("failed");

@@ -6,20 +6,13 @@ import java.util.Set;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import org.springframework.data.annotation.Persistent;
-
 @Entity
 @Table(name = "player")
-
 public class PlayerModel implements java.io.Serializable {
 
 	@Id
@@ -34,36 +27,32 @@ public class PlayerModel implements java.io.Serializable {
 
 	@Column(nullable = false, length = 10)
 	String role;
-	
 
-    @Column(nullable = false)
-    private int wood = 70;
-    
-    @Column(nullable = false)
-    private int stone = 40;
-    
-    @Column(nullable = false)
-    private int food = 20;
-    
-    @Column(nullable = false)
-    private int gold = 0;
-	
+	@Column(nullable = false)
+	private int wood = 70;
 
+	@Column(nullable = false)
+	private int stone = 40;
 
-	/*@OneToMany(mappedBy = "player", fetch = FetchType.LAZY)
+	@Column(nullable = false)
+	private int food = 20;
+
+	@Column(nullable = false)
+	private int gold = 0;
+
+	/*
+	 * @OneToMany(mappedBy = "player", fetch = FetchType.LAZY) private
+	 * Set<BuildingModel> buildings;
+	 */
+
+	@OneToMany(mappedBy = "player", targetEntity = BuildingModel.class, fetch = FetchType.LAZY)
 	private Set<BuildingModel> buildings;
-	*/
-    
-	@OneToMany(mappedBy="player",targetEntity=BuildingModel.class, fetch=FetchType.LAZY)
-	private Set<BuildingModel> buildings;
-	
-	@OneToMany(mappedBy="player",targetEntity=RecruitModel.class, fetch=FetchType.LAZY)
+
+	@OneToMany(mappedBy = "player", targetEntity = RecruitModel.class, fetch = FetchType.LAZY)
 	private Set<RecruitModel> recruits;
 
-	@OneToMany(mappedBy = "player",targetEntity=ActionModel.class, fetch = FetchType.LAZY)
+	@OneToMany(mappedBy = "player", targetEntity = ActionModel.class, fetch = FetchType.LAZY)
 	private Set<ActionModel> actions;
-	
-
 
 	@Version
 	long version;
@@ -90,6 +79,7 @@ public class PlayerModel implements java.io.Serializable {
 
 	public void setUsername(String username) {
 		this.username = username;
+
 	}
 
 	public String getEmail() {
@@ -107,7 +97,7 @@ public class PlayerModel implements java.io.Serializable {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	
+
 	public int getWood() {
 		return wood;
 	}
@@ -140,11 +130,11 @@ public class PlayerModel implements java.io.Serializable {
 		this.gold = gold;
 	}
 
-	
 	public Set<ActionModel> getActions() {
 		return actions;
 	}
-																	//fehlt die remove funktion!!!!
+
+	// fehlt die remove funktion!!!!
 	public void setActions(Set<ActionModel> actions) {
 		this.actions = actions;
 	}
@@ -156,8 +146,7 @@ public class PlayerModel implements java.io.Serializable {
 		actions.add(action);
 	}
 
-
-	public  Set<BuildingModel> getBuildings() {
+	public Set<BuildingModel> getBuildings() {
 		return buildings;
 	}
 
@@ -171,11 +160,11 @@ public class PlayerModel implements java.io.Serializable {
 		}
 		buildings.add(building);
 	}
-	
-	public  Set<RecruitModel> getRecruits() {
+
+	public Set<RecruitModel> getRecruits() {
 		return recruits;
 	}
-	
+
 	public void setRecruits(Set<RecruitModel> recruits) {
 		this.recruits = recruits;
 	}
@@ -186,7 +175,7 @@ public class PlayerModel implements java.io.Serializable {
 		}
 		recruits.add(recruit);
 	}
-	
+
 	public String getRole() {
 		return role;
 	}
@@ -198,9 +187,8 @@ public class PlayerModel implements java.io.Serializable {
 	@Override
 	public String toString() {
 
-
-	return "User [name=" + username + ", email=" + email + ", passwd=" + password + ", role="+role + ", wood " + " ]"; //resources.wood + " ]";
-
+		return "User [name=" + username + ", email=" + email + ", passwd=" + password + ", role=" + role + ", wood "
+				+ " ]"; // resources.wood + " ]";
 
 	}
 
