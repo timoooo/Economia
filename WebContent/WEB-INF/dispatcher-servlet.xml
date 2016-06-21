@@ -36,7 +36,9 @@
 
 	<!-- JSR-303/JSR-349 support will be detected on classpath and enabled automatically -->
 
-
+	
+		<bean name="AuthenticationManagerService" class="at.fh.swenga.jpa.service.AuthenticationManagerService" />
+	
 
 	<!-- This is a replacement -->
 

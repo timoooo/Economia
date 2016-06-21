@@ -22,7 +22,7 @@ public interface BuildingRepository extends JpaRepository<BuildingModel, String>
 
 	BuildingModel getBuildingById(int id);
 	
-	List<BuildingModel> findByPlayerRole (String role);
+	//List<BuildingModel> findByPlayerRole (String role);
 	
 	List<BuildingModel> findAll();
 

@@ -32,9 +32,6 @@ public class PlayerModel implements java.io.Serializable {
 	@Column(nullable = false, length = 30)
 	String password;
 
-	@Column(nullable = false, length = 10)
-	String role;
-
 	@Column(nullable = false)
 	private int wood = 70;
 
@@ -55,11 +52,14 @@ public class PlayerModel implements java.io.Serializable {
 	@OneToMany(mappedBy = "player", targetEntity = BuildingModel.class, fetch = FetchType.LAZY)
 	private Set<BuildingModel> buildings;
 
-	@OneToMany(mappedBy = "player", targetEntity = RecruitModel.class, fetch = FetchType.EAGER)
+	@OneToMany(mappedBy = "player", targetEntity = RecruitModel.class, fetch = FetchType.LAZY)
 	private List<RecruitModel> recruit;
 
 	@OneToMany(mappedBy = "player", targetEntity = ActionModel.class, fetch = FetchType.LAZY)
 	private Set<ActionModel> actions;
+
+	@OneToMany(mappedBy = "player", targetEntity = PlayerRole.class, fetch = FetchType.LAZY)
+	private Set<PlayerRole> playerRole = new HashSet<PlayerRole>(0);
 
 	@Version
 	long version;
@@ -67,13 +67,12 @@ public class PlayerModel implements java.io.Serializable {
 	public PlayerModel() {
 	}
 
-	public PlayerModel(String username, String email, String password, String role, int wood, int stone, int food,
-			int gold) {
+	public PlayerModel(String username, String email, String password, int wood, int stone, int food, int gold) {
 		super();
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		this.role = role;
+		// this.role = role;
 		this.wood = wood;
 		this.stone = stone;
 		this.food = food;
@@ -176,26 +175,36 @@ public class PlayerModel implements java.io.Serializable {
 		this.recruit = recruits;
 	}
 
-//	public void addRecruit(RecruitModel recruit) {
-//		if (recruit == null) {
-//			recruits = new ArrayList<RecruitModel>();
-//		}
-//		recruit.add(recruit);
-//	}
+	// public void addRecruit(RecruitModel recruit) {
+	// if (recruit == null) {
+	// recruits = new ArrayList<RecruitModel>();
+	// }
+	// recruit.add(recruit);
+	// }
 
-	public String getRole() {
-		return role;
+	// public String getRole() {
+	// return role;
+	// }
+	//
+	// public void setRole(String role) {
+	// this.role = role;
+	// }
+
+	public Set<PlayerRole> getPlayerRole() {
+		return playerRole;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setUserRole(Set<PlayerRole> playerRole) {
+		this.playerRole = playerRole;
 	}
 
 	@Override
 	public String toString() {
 
-		return "User [name=" + username + ", email=" + email + ", passwd=" + password + ", role=" + role + ", wood "
-				+ " ]"; // resources.wood + " ]";
+		return "User [name=" + username + ", email=" + email + ", passwd=" + password + ", wood " + " ]"; // resources.wood
+																											// +
+																											// "
+																											// ]";
 
 	}
 
