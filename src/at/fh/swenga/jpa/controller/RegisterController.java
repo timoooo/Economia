@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.jpa.dao.PlayerRepository;
+import at.fh.swenga.jpa.dao.PlayerRoleRepository;
 import at.fh.swenga.jpa.dao.RecruitRepository;
 import at.fh.swenga.jpa.model.PlayerModel;
+import at.fh.swenga.jpa.model.PlayerRole;
 import at.fh.swenga.jpa.model.RecruitModel;
 
 @Controller
@@ -23,6 +25,9 @@ public class RegisterController {
 
 	@Autowired
 	PlayerRepository playerRepository;
+	
+	@Autowired
+	PlayerRoleRepository playerRoleRepository;
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registration() {
@@ -43,29 +48,31 @@ public class RegisterController {
 			admin.setUsername("admin");
 			admin.setEmail("economia@support.at");
 			admin.setPassword("admin");
-			admin.setRole("ADMIN");
+			System.out.println("SETTING UP ADMIN");
 			for (RecruitModel unit : adminList) {
 				unit.setPlayer(admin);
 			}
+			PlayerRole adminRole = new PlayerRole(admin,"ROLE_ADMIN");
 			playerRepository.save(admin);
 			recruitRepository.save(adminList);
+			playerRoleRepository.save(adminRole);
 
 			// anlegen eines users für testzwecke
 
-			PlayerModel user = new PlayerModel();
-			List<RecruitModel> userList = setUnits();
-			user.setUsername("user");
-			user.setEmail("user@gmail.com");
-			user.setPassword("password");
-			user.setRole("USER");
-
-			user.setRecruits(units);
-			for (RecruitModel unit : userList) {
-				unit.setPlayer(user);
-			}
-
-			playerRepository.save(user);
-			recruitRepository.save(userList);
+//			PlayerModel user = new PlayerModel();
+//			List<RecruitModel> userList = setUnits();
+//			user.setUsername("user");
+//			user.setEmail("user@gmail.com");
+//			user.setPassword("password");
+//			//user.setRole("USER");
+//
+//			user.setRecruits(units);
+//			for (RecruitModel unit : userList) {
+//				unit.setPlayer(user);
+//			}
+//			
+//			playerRepository.save(user);
+//			recruitRepository.save(userList);
 		}
 
 		// Validation eher schlecht als recht
@@ -98,14 +105,16 @@ public class RegisterController {
 			player.setUsername(username);
 			player.setEmail(email);
 			player.setPassword(password);
-			player.setRole("USER");
+			//player.setRole("USER");
+			PlayerRole playerRole = new PlayerRole(player,"ROLE_USER");
 			for (RecruitModel unit : playerList) {
 				unit.setPlayer(player);
 			}
-
+			System.out.println("SETTING UP Player");
 			
 			System.out.println(player.toString());
 			playerRepository.save(player);
+			playerRoleRepository.save(playerRole);
 			recruitRepository.save(playerList);// speichern in die db
 			return "regSuccess";
 		} else {
