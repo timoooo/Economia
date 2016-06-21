@@ -28,7 +28,7 @@
 						<li class="active"><a href="buildings">Buildings</a></li>
 						<li><a href="recruits">Recruits</a></li>
 						<li><a href="trade">Trade</a></li>
-					 	<li><a href="fight">Fight</a></li>
+						<li><a href="fight">Fight</a></li>
 
 
 
@@ -86,6 +86,8 @@
 											<td>${building.stoneOutput}</td>
 											<td>${building.foodOutput}</td>
 											<td>${building.goldOutput}</td>
+											<!-- <td><fmt:formatDate value="${player.dayOfBirth}"
+													pattern="dd.MM.yyyy" /> -->
 											<td><a class="btn btn-success btn-large" href="addOrUpgradeBuilding?id=${building.id}">Buy</a></td>
 										</tr>	
 										<tr>

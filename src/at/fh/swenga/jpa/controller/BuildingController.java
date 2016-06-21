@@ -2,15 +2,10 @@ package at.fh.swenga.jpa.controller;
 
 import java.security.Principal;
 
-import javax.validation.Valid;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -53,6 +48,7 @@ public class BuildingController {
 	@Transactional
 	public String addBuilding( Model model, Principal principal, @RequestParam int id ) {
 		boolean upgradeInsteadOfAdd = false;
+		String successMessage = null;
 		
 		try{
 		PlayerModel player = getPlayerModel(principal);
@@ -89,8 +85,15 @@ public class BuildingController {
 			newBuilding.setStoneOutput((int) (newBuilding.getStoneOutput()*1.7));
 			newBuilding.setFoodOutput((int) (newBuilding.getFoodOutput()*1.5));
 			newBuilding.setGoldOutput((int) (newBuilding.getGoldOutput()*1.2));
+			
+			successMessage = "Building \"" + newBuilding.getName() + "\" has been upgraded my Lord :)";
 		}
-		else newBuilding = newBuilding.clone();
+		else {
+			//neues Object, da neues Gebäude -> clone
+			newBuilding = newBuilding.clone();
+			
+			successMessage = "New building \"" + newBuilding.getName() + "\" has been built my Lord :D";
+		}
 		
 		
 		//neue ResourcWerte setzen (die building werte für ein späteres upgrade)
@@ -107,9 +110,7 @@ public class BuildingController {
 		playerRepository.save(player);
 		buildingRepository.save(newBuilding);
 		
-		
-		if(upgradeInsteadOfAdd)	model.addAttribute("message", "Building \"" + newBuilding.getName() + "\" has been upgraded my Lord :)");
-		else model.addAttribute("message", "New building \"" + newBuilding.getName() + "\" has been built my Lord :D");
+		model.addAttribute("message",successMessage);
 				 
 		return "forward:/buildings";
 		
