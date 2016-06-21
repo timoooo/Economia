@@ -38,7 +38,7 @@ public class RecruitController {
 		return "recruits";
 
 	}
-
+	//COMMIT-COMMENT YOLO
 	@RequestMapping(value = "/submitrecruits", method = RequestMethod.GET)
 	public String submitRecruits(Model model, Principal principal, @RequestParam int addUnit1,
 			@RequestParam int addUnit2, @RequestParam int addUnit3, @RequestParam int addUnit4,
