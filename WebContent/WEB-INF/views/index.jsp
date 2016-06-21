@@ -65,48 +65,7 @@
 	<div class="container">
 		<div class="jumbotron">
 			<center>
-				<h1>${type}</h1>
-				<br>
-				<!--  search by Id ----------------------------------------------------------- -->
-				<form action="findById" method="post">
-					Find by Id: <input type="text" name="id"> <input
-						type="submit" value="Do it">
-				</form>
-				<hr>
-	
-				<!--  paging ----------------------------------------------------------- -->
-				<form action="getPage" method="post">
-					Paging: Page:<input type="text" name="page" value="0"> Size:<input
-						type="text" name="size" value="10"> <input type="submit"
-						value="Do it">
-				</form>
-				<hr>
-	
-				<!--  Search + Fill ----------------------------------------------------------- -->
-				<div class="row">
-					<form method="post" action="find">
-						<label for="searchString">Search:</label> <select name="type">
-							<option value="findAll" selected="selected">findAll</option>
-							<option value="findByLastName">findByLastName</option>
-							<option value="findByFirstName">findByFirstName</option>
-							<option value="findByAnything">findByAnything</option>
-							<option value="findByFirstNameEndsWith">findByFirstNameEndsWith</option>
-							<option value="findByLastNameEndsWith">findByLastNameEndsWith</option>
-							<option value="findByOrderByLastNameAsc">findByOrderByLastNameAsc</option>
-							<option value="findTop10ByOrderByFirstNameAsc">findTop10ByOrderByFirstNameAsc</option>
-							<option value="findTop10ByOrderByLastNameAsc">findTop10ByOrderByLastNameAsc</option>
-							<option value="findByOrderByFirstNameAsc">findByOrderByFirstNameAsc</option>
-							<option value="findBySomething">findBySomething</option>
-	
-	
-	
-	
-						</select> <input type="text" name="searchString"> <input
-							type="submit" value="Do it">
-					</form>
-				</div>
-	
-				<!--  Search + Fill ----------------------------------------------------------- -->
+			<!--  Search + Fill ----------------------------------------------------------- -->
 				<h1>Admin Page (later)</h1>
 			</center>
 	
@@ -116,7 +75,8 @@
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
 					<h2>Players</h2>
-					<table data-toggle="table" class="table table-striped">
+					<table data-toggle="table"        data-pagination="true"
+       data-search="true" class="table table-striped">
 						<thead>
 							<tr>
 								<th>Name</th>
@@ -143,11 +103,10 @@
 									<td>${user.stone}</td>
 									<td>${user.food}</td>
 									<td>${user.gold}</td>
-									<!--<td><c:forEach items="${user.buildings}" var="building">
-									$(building.name)<br>
-									</c:forEach></td>
-									<td>${users.buildings.}</td>
-									<!-- td><a href="delete?id=${users.id}">Delete</a></td> -->
+									<td>
+									<a href="delete?id=${users.username}"><button type="button"
+											class="btn btn-danger">Delete</a>
+									</td> 
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -158,9 +117,9 @@
 		</div>
 		<!--  list all players ----------------------------------------------------------- -->
 	</div>
-
-<div id="footer">
-		<div class="row">
+	
+	<div id="footer" >
+		<div class="row" > <!--  style="z-index:110; -->
 			<div class="col-md-6 col-md-offset-3">
 				<table class="table" style="background-color:#ee4d2e;">
 					<thead>
