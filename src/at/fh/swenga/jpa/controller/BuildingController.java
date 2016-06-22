@@ -1,6 +1,8 @@
 package at.fh.swenga.jpa.controller;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.jpa.dao.BuildingRepository;
+import at.fh.swenga.jpa.dao.HistoryRepository;
 import at.fh.swenga.jpa.dao.PlayerRepository;
 import at.fh.swenga.jpa.dao.PlayerRoleRepository;
 import at.fh.swenga.jpa.model.BuildingModel;
+import at.fh.swenga.jpa.model.HistoryModel;
 import at.fh.swenga.jpa.model.PlayerModel;
-import at.fh.swenga.jpa.model.PlayerRole;
 
 @Controller
 public class BuildingController {
@@ -29,6 +32,9 @@ public class BuildingController {
 	
 	@Autowired
 	PlayerRoleRepository playerRoleRepository;
+	
+	@Autowired
+	HistoryRepository historyRepository;
 	
 	@RequestMapping(value = "/buildings", method = RequestMethod.GET)
 	@Transactional 
@@ -55,6 +61,7 @@ public class BuildingController {
 	public String addBuilding( Model model, Principal principal, @RequestParam int id ) {
 		boolean upgradeInsteadOfAdd = false;
 		String successMessage = null;
+		String historyMsg = "";
 		
 		try{
 		PlayerModel player = getPlayerModel(principal);
@@ -93,11 +100,15 @@ public class BuildingController {
 			newBuilding.setGoldOutput((int) (newBuilding.getGoldOutput()*1.2));
 			
 			successMessage = "Building \"" + newBuilding.getName() + "\" has been upgraded my Lord :)";
+			historyMsg = "You upgraded a building (id" +newBuilding.getId()+") to level " + newBuilding.getLevel();
+			
 		}
 		else {
 			//neues Object, da neues Gebäude -> clone
 			newBuilding = newBuilding.clone();
+			//in History speichern
 			successMessage = "New building \"" + newBuilding.getName() + "\" has been built my Lord :D";
+			historyMsg = "You build a new building (id" +newBuilding.getId()+")";
 		}
 		
 		
@@ -108,12 +119,18 @@ public class BuildingController {
 		player.setGold(goldLeft);	newBuilding.setNeededGold((int) (newBuilding.getNeededGold()*1.8));
 		
 		
-		//player hinzufügen
+		//in der History vermerken
+		player = addHistoryEntry(player,historyMsg,"construct");
 		
+		//player hinzufügen
 		newBuilding.setPlayer(player);
 		player.addBuilding(newBuilding);
+		//in db speichern
 		playerRepository.save(player);
 		buildingRepository.save(newBuilding);
+		
+		
+
 		
 		model.addAttribute("message",successMessage);
 				 
@@ -135,6 +152,22 @@ public class BuildingController {
 	
 	private List<BuildingModel> getAdminBuildings(){
 	      return buildingRepository.findByPlayerUsername("admin");
+	}
+	
+	
+	private PlayerModel addHistoryEntry (PlayerModel player, String message, String type){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter df; 
+        df = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");     // 31.01.2016 20:07
+		
+		HistoryModel history = new HistoryModel(); 
+		history.setPlayer(player);
+		history.setInfo(message);
+		history.setType(type);
+		history.setDate(now.format(df));
+		player.addHistory(history);
+		historyRepository.save(history);
+		return player;
 	}
 	
 	

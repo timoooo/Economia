@@ -5,8 +5,6 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
-import java.util.List;
-import java.util.Set;
 
 import javax.validation.Valid;
 
@@ -14,15 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.FieldError;
 
 import at.fh.swenga.jpa.dao.HistoryRepository;
 import at.fh.swenga.jpa.dao.PlayerRepository;
@@ -169,6 +167,7 @@ public class TradeController {
 	    	  model.addAttribute("errorMessage", errorMessage);
 	    	  return "forward:/tradeFeedback";
 	      }
+	      
 			
 		
 		//Offer in db speichern
@@ -196,7 +195,9 @@ public class TradeController {
 		
 		PlayerModel player = offer.getPlayer();
 		player.addTradeOffer(offer);
-		player = addHistoryEntry(player,"You made a new offer for "+ newOffer.getPrice() +" gold!","trade");
+		
+		String historyMsg = "You made a new offer (id" +newOffer.getId()+") for "+ newOffer.getPrice() +" gold!";
+		player = addHistoryEntry(player,historyMsg,"trade");
 		
 		playerRepository.save(player);
 		tradeRepository.save(offer);
@@ -209,7 +210,6 @@ public class TradeController {
 	
 	@Transactional		//return null and save Seller if no error, otherwise return errorMessage
 	private String checkAndSaveSellerValues(TradeModel newOffer, PlayerModel player){
-		String errorMessage = null;
 		int foodLeft = player.getFood()-newOffer.getFood();
 		int stoneLeft = player.getStone()-newOffer.getStone();
 		int woodLeft = player.getWood()-newOffer.getWood();
@@ -227,6 +227,10 @@ public class TradeController {
 	    player.setFood(foodLeft);
 	    player.setStone(stoneLeft);
 	    player.setWood(woodLeft);
+	    
+		String historyMsg = "You bought a building (id" +newOffer.getId()+") for "+ newOffer.getPrice() +" gold  :D!";
+		player = addHistoryEntry(player,historyMsg,"trade");
+		
 	    playerRepository.save(player);
 	    return null;
 	}
