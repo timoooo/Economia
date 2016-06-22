@@ -68,11 +68,21 @@
 								<thead>
 									<tr>
 										<th>Type</th>
-										<th>Level</th>
-										<th>Wood o.</th>
-										<th>Stone o.</th>
-										<th>Food o.</th>
-										<th>Gold o.</th>
+										<th>Level <img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/level-icon.png"></th>
+										<th>Wood <img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/wood-icon.png"></th>
+										<th>Stone<img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/stone-icon.png"></th>
+										<th>Food<img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/food-icon.png"></th>
+										<th>Gold<img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/gold-icon.png"></th>
 										<th>Action</th>
 									</tr>
 								</thead>

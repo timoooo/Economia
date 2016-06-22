@@ -187,21 +187,6 @@ public class PlayerModel implements java.io.Serializable {
 		this.recruit = recruits;
 	}
 
-	// public void addRecruit(RecruitModel recruit) {
-	// if (recruit == null) {
-	// recruits = new ArrayList<RecruitModel>();
-	// }
-	// recruit.add(recruit);
-	// }
-
-	// public String getRole() {
-	// return role;
-	// }
-	//
-	// public void setRole(String role) {
-	// this.role = role;
-	// }
-
 	public int getAttackPowerUnits() {
 		return attackPowerUnits;
 	}
@@ -251,7 +236,7 @@ public class PlayerModel implements java.io.Serializable {
 	
 
 /*
-	@Override
+	@Override getPlayerlist2Fight
 	public String toString() {
 
 		return "User [name=" + username + ", email=" + email + ", passwd=" + password;

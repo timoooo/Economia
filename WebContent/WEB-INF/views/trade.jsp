@@ -193,10 +193,18 @@
 					<thead>
 						<tr>
 							<th>Id</th>
-							<th>Wood</th>
-							<th>Stone</th>
-							<th>Food</th>
-							<th>Price</th>
+							<th>Wood <img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/wood-icon.png"></th>
+										<th>Stone<img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/stone-icon.png"></th>
+										<th>Food<img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/food-icon.png"></th>
+							<th>Price <img alt=""
+											style="width: 35px; height: 35px;"
+											src="images/ress/gold-icon.png"></th>
 							<th>Action</th>
 						</tr>
 					</thead>

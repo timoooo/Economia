@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import at.fh.swenga.jpa.dao.PlayerRepository;
-import at.fh.swenga.jpa.model.ActionModel;
 import at.fh.swenga.jpa.model.BuildingModel;
 import at.fh.swenga.jpa.model.PlayerModel;
 

@@ -63,63 +63,24 @@
 	</div>
 				
 	<div class="container">
-		<div class="jumbotron">
+		<div class="jumbotron" align="center">
 			<center>
 			<!--  Search + Fill ----------------------------------------------------------- -->
-				<h1>Admin Page (later)</h1>
+				<h1>Welcome to Economia!</h1>
 			</center>
+			<br><br>
+			<img align="middle" alt=""
+      						style="width: 500px; height:310px;"
+      						src="images/bigPics/village.jpg">
+      						
+      						
+			</div></div>
+						
 	
 	
 	
-			<!--  list all robots ----------------------------------------------------------- -->
-			<div class="row">
-				<div class="col-md-10 col-md-offset-1">
-					<h2>Players</h2>
-					<table data-toggle="table"        data-pagination="true"
-       data-search="true" class="table table-striped">
-						<thead>
-							<tr>
-								<th>Name</th>
-								<th>E-mail</th>
-								<th>Wood</th>
-								<th>Stone</th>
-								<th>Food</th>
-								<th>Gold</th>
-								<!--  <th>Buildings</th>
-								<th>Recruits</th> -->
-								<th><a href="fill"><button type="button"
-											class="btn btn-success">Fill List</button></a>
-								</th>
-							
-							</tr>
-						</thead>
-						<tbody>
-							<c:forEach items="${players}" var="user">
-								<tr>
-									<td>${user.username}</td>
-									<td>${user.email}</td>
-									<td>${user.wood}</td>
-									<td>${user.stone}</td>
-									<td>${user.food}</td>
-									<td>${user.gold}</td>
-									<td>
-									<a href="delete?id=${users.username}"><button type="button"
-											class="btn btn-danger">Delete</a>
-									</td>
-									<td>
-									<a href="edit?id=${users.username}"><button type="button"
-											class="btn btn-danger">Edit</a>
-									</td> 
-								</tr>
-							</c:forEach>
-						</tbody>
-					</table>
-					<hr>
-				</div>
-			</div>
-		</div>
 		<!--  list all players ----------------------------------------------------------- -->
-	</div>
+	
 	
 	<div id="footer" >
 		<div class="row" > <!--  style="z-index:110; -->

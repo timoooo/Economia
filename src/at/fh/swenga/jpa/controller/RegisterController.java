@@ -3,6 +3,7 @@ package at.fh.swenga.jpa.controller;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.fluttercode.datafactory.impl.DataFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -10,9 +11,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import at.fh.swenga.jpa.dao.BuildingRepository;
 import at.fh.swenga.jpa.dao.PlayerRepository;
 import at.fh.swenga.jpa.dao.PlayerRoleRepository;
 import at.fh.swenga.jpa.dao.RecruitRepository;
+import at.fh.swenga.jpa.model.BuildingModel;
 import at.fh.swenga.jpa.model.PlayerModel;
 import at.fh.swenga.jpa.model.PlayerRole;
 import at.fh.swenga.jpa.model.RecruitModel;
@@ -28,6 +31,9 @@ public class RegisterController {
 	
 	@Autowired
 	PlayerRoleRepository playerRoleRepository;
+	
+	@Autowired
+	BuildingRepository buildingRepository;
 
 	@RequestMapping(value = "/register", method = RequestMethod.GET)
 	public String registration() {
@@ -40,7 +46,8 @@ public class RegisterController {
 		username = username.trim();
 		email = email.trim();
 		List<RecruitModel> units = setUnits();
-		// initialisieren des Admin accounts Username: Admin password: admin
+		
+		// initialisieren des Admin accounts und der kaufbaren Gebäude Username: Admin password: admin
 		if (playerRepository.findByUsername("admin") == null) {
 
 			PlayerModel admin = new PlayerModel();
@@ -59,9 +66,54 @@ public class RegisterController {
 			admin.setStone(100000);
 			admin.setGold(100000);
 			
+			//gebäude hinzufügen mithilfe von zufallsgenerator
+			DataFactory df = new DataFactory();
+
+			BuildingModel building1 = new BuildingModel("Barack", "images/buildings/building1.png", df.getNumberUpTo(2), df.getNumberUpTo(1), df.getNumberUpTo(1), df.getNumberUpTo(10), df.getNumberUpTo(6), df.getNumberUpTo(4), df.getNumberUpTo(2), df.getNumberUpTo(2));			
+			building1.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
+			admin.addBuilding(building1);
+		
+			BuildingModel building2 = new BuildingModel("Snipa", "images/buildings/building2.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			building2.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
+			admin.addBuilding(building2);
+			
+			BuildingModel building3 = new BuildingModel("Pr0gra", "images/buildings/building3.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			building3.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
+			admin.addBuilding(building3);
+			
+			BuildingModel building4 = new BuildingModel("HorseHous", "images/buildings/building4.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			building4.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
+			admin.addBuilding(building4);
+			
+			BuildingModel building5 = new BuildingModel("Wood Tower", "images/buildings/building5.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			building5.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
+			admin.addBuilding(building5);
+			
+			BuildingModel building6 = new BuildingModel("Rrolf Tower", "images/buildings/building6.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			building6.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
+			admin.addBuilding(building6);
+			
+			BuildingModel building7 = new BuildingModel("Schn. Castle", "images/buildings/building7.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			building7.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
+			admin.addBuilding(building7);
+			
+			BuildingModel building8 = new BuildingModel("Hasen. Castle", "images/buildings/building8.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			building8.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
+			admin.addBuilding(building8);
+			
+			
 			playerRepository.save(admin);
 			recruitRepository.save(adminList);
 			playerRoleRepository.save(adminRole);
+			
+			buildingRepository.save(building1);  
+			buildingRepository.save(building2); 
+			buildingRepository.save(building3); 
+			buildingRepository.save(building4); 
+			buildingRepository.save(building5); 
+			buildingRepository.save(building6); 
+			buildingRepository.save(building7); 
+			buildingRepository.save(building8); 
 
 		
 		}

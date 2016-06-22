@@ -73,7 +73,7 @@ public class BuildingController {
 			upgradeInsteadOfAdd = true;
 		}
 		else	//checken ob Building gefunden wurde und von Admin erstellt wurde
-		if (!newBuilding.getPlayer().getPlayerRole().equals("ADMIN")) {
+		if (!newBuilding.getPlayer().getUsername().equals("admin")) {
 			model.addAttribute("errorMessage", "Wrong Building-ID received!<br>");
 			return "forward:/buildings";
 		}

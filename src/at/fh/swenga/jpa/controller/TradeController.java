@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
+import java.util.List;
 
 import javax.validation.Valid;
 
@@ -50,7 +51,19 @@ public class TradeController {
 	      PlayerModel player = playerRepository.findByUsername(name);
 	      model.addAttribute("player", player);
 	      //model.addAttribute("date", LocalDateTime.now());
-	      model.addAttribute("offers", tradeRepository.findAll());
+	     
+	      
+	      //seigene offers aus der liste löschen
+	      List<TradeModel> offers = tradeRepository.findAll();
+		for(TradeModel offerx:offers){
+		      if(offerx.getPlayer().getUsername().equals(player.getUsername())){
+		    	  offers.remove(offerx);
+		        break;
+		      }
+		    }
+		 model.addAttribute("offers", offers);
+		
+		//meine eigenen offers
 	      model.addAttribute("myOffers", tradeRepository.findByPlayerUsername(name));
 	     
 		return "trade";

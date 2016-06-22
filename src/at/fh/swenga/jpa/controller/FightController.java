@@ -240,6 +240,14 @@ public class FightController {
 		model.addAttribute("attack", attack);
 		model.addAttribute("defense", deff);
 		model.addAttribute("acc", acc);
+		
+		//den eigenen player ausblenden
+		for(PlayerModel playerx:players){
+		      if(playerx.getUsername().equals(player.getUsername())){
+		        players.remove(playerx);
+		        break;
+		      }
+		    }
 		return players;
 	}
 	
