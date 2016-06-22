@@ -1,6 +1,7 @@
 package at.fh.swenga.jpa.model;
 
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -45,9 +46,12 @@ public class TradeModel implements java.io.Serializable{
     @Column(nullable = false)
     private int stone = 0;	
     
-	@NotNull(message = "{0} is required")
-	@DateTimeFormat(pattern = "kk.mm <br> dd.MM.yyyy")
-	private LocalDateTime date;
+    @Column(nullable = false)
+    private int food = 0;	
+    
+	//@NotNull(message = "{0} is required")
+	//@DateTimeFormat(pattern = "kk.mm dd.MM.yyyy")
+	//private LocalDateTime date;
 		
     
     @ManyToOne(optional=false)
@@ -58,12 +62,15 @@ public class TradeModel implements java.io.Serializable{
 	public TradeModel() {
 	}
 
-	public TradeModel(int price, int wood, int stone) {
+	public TradeModel(int wood, int stone, int food, int price) {
 		super();
 		this.price = price;
 		this.wood = wood;
 		this.stone = stone;
-		this.date = LocalDateTime.now();
+		this.food = food;
+		
+		//DateTimeFormatter  df = DateTimeFormatter.ofPattern("k.mm <br> dd.MM.yyyy");
+		//this.date = LocalDateTime.now();
 	}
 
 	public int getId() {
@@ -98,12 +105,21 @@ public class TradeModel implements java.io.Serializable{
 		this.stone = stone;
 	}
 
-	public LocalDateTime getDayOfBirth() {
-		return date;
+	
+//	public LocalDateTime getDate() {
+//		return date;
+//	}
+//
+//	public void setDate(LocalDateTime date) {
+//		this.date = date;
+//	}
+
+	public int getFood() {
+		return food;
 	}
 
-	public void setDayOfBirth(LocalDateTime date) {
-		this.date = date;
+	public void setFood(int food) {
+		this.food = food;
 	}
 
 	public PlayerModel getPlayer() {

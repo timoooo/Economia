@@ -54,7 +54,7 @@
 					<p>The agony of choice.</p>
 					<br>
 					
-					<a class="btn btn-primary btn-large" href="buildings">< Back </a>
+					<a class="btn btn-primary btn-large" href="buildings"> Back </a>
 					
 					<div align = "center">
 						<div class="label label-primary" align = "center">o. = output</div>
@@ -86,8 +86,6 @@
 											<td>${building.stoneOutput}</td>
 											<td>${building.foodOutput}</td>
 											<td>${building.goldOutput}</td>
-											<!-- <td><fmt:formatDate value="${player.dayOfBirth}"
-													pattern="dd.MM.yyyy" /> -->
 											<td><a class="btn btn-success btn-large" href="addOrUpgradeBuilding?id=${building.id}">Buy</a></td>
 										</tr>	
 										<tr>

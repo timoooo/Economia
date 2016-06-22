@@ -2,6 +2,7 @@
 package at.fh.swenga.jpa.dao;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -20,7 +21,9 @@ public interface TradeRepository extends JpaRepository<TradeModel, String> {
 
 	List<TradeModel> findByPlayerUsername(String username);
 	
-	List<TradeModel> findAll();
+	void removeById(int index);
+
+	TradeModel findById(int id);
 	
-	
+
 }

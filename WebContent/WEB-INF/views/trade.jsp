@@ -60,11 +60,26 @@
 		</div>
 	</div>
 				
-	<div class="container">
+	<div class="container" role="main">
 		<div class="jumbotron">
-			<h2>
-				Trade your resources! 
-			</h2>
+			<h2>Trade your resources!</h2>
+	
+			<c:if test="${not empty errorMessage}">
+				<div class="alert alert-danger" role="alert">${errorMessage}</div>
+			</c:if>
+			<!--  Error message ----------------------------------------------------------- -->
+	
+			<!--  Warning message ----------------------------------------------------------- -->
+			<c:if test="${not empty warningMessage}">
+				<div class="alert alert-warning" role="warning">
+					${warningMessage}</div>
+			</c:if>
+			<!--  Warning message ----------------------------------------------------------- -->
+	
+			<!--   message ----------------------------------------------------------- -->
+			<c:if test="${not empty message}">
+				<div class="alert alert-success" role="warning">${message}</div>
+			</c:if>
 	        
 	        <img align=right alt=""
 			style="width: 250px; height:150px;"
@@ -88,14 +103,22 @@
 						<div class="col-md-1"></div>
 						<h4>Your resources:</h4>
 						
+
 						<div class="form-group">
 						  <div class="col-md-7">
 						    <div class="input-group">
-						      <input id="trade.player" name="wood" class="form-control" placeholder="0" min=0 type="hidden" value="<c:out value="${player}"/>">
+						      <input id="trade.player" name="player" class="form-control" min=0 type="hidden" value="<c:out value="${player.username}"/>"> <!-- hidden -->
 						    </div>
-						    
 						  </div>
 						</div>
+						<%-- <div class="form-group">
+						  <div class="col-md-7">
+						    <div class="input-group">
+						      <input id="trade.date" name="player" class="form-control" min=0 type="date" value="<c:out value="${date}"/>"> <!-- hidden -->
+						    </div>
+						  </div>
+						</div> --%>
+						
 						<div class="form-group">
 						  <label class="col-md-3 control-label" for="wood"></label>
 						  <div class="col-md-7">
@@ -103,7 +126,6 @@
 						      <input id="trade.wood" name="wood" class="form-control" placeholder="0" min=0 type="number" value="<c:out value="${trade.wood}"/>">
 						      <span class="input-group-addon">Wood</span>
 						    </div>
-						    
 						  </div>
 						</div>
 						<!-- Appended Input-->
@@ -138,7 +160,7 @@
 						  <label class="col-md-5 control-label" for="appendedtext"></label>
 						  <div class="col-md-6">
 						    <div class="input-group">
-						      <input id="price" name="price" class="form-control" placeholder="0" min=0 type="number" value="<c:out value="${trade.price}"/>">
+						      <input id="trade.price" name="price" class="form-control" placeholder="0" min=0 type="number" value="<c:out value="${trade.price}"/>">
 						      <span class="input-group-addon">Gold</span>
 						    </div>
 						    
@@ -170,7 +192,7 @@
 				<table data-toggle="table" class="table table-striped">
 					<thead>
 						<tr>
-							<th>Date</th>
+							<th>Id</th>
 							<th>Wood</th>
 							<th>Stone</th>
 							<th>Food</th>
@@ -181,13 +203,18 @@
 					<tbody>
 						<c:forEach items="${myOffers}" var="myOffer">
 							<tr>
-								<td>
+<%-- 								<td>
 								<fmt:formatDate value="${myOffer.date}"
-									pattern="dd.MM.yyyy" /></td>
+									pattern="dd.MM.yyyy" /></td> --%>
+								<td>${myOffer.id}</td>
 								<td>${myOffer.wood}</td>
 								<td>${myOffer.stone}</td>
 								<td>${myOffer.food}</td>
 								<td>${myOffer.price}</td>
+								<td> 
+									<a href="tradeDelete?id=${myOffer.id}"><button type="button"
+										class="btn btn-danger">Delete</button></a>
+								</td> 
 							</tr>
 						</c:forEach>
 					</tbody>
@@ -202,11 +229,11 @@
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
 					<h3>Offers:</h3>
-					<table data-toggle="table" class="table table-striped">
+					<table data-toggle="table" data-pagination="true" data-search="true" class="table table-striped">
 						<thead>
 							<tr>
-								<th>Date</th>
-								<th>player</th>
+								<th>Id</th>
+								<th>Player</th>
 								<th>Wood</th>
 								<th>Stone</th>
 								<th>Food</th>
@@ -215,16 +242,21 @@
 							</tr>
 						</thead>
 						<tbody>
-							<c:forEach items="${robots}" var="player">
+							<c:forEach items="${offers}" var="offer">
 								<tr>
-									<td>
+<%-- 									<td>
 									<fmt:formatDate value="${offer.date}"
-										pattern="dd.MM.yyyy" /></td>
-									<td>${offer.player}</td>
+										pattern="dd.MM.yyyy" /></td> --%>
+									<td>${offer.id}</td>
+									<td>${offer.player.username}</td>
 									<td>${offer.wood}</td>
 									<td>${offer.stone}</td>
 									<td>${offer.food}</td>
 									<td>${offer.price}</td>
+									<td>
+									<a href="tradeBuy?id=${offer.id}"><button type="button"
+											class="btn btn-success">buy</button></a>
+									</td> 
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -232,6 +264,7 @@
 				</div>
 			</div>
 		</div>
+	</div>
 	</div>
 	
 

@@ -50,96 +50,96 @@
 				
 	<div class="container" role="main">
 		<div class="jumbotron">
-					<h2>Upgrade your Castle!</h2>
+			<h2>Upgrade your Castle!</h2>
+	
+			<c:if test="${not empty errorMessage}">
+				<div class="alert alert-danger" role="alert">${errorMessage}</div>
+			</c:if>
+			<!--  Error message ----------------------------------------------------------- -->
+	
+			<!--  Warning message ----------------------------------------------------------- -->
+			<c:if test="${not empty warningMessage}">
+				<div class="alert alert-warning" role="warning">
+					${warningMessage}</div>
+			</c:if>
+			<!--  Warning message ----------------------------------------------------------- -->
+	
+			<!--   message ----------------------------------------------------------- -->
+			<c:if test="${not empty message}">
+				<div class="alert alert-success" role="warning">${message}</div>
+			</c:if>
 			
-					<c:if test="${not empty errorMessage}">
-						<div class="alert alert-danger" role="alert">${errorMessage}</div>
-					</c:if>
-					<!--  Error message ----------------------------------------------------------- -->
 			
-					<!--  Warning message ----------------------------------------------------------- -->
-					<c:if test="${not empty warningMessage}">
-						<div class="alert alert-warning" role="warning">
-							${warningMessage}</div>
-					</c:if>
-					<!--  Warning message ----------------------------------------------------------- -->
+			<br>
+	
+			<p>Build new buildings, upgrade them and freak out about their stats.</p>
+			<br>
 			
-					<!--   message ----------------------------------------------------------- -->
-					<c:if test="${not empty message}">
-						<div class="alert alert-success" role="warning">${message}</div>
-					</c:if>
-					
-					
-					<br>
 			
-					<p>Build new buildings, upgrade them and freak out about their stats.</p>
-					<br>
-					
-					
-					<p>
-						Klick here to let your kingdom grow:  </p>
-						
-						<div class="panel-body align="center"><div class="col-md-4 col-md-offset-4" >
-						<div class="well" style="background-color:black;" align="center"> <div class="panel panel-default"><a class="btn btn-primary btn-large" href="buildingsOffer">New Building</a> 
-						</div> 
-						</div> 
-						</div>
-						</div>
-					
-					
-					
+			<p>
+				Klick here to let your kingdom grow:  </p>
 				
-					
-					<h2>Your Buildings:</h2>
-					<div align = "center">
-						<div class="label label-primary" align = "center">o. = output</div>
-					</div>
-					<br>
-					<div class="row">
-						<div class="col-md-10 col-md-offset-1">
-							<table data-toggle="table" class="table table-striped">
-								<thead>
-									<tr>
-										<th>Type</th>
-										<th>Level</th>
-										<th>Wood o.</th>
-										<th>Stone o.</th>
-										<th>Food o.</th>
-										<th>Gold o.</th>
-										<th>Action</th>
-									</tr>
-								</thead>
-								<tbody>
-									<c:forEach items="${buildings}" var="building">
-										<tr>
-											<td><img src="${building.icon}" alt="${building.name}" align="middle" style="width:120;height:100px;">
-												<br><h5 align="center">${building.name}</h5></td>		
-											<td>${building.level}</td>
-											<td>${building.woodOutput}</td>
-											<td>${building.stoneOutput}</td>
-											<td>${building.foodOutput}</td>
-											<td>${building.goldOutput}</td>
+				<div class="panel-body align="center"><div class="col-md-4 col-md-offset-4" >
+				<div class="well" style="background-color:black;" align="center"> <div class="panel panel-default"><a class="btn btn-primary btn-large" href="buildingsOffer">New Building</a> 
+				</div> 
+				</div> 
+				</div>
+				</div>
+			
+			
+			
+		
+			
+			<h2>Your Buildings:</h2>
+			<div align = "center">
+				<div class="label label-primary" align = "center">o. = output</div>
+			</div>
+			<br>
+			<div class="row">
+				<div class="col-md-10 col-md-offset-1">
+					<table data-toggle="table" class="table table-striped">
+						<thead>
+							<tr>
+								<th>Type</th>
+								<th>Level</th>
+								<th>Wood o.</th>
+								<th>Stone o.</th>
+								<th>Food o.</th>
+								<th>Gold o.</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+						<tbody>
+							<c:forEach items="${buildings}" var="building">
+								<tr>
+									<td><img src="${building.icon}" alt="${building.name}" align="middle" style="width:120;height:100px;">
+										<br><h5 align="center">${building.name}</h5></td>		
+									<td>${building.level}</td>
+									<td>${building.woodOutput}</td>
+									<td>${building.stoneOutput}</td>
+									<td>${building.foodOutput}</td>
+									<td>${building.goldOutput}</td>
 
-											<td><a class="btn btn-success btn-large" href="addOrUpgradeBuilding?id=${building.id}">Upgrade</a>
-											<h5><b>costs:</b></h5>
-												<h5 align="right">
-													${building.neededWood} Wood
-													<br>${building.neededStone} Stone
-													<br>${building.neededFood} Food
-													<br>${building.neededGold} Gold	
-												</h5>
-											</td>
-										</tr>
-									</c:forEach>
-								</tbody>
-							</table>
-							<hr>
-						</div>
-					</div>
-
+									<td><a class="btn btn-success btn-large" href="addOrUpgradeBuilding?id=${building.id}">Upgrade</a>
+									<h5><b>costs:</b></h5>
+										<h5 align="right">
+											${building.neededWood} Wood
+											<br>${building.neededStone} Stone
+											<br>${building.neededFood} Food
+											<br>${building.neededGold} Gold	
+										</h5>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<hr>
 				</div>
 			</div>
-	
+
+		</div>
+	</div>
+
 	
 
 	<div id="footer">

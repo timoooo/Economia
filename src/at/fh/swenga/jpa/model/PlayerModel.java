@@ -141,11 +141,11 @@ public class PlayerModel implements java.io.Serializable {
 	}
 
 	// fehlt die remove funktion!!!!
-	public void setActions(Set<TradeModel> offers) {
+	public void setTradeOffer(Set<TradeModel> offers) {
 		this.tradeOffers = offers;
 	}
 
-	public void addAction(TradeModel offer) {
+	public void addTradeOffer(TradeModel offer) {
 		if (tradeOffers == null) {
 			tradeOffers = new HashSet<TradeModel>();
 		}
