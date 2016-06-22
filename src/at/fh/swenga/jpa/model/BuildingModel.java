@@ -29,7 +29,7 @@ public class BuildingModel implements java.io.Serializable, Cloneable{
 	private String icon;
 	
 	@Column(nullable = false, length = 30)
-	private String name = "Bauhaus";
+	private String name = "";
 	
 
 	@Column(nullable = false)

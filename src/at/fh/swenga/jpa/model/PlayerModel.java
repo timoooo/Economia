@@ -49,14 +49,15 @@ public class PlayerModel implements java.io.Serializable {
 	 * Set<BuildingModel> buildings;
 	 */
 
+	
 	@OneToMany(mappedBy = "player", targetEntity = BuildingModel.class, fetch = FetchType.LAZY)
-	private Set<BuildingModel> buildings;
+	private Set<BuildingModel> buildings = new HashSet<BuildingModel>(0);
 
 	@OneToMany(mappedBy = "player", targetEntity = RecruitModel.class, fetch = FetchType.LAZY)
 	private List<RecruitModel> recruit;
 
-	@OneToMany(mappedBy = "player", targetEntity = ActionModel.class, fetch = FetchType.LAZY)
-	private Set<ActionModel> actions;
+	@OneToMany(mappedBy = "player", targetEntity = TradeModel.class, fetch = FetchType.LAZY)
+	private Set<TradeModel> tradeOffers = new HashSet<TradeModel>(0);
 
 	@OneToMany(mappedBy = "player", targetEntity = PlayerRole.class, fetch = FetchType.LAZY)
 	private Set<PlayerRole> playerRole = new HashSet<PlayerRole>(0);
@@ -72,7 +73,6 @@ public class PlayerModel implements java.io.Serializable {
 		this.username = username;
 		this.email = email;
 		this.password = password;
-		// this.role = role;
 		this.wood = wood;
 		this.stone = stone;
 		this.food = food;
@@ -136,20 +136,20 @@ public class PlayerModel implements java.io.Serializable {
 		this.gold = gold;
 	}
 
-	public Set<ActionModel> getActions() {
-		return actions;
+	public Set<TradeModel> getTradeOffer() {
+		return tradeOffers;
 	}
 
 	// fehlt die remove funktion!!!!
-	public void setActions(Set<ActionModel> actions) {
-		this.actions = actions;
+	public void setActions(Set<TradeModel> offers) {
+		this.tradeOffers = offers;
 	}
 
-	public void addAction(ActionModel action) {
-		if (actions == null) {
-			actions = new HashSet<ActionModel>();
+	public void addAction(TradeModel offer) {
+		if (tradeOffers == null) {
+			tradeOffers = new HashSet<TradeModel>();
 		}
-		actions.add(action);
+		tradeOffers.add(offer);
 	}
 
 	public Set<BuildingModel> getBuildings() {
@@ -190,6 +190,8 @@ public class PlayerModel implements java.io.Serializable {
 	// this.role = role;
 	// }
 
+	
+	
 	public Set<PlayerRole> getPlayerRole() {
 		return playerRole;
 	}
@@ -201,10 +203,7 @@ public class PlayerModel implements java.io.Serializable {
 	@Override
 	public String toString() {
 
-		return "User [name=" + username + ", email=" + email + ", passwd=" + password + ", wood " + " ]"; // resources.wood
-																											// +
-																											// "
-																											// ]";
+		return "User [name=" + username + ", email=" + email + ", passwd=" + password ; 
 
 	}
 

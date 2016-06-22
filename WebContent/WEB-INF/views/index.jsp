@@ -81,7 +81,6 @@
 							<tr>
 								<th>Name</th>
 								<th>E-mail</th>
-								<th>Role</th>
 								<th>Wood</th>
 								<th>Stone</th>
 								<th>Food</th>
@@ -98,7 +97,6 @@
 								<tr>
 									<td>${user.username}</td>
 									<td>${user.email}</td>
-									<td>${user.role}</td>
 									<td>${user.wood}</td>
 									<td>${user.stone}</td>
 									<td>${user.food}</td>

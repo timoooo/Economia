@@ -63,18 +63,18 @@ public class TickController {
 			
 			
 			//check for new construction action
-			Set<ActionModel> actions = player.getActions();
-			if(actions.size()>0){
-				for (ActionModel action: actions){
-					switch (action.getType()){
-						case 'b': System.out.println("create new Building");
-						case 'r': System.out.println("create new Recruits");
-						case 'f': System.out.println("create new Fight");
-						case 't': System.out.println("create new Trade");
-						case 'u': System.out.println("Upgrade a building");
-					}
-				}
-			}
+//			Set<ActionModel> actions = player.getActions();
+//			if(actions.size()>0){
+//				for (ActionModel action: actions){
+//					switch (action.getType()){
+//						case 'b': System.out.println("create new Building");
+//						case 'r': System.out.println("create new Recruits");
+//						case 'f': System.out.println("create new Fight");
+//						case 't': System.out.println("create new Trade");
+//						case 'u': System.out.println("Upgrade a building");
+//					}
+//				}
+//			}
 
 			//brauchen Datenbank für buildings und units, die erstellt werden können....
 			//brauchen Datenbank für aktuelle Actions! oda ka wies sonst gespeichert wird...

@@ -10,18 +10,17 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import at.fh.swenga.jpa.model.BuildingModel;
+import at.fh.swenga.jpa.model.ActionModel;
 import at.fh.swenga.jpa.model.PlayerModel;
-
+import at.fh.swenga.jpa.model.TradeModel;
 
 @Repository
 @Transactional
-public interface BuildingRepository extends JpaRepository<BuildingModel, String> {
-	
-	List<BuildingModel> findByPlayerUsername(String username);
+public interface TradeRepository extends JpaRepository<TradeModel, String> {
 
-	BuildingModel getBuildingById(int id);
+	List<TradeModel> findByPlayerUsername(String username);
 	
-	List<BuildingModel> findAll();
-
+	List<TradeModel> findAll();
+	
+	
 }

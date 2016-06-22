@@ -65,6 +65,11 @@
 			<h2>
 				Trade your resources! 
 			</h2>
+	        
+	        <img align=right alt=""
+			style="width: 250px; height:150px;"
+			src="images/bigPics/market.png">
+			
 			<p>
 				Become a dealers and sell your goods to the rest of the world.
 			</p>
@@ -82,11 +87,20 @@
 						<!-- Appended Input-->
 						<div class="col-md-1"></div>
 						<h4>Your resources:</h4>
+						
+						<div class="form-group">
+						  <div class="col-md-7">
+						    <div class="input-group">
+						      <input id="trade.player" name="wood" class="form-control" placeholder="0" min=0 type="hidden" value="<c:out value="${player}"/>">
+						    </div>
+						    
+						  </div>
+						</div>
 						<div class="form-group">
 						  <label class="col-md-3 control-label" for="wood"></label>
 						  <div class="col-md-7">
 						    <div class="input-group">
-						      <input id="wood" name="wood" class="form-control" placeholder="0" min=0 type="number">
+						      <input id="trade.wood" name="wood" class="form-control" placeholder="0" min=0 type="number" value="<c:out value="${trade.wood}"/>">
 						      <span class="input-group-addon">Wood</span>
 						    </div>
 						    
@@ -97,7 +111,7 @@
 						  <label class="col-md-3 control-label" for="stone"></label>
 						  <div class="col-md-7">
 						    <div class="input-group">
-						      <input id="stone" name="stone" class="form-control" placeholder="0" min=0 type="number">
+						      <input id="trade.stone" name="stone" class="form-control" placeholder="0" min=0 type="number" value="<c:out value="${trade.stone}"/>">
 						      <span class="input-group-addon">Stone</span>
 						    </div>
 						    
@@ -108,7 +122,7 @@
 						  <label class="col-md-3 control-label" for="food"></label>
 						  <div class="col-md-7">
 						    <div class="input-group">
-						      <input id="food" name="food" class="form-control" placeholder="0" min=0 type="number">
+						      <input id="trade.food" name="food" class="form-control" placeholder="0" min=0 type="number" value="<c:out value="${trade.food}"/>">
 						      <span class="input-group-addon">Food</span>
 						    </div>
 						    
@@ -124,7 +138,7 @@
 						  <label class="col-md-5 control-label" for="appendedtext"></label>
 						  <div class="col-md-6">
 						    <div class="input-group">
-						      <input id="price" name="price" class="form-control" placeholder="0" min=0 type="number">
+						      <input id="price" name="price" class="form-control" placeholder="0" min=0 type="number" value="<c:out value="${trade.price}"/>">
 						      <span class="input-group-addon">Gold</span>
 						    </div>
 						    
@@ -132,10 +146,10 @@
 						</div>
 						<br>
 						<div align="right">
-							<a class="btn btn-success btn-large"  href="#">Create</a>
+							<button type="submit" class="btn btn-success btn-large">Create</button>
 						</div>
 						<h5>
-							your offer holds for 48h 
+							With create your offered resources aren't available anymore.
 						</h5>
 							
 						</fieldset>
@@ -144,27 +158,50 @@
 				</div>
 			
 			
-			<div class="col-lg-4 col-lg-offset-1">
-				<form class="bs-component">
+			<div class="col-lg-6 col-lg-offset-0">
+	
 				
-					<div class="cotainer">
-                	<img alt=""
-						style="width: 335px; height:300px;"
-						src="images/bigPics/market.png">
-					</div>
+				
 
-					
-						
-					</form>
-				</div>
-      		</div>
+				
+				<h3>Your offers</h3>
+
+				
+				<table data-toggle="table" class="table table-striped">
+					<thead>
+						<tr>
+							<th>Date</th>
+							<th>Wood</th>
+							<th>Stone</th>
+							<th>Food</th>
+							<th>Price</th>
+							<th>Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<c:forEach items="${myOffers}" var="myOffer">
+							<tr>
+								<td>
+								<fmt:formatDate value="${myOffer.date}"
+									pattern="dd.MM.yyyy" /></td>
+								<td>${myOffer.wood}</td>
+								<td>${myOffer.stone}</td>
+								<td>${myOffer.food}</td>
+								<td>${myOffer.price}</td>
+							</tr>
+						</c:forEach>
+					</tbody>
+				</table>
+			</div>
+		
 	
 
 				
-			<h2>Offers:</h2>
+	
 			<br>
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1">
+					<h3>Offers:</h3>
 					<table data-toggle="table" class="table table-striped">
 						<thead>
 							<tr>
@@ -192,7 +229,6 @@
 							</c:forEach>
 						</tbody>
 					</table>
-					<hr>
 				</div>
 			</div>
 		</div>

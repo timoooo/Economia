@@ -14,6 +14,8 @@ import at.fh.swenga.jpa.model.PlayerRole;
 public interface PlayerRoleRepository extends JpaRepository<PlayerRole, Integer> {
 
 
-	List<PlayerRole> findByPlayer(PlayerModel player);
+	List<PlayerRole> findByPlayerUsername(String username);
+	
+	List<PlayerRole> findByRole(String role);
 
 }
