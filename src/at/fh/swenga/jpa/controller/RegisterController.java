@@ -53,26 +53,17 @@ public class RegisterController {
 				unit.setPlayer(admin);
 			}
 			PlayerRole adminRole = new PlayerRole(admin,"ROLE_ADMIN");
+			
+			admin.setWood(100000);
+			admin.setFood(100000);
+			admin.setStone(100000);
+			admin.setGold(100000);
+			
 			playerRepository.save(admin);
 			recruitRepository.save(adminList);
 			playerRoleRepository.save(adminRole);
 
-			// anlegen eines users für testzwecke
-
-//			PlayerModel user = new PlayerModel();
-//			List<RecruitModel> userList = setUnits();
-//			user.setUsername("user");
-//			user.setEmail("user@gmail.com");
-//			user.setPassword("password");
-//			//user.setRole("USER");
-//
-//			user.setRecruits(units);
-//			for (RecruitModel unit : userList) {
-//				unit.setPlayer(user);
-//			}
-//			
-//			playerRepository.save(user);
-//			recruitRepository.save(userList);
+		
 		}
 
 		// Validation eher schlecht als recht
@@ -95,7 +86,7 @@ public class RegisterController {
 					"Your username \"admin\" is invalid. There already exists an Admin with that username. Nice try tho :^)");
 			return "regFail";
 		}
-
+		
 		// überprüfen ob der Username schon vorhanden ist
 		if (playerRepository.findByUsername(username) == null) {
 			PlayerModel player = new PlayerModel();
@@ -105,11 +96,15 @@ public class RegisterController {
 			player.setUsername(username);
 			player.setEmail(email);
 			player.setPassword(password);
-			//player.setRole("USER");
+			
 			PlayerRole playerRole = new PlayerRole(player,"ROLE_USER");
 			for (RecruitModel unit : playerList) {
 				unit.setPlayer(player);
+				if(unit.getUnitID()==2){
+					unit.setCount(5);
+				}
 			}
+	
 			System.out.println("SETTING UP Player");
 			
 			System.out.println(player.toString());

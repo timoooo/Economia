@@ -29,7 +29,7 @@ public class RecruitController {
 		System.out.print("Hey");
 
 		String name = principal.getName(); // get logged in username
-
+		System.out.println(name);
 		PlayerModel player = playerRepository.findByUsername(name);
 		model.addAttribute("player", player);
 
@@ -38,7 +38,8 @@ public class RecruitController {
 		return "recruits";
 
 	}
-	//COMMIT-COMMENT YOLO
+
+	// COMMIT-COMMENT YOLO
 	@RequestMapping(value = "/submitrecruits", method = RequestMethod.GET)
 	public String submitRecruits(Model model, Principal principal, @RequestParam int addUnit1,
 			@RequestParam int addUnit2, @RequestParam int addUnit3, @RequestParam int addUnit4,
@@ -49,36 +50,44 @@ public class RecruitController {
 		List<RecruitModel> recruits = recruitRepository.findByPlayerUsername(name);
 
 		for (RecruitModel recruit : recruits) {
-
+			System.out.println(recruit.getUnitID());
 			switch (recruit.getUnitID()) {
 
 			case 1:
 				calcRessCosts(recruit, player, model, addUnit1);
-
+				break;
 			case 2:
 				calcRessCosts(recruit, player, model, addUnit2);
+				break;
 			case 3:
 				calcRessCosts(recruit, player, model, addUnit3);
+				break;
 			case 4:
 				calcRessCosts(recruit, player, model, addUnit4);
+				break;
 			case 5:
 				calcRessCosts(recruit, player, model, addUnit5);
+				break;
 			default:
 				System.out.println("SMTH WENT WRONG  PLS DO NOT HACK US :((((");
+				break;
+
 			}
 		}
 		model.addAttribute("player", player);
 		model.addAttribute("recruits", recruits);
 		recruitRepository.save(recruits);
-
+		playerRepository.save(player);
 		return "recruits";
 	}
 
-	public String calcRessCosts(RecruitModel recruit, PlayerModel player, Model model, int addUnit) {
-		if (recruit.getNeededGold() * addUnit >= player.getGold()
-				&& recruit.getNeededStone() * addUnit >= player.getStone()
-				&& recruit.getNeededFood() * addUnit >= player.getFood()
-				&& recruit.getNeededWood() * addUnit >= player.getWood()) {
+	public void calcRessCosts(RecruitModel recruit, PlayerModel player, Model model, int addUnit) {
+		System.out.println(addUnit);
+		if (recruit.getNeededGold() * addUnit <= player.getGold()
+				&& recruit.getNeededStone() * addUnit <= player.getStone()
+				&& recruit.getNeededFood() * addUnit <= player.getFood()
+				&& recruit.getNeededWood() * addUnit <= player.getWood()) {
+			System.out.println("GENUG RESS");
 			// Units setzen
 			int i = 0;
 			int ressGold = 0;
@@ -97,19 +106,15 @@ public class RecruitController {
 			player.setFood(player.getFood() - ressFood);
 			player.setStone(player.getStone() - ressStone);
 			player.setWood(player.getWood() - ressWood);
-			
-			model.addAttribute("success","units build");
+			model.addAttribute("errorRess", null);
+			model.addAttribute("success", "units build");
 
 		} else {
 
 			// FEHLER
 			model.addAttribute("errorRess", "To less ressources to recruit desired Units");
-			return "recruits";
-
+			model.addAttribute("success", null);
 		}
-
-		playerRepository.save(player);
-		return "recruits";
 
 	}
 

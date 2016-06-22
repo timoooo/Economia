@@ -1,6 +1,5 @@
 package at.fh.swenga.jpa.model;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -9,16 +8,17 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.Id;
+import javax.persistence.NamedNativeQueries;
+import javax.persistence.NamedNativeQuery;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Version;
 
-import org.springframework.beans.factory.annotation.Autowired;
-
-import at.fh.swenga.jpa.dao.RecruitRepository;
-
 @Entity
 @Table(name = "player")
+
 
 public class PlayerModel implements java.io.Serializable {
 
@@ -44,12 +44,20 @@ public class PlayerModel implements java.io.Serializable {
 	@Column(nullable = false)
 	private int gold = 0;
 
+	@Column(nullable = false)
+	private int attackPowerUnits = 0;
+
+	@Column(nullable = false)
+	private int deffPowerUnits = 0;
+
+	@Column(nullable = false)
+	private int accuracyUnits = 0;
+
 	/*
 	 * @OneToMany(mappedBy = "player", fetch = FetchType.LAZY) private
 	 * Set<BuildingModel> buildings;
 	 */
 
-	
 	@OneToMany(mappedBy = "player", targetEntity = BuildingModel.class, fetch = FetchType.LAZY)
 	private Set<BuildingModel> buildings = new HashSet<BuildingModel>(0);
 
@@ -61,9 +69,6 @@ public class PlayerModel implements java.io.Serializable {
 
 	@OneToMany(mappedBy = "player", targetEntity = PlayerRole.class, fetch = FetchType.LAZY)
 	private Set<PlayerRole> playerRole = new HashSet<PlayerRole>(0);
-	
-	@OneToMany(mappedBy = "player",targetEntity=HistoryModel.class, fetch = FetchType.LAZY)
-	private Set<HistoryModel> historys;
 
 	@Version
 	long version;
@@ -71,7 +76,8 @@ public class PlayerModel implements java.io.Serializable {
 	public PlayerModel() {
 	}
 
-	public PlayerModel(String username, String email, String password, int wood, int stone, int food, int gold) {
+	public PlayerModel(String username, String email, String password, int wood, int stone, int food, int gold, int atk,
+			int deff, int acc) {
 		super();
 		this.username = username;
 		this.email = email;
@@ -80,6 +86,9 @@ public class PlayerModel implements java.io.Serializable {
 		this.stone = stone;
 		this.food = food;
 		this.gold = gold;
+		this.accuracyUnits = acc;
+		this.attackPowerUnits = atk;
+		this.deffPowerUnits = deff;
 	}
 
 	public String getUsername() {
@@ -144,11 +153,11 @@ public class PlayerModel implements java.io.Serializable {
 	}
 
 	// fehlt die remove funktion!!!!
-	public void setTradeOffer(Set<TradeModel> offers) {
+	public void setActions(Set<TradeModel> offers) {
 		this.tradeOffers = offers;
 	}
-
-	public void addTradeOffer(TradeModel offer) {
+	
+	public void addAction(TradeModel offer) {
 		if (tradeOffers == null) {
 			tradeOffers = new HashSet<TradeModel>();
 		}
@@ -192,25 +201,31 @@ public class PlayerModel implements java.io.Serializable {
 	// public void setRole(String role) {
 	// this.role = role;
 	// }
-	
 
-	public  Set<HistoryModel> getHistorys() {
-		return historys;
-	}
-	
-	public void setHistorys(Set<HistoryModel> historys) {
-		this.historys = historys;
+	public int getAttackPowerUnits() {
+		return attackPowerUnits;
 	}
 
-	public void addHistory(HistoryModel history) {
-		if (historys == null) {
-			historys = new HashSet<HistoryModel>();
-		}
-		historys.add(history);
+	public void setAttackPowerUnits(int attackPowerUnits) {
+		this.attackPowerUnits = attackPowerUnits;
 	}
 
-	
-	
+	public int getDeffPowerUnits() {
+		return deffPowerUnits;
+	}
+
+	public void setDeffPowerUnits(int deffPowerUnits) {
+		this.deffPowerUnits = deffPowerUnits;
+	}
+
+	public int getAccuracyUnits() {
+		return accuracyUnits;
+	}
+
+	public void setAccuracyUnits(int accuracyUnits) {
+		this.accuracyUnits = accuracyUnits;
+	}
+
 	public Set<PlayerRole> getPlayerRole() {
 		return playerRole;
 	}
@@ -218,12 +233,14 @@ public class PlayerModel implements java.io.Serializable {
 	public void setUserRole(Set<PlayerRole> playerRole) {
 		this.playerRole = playerRole;
 	}
+	
 
+/*
 	@Override
 	public String toString() {
 
-		return "User [name=" + username + ", email=" + email + ", passwd=" + password ; 
+		return "User [name=" + username + ", email=" + email + ", passwd=" + password;
 
-	}
+	} */
 
 }
