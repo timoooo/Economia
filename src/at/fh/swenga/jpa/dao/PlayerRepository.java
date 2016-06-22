@@ -3,13 +3,11 @@ package at.fh.swenga.jpa.dao;
 
 import java.util.List;
 
+import javax.persistence.NamedQuery;
+
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
-import org.springframework.data.jpa.repository.Query;
-import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-
 
 import at.fh.swenga.jpa.model.PlayerModel;
 
@@ -19,15 +17,10 @@ import at.fh.swenga.jpa.model.PlayerModel;
 public interface PlayerRepository extends JpaRepository<PlayerModel, String> {
 	
 	
-//	@Modifying
-//	@Query("select p from Player p where p.username = :username")
-//	List<PlayerModel> findByUsernameGetList(@Param("username")String username);
+	List<PlayerModel> findByDeffPowerUnitsBetween(int deffPowerSmaller, int deffPowerGreater);
 	
+	//List<PlayerModel> findByDeffPowerUnits(int deff);
 	
-//	String role="USER";
-//	List<PlayerModel> findByUsernameAndRole(String username);
-	
-	//	List<PlayerModel> findByUsernameAndRole(String username);
 	
 	PlayerModel findByUsername(String username);
 	

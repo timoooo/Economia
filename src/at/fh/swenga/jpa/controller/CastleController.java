@@ -68,9 +68,11 @@ public class CastleController {
 		for (int i = 0; i < 20; i++) {
 			
 			player = playerRepository.findByUsername(username);
-		
+			
 			if (player == null) {
-				player = new PlayerModel(username, df.getEmailAddress(), "password", df.getNumberUpTo(10000), df.getNumberUpTo(5000),df.getNumberUpTo(200), df.getNumberUpTo(100));
+				player = new PlayerModel(username, df.getEmailAddress(), "password", df.getNumberUpTo(10000), df.getNumberUpTo(5000),df.getNumberUpTo(200), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(20), df.getNumberUpTo(100));
+				
+			
 			}
 				
 				//if(i==1) player.setRole("ADMIN");		//zum testen der gebäuse bau funktion
