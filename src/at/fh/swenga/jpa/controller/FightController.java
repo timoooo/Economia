@@ -49,7 +49,7 @@ public class FightController {
 			return "login";
 		}
 	}
-
+	//PUSH COMMENT 
 	@RequestMapping(value = "/fightnow", method = RequestMethod.GET)
 	public String calcWinnerAndLoser(Model model, Principal principal, @RequestParam String username) {
 		/*
