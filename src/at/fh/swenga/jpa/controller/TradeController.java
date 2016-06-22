@@ -3,6 +3,7 @@ package at.fh.swenga.jpa.controller;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -23,9 +24,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 
-
+import at.fh.swenga.jpa.dao.HistoryRepository;
 import at.fh.swenga.jpa.dao.PlayerRepository;
 import at.fh.swenga.jpa.dao.TradeRepository;
+import at.fh.swenga.jpa.model.HistoryModel;
 import at.fh.swenga.jpa.model.PlayerModel;
 import at.fh.swenga.jpa.model.TradeModel;
 
@@ -39,6 +41,9 @@ public class TradeController {
 	
 	@Autowired
 	TradeRepository tradeRepository;
+	
+	@Autowired
+	HistoryRepository historyRepository;
 	
 	@RequestMapping(value = "/trade", method = RequestMethod.GET)
 	  public String handleTrade(Model model, Principal principal ) {
@@ -116,8 +121,9 @@ public class TradeController {
 	      
 	      //Set the Seller values
 	      seller.setGold(seller.getGold()+trade.getPrice());
-	      
 	      playerRepository.save(seller);
+	      
+	      
 	      
 	      //delete the offer
 	      tradeRepository.removeById(id);
@@ -190,8 +196,12 @@ public class TradeController {
 		
 		PlayerModel player = offer.getPlayer();
 		player.addTradeOffer(offer);
+		player = addHistoryEntry(player,"You made a new offer for "+ newOffer.getPrice() +" gold!","trade");
+		
 		playerRepository.save(player);
 		tradeRepository.save(offer);
+		
+
 		
 		
 		System.out.println("Saved trade");
@@ -223,6 +233,22 @@ public class TradeController {
 	
 	private PlayerModel getPlayerModel(String string){
 		return playerRepository.findByUsername(string);
+	}
+	
+	private PlayerModel addHistoryEntry (PlayerModel player, String message, String type){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter df; 
+        df = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");     // 31.01.2016 20:07
+		
+		HistoryModel history = new HistoryModel(); 
+		history.setPlayer(player);
+		history.setInfo(message);
+		history.setType(type);
+		history.setDate(now.format(df));
+		//Date date
+		player.addHistory(history);
+		historyRepository.save(history);
+		return player;
 	}
 	
 }

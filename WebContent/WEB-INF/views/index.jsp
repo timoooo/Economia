@@ -90,6 +90,7 @@
 								<th><a href="fill"><button type="button"
 											class="btn btn-success">Fill List</button></a>
 								</th>
+							
 							</tr>
 						</thead>
 						<tbody>
@@ -104,6 +105,10 @@
 									<td>
 									<a href="delete?id=${users.username}"><button type="button"
 											class="btn btn-danger">Delete</a>
+									</td>
+									<td>
+									<a href="edit?id=${users.username}"><button type="button"
+											class="btn btn-danger">Edit</a>
 									</td> 
 								</tr>
 							</c:forEach>
