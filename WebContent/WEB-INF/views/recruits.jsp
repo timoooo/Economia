@@ -52,7 +52,23 @@
 			<h2>Prepare for fight.</h2>
 			<p>Drill militants to win against your enemys and save your
 				castle</p>
+			<c:if test="${errorRess != null}">
+				<div class="alert alert-dismissible alert-danger">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Oh snap!</strong> <a href="#" class="alert-link">You
+						have to less ressources.</a>
+				</div>
 
+			</c:if>
+			<c:if test="${success != null}">
+
+				<div class="alert alert-dismissible alert-success">
+					<button type="button" class="close" data-dismiss="alert">&times;</button>
+					<strong>Well done!</strong> Your units have been added.<a
+						href="#" class="alert-link"></a>.
+
+				</div>
+			</c:if>
 			<h2>Your Recruits</h2>
 			<div class="row">
 				<div class="col-md-12">
@@ -123,7 +139,7 @@
 
 							<hr>
 						</div>
-						
+
 					</form>
 
 				</div>

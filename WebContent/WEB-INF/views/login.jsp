@@ -31,10 +31,11 @@
 						in</button>
 				</form>
 				<form action="register" method="get">
-				<input type="submit" class="btn btn-lg btn-primary btn-block" value="Register here!" />
+					<input type="submit" class="btn btn-lg btn-primary btn-block"
+						value="Register here!" />
 				</form>
 
-				
+
 
 
 			</div>
