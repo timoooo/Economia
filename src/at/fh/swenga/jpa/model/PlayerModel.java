@@ -68,7 +68,7 @@ public class PlayerModel implements java.io.Serializable {
 	private Set<PlayerRole> playerRole = new HashSet<PlayerRole>(0);
 
 	@OneToMany(mappedBy = "player",targetEntity=HistoryModel.class, fetch = FetchType.LAZY)
-	private Set<HistoryModel> historys;
+	private Set<HistoryModel> historys = new HashSet<HistoryModel>(0);
 	
 	@Version
 	long version;

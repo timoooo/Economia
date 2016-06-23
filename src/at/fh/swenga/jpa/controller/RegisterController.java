@@ -69,35 +69,35 @@ public class RegisterController {
 			//gebäude hinzufügen mithilfe von zufallsgenerator
 			DataFactory df = new DataFactory();
 
-			BuildingModel building1 = new BuildingModel("Barack", "images/buildings/building1.png", df.getNumberUpTo(2), df.getNumberUpTo(1), df.getNumberUpTo(1), df.getNumberUpTo(10), df.getNumberUpTo(6), df.getNumberUpTo(4), df.getNumberUpTo(2), df.getNumberUpTo(2));			
+			BuildingModel building1 = new BuildingModel("Barack", "images/buildings/building1.png", 10 , 5, 0, 0, 2, 0, 0, 0);			
 			building1.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
 			admin.addBuilding(building1);
 		
-			BuildingModel building2 = new BuildingModel("Snipa", "images/buildings/building2.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			BuildingModel building2 = new BuildingModel("Snipa", "images/buildings/building2.png",  20 , 50, 10, 0, 0, 2, 0, 0);	
 			building2.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
 			admin.addBuilding(building2);
 			
-			BuildingModel building3 = new BuildingModel("Pr0gra", "images/buildings/building3.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			BuildingModel building3 = new BuildingModel("Pr0house", "images/buildings/building3.png",  400 , 500, 0, 0, 0, 0, 20, 0);			
 			building3.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
 			admin.addBuilding(building3);
 			
-			BuildingModel building4 = new BuildingModel("HorseHous", "images/buildings/building4.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			BuildingModel building4 = new BuildingModel("HorseHouse", "images/buildings/building4.png",  1000 , 500, 100, 0, 2, 3, 0, 0);	
 			building4.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
 			admin.addBuilding(building4);
 			
-			BuildingModel building5 = new BuildingModel("Wood Tower", "images/buildings/building5.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			BuildingModel building5 = new BuildingModel("Castle", "images/buildings/building5.png",  10000 , 800, 300, 0, 2, 2, 2, 0);	
 			building5.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
 			admin.addBuilding(building5);
 			
-			BuildingModel building6 = new BuildingModel("Rrolf Tower", "images/buildings/building6.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			BuildingModel building6 = new BuildingModel("Rrolf Tower", "images/buildings/building7.png",  30000 , 800, 300, 100, 10, 10, 10, 1);	
 			building6.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
 			admin.addBuilding(building6);
 			
-			BuildingModel building7 = new BuildingModel("Schn. Castle", "images/buildings/building7.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			BuildingModel building7 = new BuildingModel("Schn. Castle", "images/buildings/building6.png",  20000 , 10000, 0, 1000, 2, 0, 0, 2);	
 			building7.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
 			admin.addBuilding(building7);
 			
-			BuildingModel building8 = new BuildingModel("Hasen. Castle", "images/buildings/building8.png", df.getNumberUpTo(20), df.getNumberUpTo(100), df.getNumberUpTo(50), df.getNumberUpTo(10), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100), df.getNumberUpTo(100));			
+			BuildingModel building8 = new BuildingModel("Hasen. Castle", "images/buildings/building8.png",  100000 , 50000, 0, 5000, 0, 2, 0, 3);	
 			building8.setPlayer(admin);			//workaround, da das automatische setzen nicht funktioniert (auf drei Arten probiert, 6h weg)
 			admin.addBuilding(building8);
 			

@@ -82,8 +82,8 @@
 								<thead>
 									<tr>
 										<th align="center" valign="middle">Icon</th>
-										<th align="center" valign="middle">Quantity</th>
 										<th align="center" valign="middle">Name</th>
+										<th align="center" valign="middle">Quantity</th>
 										<th align="center" valign="middle">Attack <img alt=""
 											style="width: 35px; height: 35px;"
 											src="images/ress/sword-icon.png"></th>
@@ -93,7 +93,7 @@
 										<th align="center" valign="middle">Accuracy <img alt=""
 											style="width: 35px; height: 35px;"
 											src="images/ress/accuracy-icon.png"></th>
-
+										<th></th>
 										<th align="center" valign="middle">Wood<img alt=""
 											style="width: 35px; height: 35px;"
 											src="images/ress/wood-icon.png"></th>
@@ -114,12 +114,13 @@
 										<tr>
 											<td><img src="${recruit.icon}" align="center"
 												alt="${recruit.name}-Icon" style="${recruit.size}"></td>
-											<td><p align="center" valign="middle">${recruit.count}</p></td>
 											<td><p class="coll-md-1">${recruit.name}</p></td>
+											<td><p align="center" valign="middle">${recruit.count}</p></td>
 											<td><p align="center" valign="middle">${recruit.attackPower}</p></td>
 											<td><p align="center" valign="middle">${recruit.deffPower}</p></td>
 											<td><p align="center" valign="middle">${recruit.accuracy}
 												</p></td>
+												<td></td>
 											<td><p align="center" valign="middle">${recruit.neededWood}</p></td>
 											<td><p align="center" valign="middle">${recruit.neededStone}</p></td>
 											<td><p align="center" valign="middle">${recruit.neededFood}</p></td>
@@ -147,47 +148,40 @@
 			</div>
 		</div>
 	</div>
-	</div>
-	<div id="footer">
-		<div class="row">
+
+
+<div id="footer" >
+		<div class="row" > <!--  style="z-index:110; -->
 			<div class="col-md-6 col-md-offset-3">
-				<table class="table" style="background-color: #ee4d2e;">
+				<table class="table" style="background-color:#ee4d2e;">
 					<thead>
 						<tr>
 							<th>
-								<div class="well well-sm">
-									<center>
-										Wood: <b>${player.wood}</b>
-									</center>
-								</div>
+						        <div class="well well-sm" >
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/wood-icon.png"> Wood: <b>${player.wood}</b></center>
+								</div>			
 							</th>
 							<th>
-								<div class="well well-sm">
-									<center>
-										Stone: <b>${player.stone}</b>
-									</center>
-								</div>
+						        <div class="well well-sm" >
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/stone-icon.png"> Stone: <b>${player.stone}</b></center>
+								</div>			
 							</th>
 							<th>
-								<div class="well well-sm">
-									<center>
-										Food: <b>${player.food}</b>
-									</center>
-								</div>
+						        <div class="well well-sm" >
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/food-icon.png"> Food: <b>${player.food}</b></center>
+								</div>		
 							</th>
 							<th>
-								<div class="well well-sm">
-									<center>
-										Gold: <b>${player.gold}</b>
-									</center>
-								</div>
+						        <div class="well well-sm" >
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/gold-icon.png"> Gold: <b>${player.gold} </b></center>
+								</div>			
 							</th>
 						</tr>
 					</thead>
 				</table>
 			</div>
-
-		</div>
+		 </div>
+	</div>
 		<!--  end of container -->
 		<%@include file="includes/bootstrapJs.jsp"%>
 </body>

@@ -68,13 +68,48 @@
 			<!--  Search + Fill ----------------------------------------------------------- -->
 				<h1>Welcome to Economia!</h1>
 			</center>
-			<br><br>
-			<img align="middle" alt=""
-      						style="width: 500px; height:310px;"
-      						src="images/bigPics/village.jpg">
-      						
-      						
-			</div></div>
+				<br><br>
+			<h2>We await orders Lord ${player.username}! </h2>
+				<br> 
+				<br> 
+				<br> 
+			<p><b>Your Power</b><br><br> 
+			Attack 
+			<img alt="" style="width: 35px; height: 35px;" src="images/ress/sword-icon.png"> 
+			: ${player.attackPowerUnits} <br> 
+			Deffend
+			<img alt="" style="width: 35px; height: 35px;" src="images/ress/shield-icon.png">
+			: ${player.deffPowerUnits}   <br>
+			Accuracy
+			<img alt="" style="width: 35px; height: 35px;" src="images/ress/accuracy-icon.png">
+			: ${player.accuracyUnits}  <br> 
+			</p>
+			<br>
+			<br>
+			 
+			<br>
+			<br>
+			<!-- short javascript fpr random image -->
+			<script type="text/javascript">
+				var total_images = 10;
+				var random_number = Math.floor((Math.random()*total_images));
+				var random_img = new Array();
+				random_img[0] = '<img align="middle" alt="" style="width: 500px; height:310px;" src="images/bigPics/village.jpg">';
+				random_img[1] = '<img align="middle" alt="" style="width: 500px; height:310px;" src="images/bigPics/castle1.jpg">';
+				random_img[2] = '<img align="middle" alt="" style="width: 500px; height:310px;" src="images/bigPics/castle2.jpg">';
+				random_img[3] = '<img align="middle" alt="" style="width: 500px; height:310px;" src="images/bigPics/castle3.jpg">';
+				random_img[4] = '<img align="middle" alt="" style="width: 500px; height:310px;" src="images/bigPics/castle4.jpg">';
+				random_img[5] = '<img align="middle" alt="" style="width: 500px; height:310px;" src="images/bigPics/castle5.jpg">';
+				random_img[6] = '<img align="middle" alt="" style="width: 500px; height:310px;" src="images/bigPics/castle6.jpg">';
+				random_img[7] = '<img align="middle" alt="" style="width: 500px; height:310px;" src="images/bigPics/castle7.jpg">';
+				random_img[8] = '<img align="middle" alt="" style="width: 500px; height:310px;" src="images/bigPics/castle8.jpg">';
+				random_img[9] = '<img align="middle" alt="" style="width: 500px; height:310px;" src="images/bigPics/castle9.jpg">';
+				document.write(random_img[random_number]);
+			</script>
+			
+			<br><br><br>Feel your greatness in the battle against your enemies!
+		</div>
+	</div>	 
 						
 	
 	
@@ -90,22 +125,22 @@
 						<tr>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Wood: <b>${player.wood}</b></center>
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/wood-icon.png"> Wood: <b>${player.wood}</b></center>
 								</div>			
 							</th>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Stone: <b>${player.stone}</b></center>
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/stone-icon.png"> Stone: <b>${player.stone}</b></center>
 								</div>			
 							</th>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Food: <b>${player.food}</b></center>
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/food-icon.png"> Food: <b>${player.food}</b></center>
 								</div>		
 							</th>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Gold: <b>${player.gold}</b></center>
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/gold-icon.png"> Gold: <b>${player.gold} </b></center>
 								</div>			
 							</th>
 						</tr>

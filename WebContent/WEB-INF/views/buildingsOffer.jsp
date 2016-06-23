@@ -57,7 +57,7 @@
 					<a class="btn btn-primary btn-large" href="buildings"> Back </a>
 					
 					<div align = "center">
-						<div class="label label-primary" align = "center">o. = output</div>
+						<div class="label label-primary" align = "center">output/5min</div>
 					</div>
 					<br>
 					
@@ -133,30 +133,30 @@
 		</div>
 	</div>
 
-	<div id="footer">
-		<div class="row">
+    <div id="footer" >
+		<div class="row" > <!--  style="z-index:110; -->
 			<div class="col-md-6 col-md-offset-3">
 				<table class="table" style="background-color:#ee4d2e;">
 					<thead>
 						<tr>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Wood: <b>${player.wood}</b></center>
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/wood-icon.png"> Wood: <b>${player.wood}</b></center>
 								</div>			
 							</th>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Stone: <b>${player.stone}</b></center>
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/stone-icon.png"> Stone: <b>${player.stone}</b></center>
 								</div>			
 							</th>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Food: <b>${player.food}</b></center>
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/food-icon.png"> Food: <b>${player.food}</b></center>
 								</div>		
 							</th>
 							<th>
 						        <div class="well well-sm" >
-								  <center>Gold: <b>${player.gold}</b></center>
+								  <center> <img alt="" style="width: 20px; height: 20px;" src="images/ress/gold-icon.png"> Gold: <b>${player.gold} </b></center>
 								</div>			
 							</th>
 						</tr>

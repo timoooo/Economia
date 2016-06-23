@@ -4,6 +4,7 @@ import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -54,13 +55,14 @@ public class TradeController {
 	     
 	      
 	      //seigene offers aus der liste löschen
-	      List<TradeModel> offers = tradeRepository.findAll();
-		for(TradeModel offerx:offers){
-		      if(offerx.getPlayer().getUsername().equals(player.getUsername())){
-		    	  offers.remove(offerx);
+	     List<TradeModel> offers = tradeRepository.findAll();
+	     List<TradeModel> offersCopyWithoutPlayer = new ArrayList<TradeModel>();;
+	     for(TradeModel offerx:offers){
+		      if(!offerx.getPlayer().getUsername().equals(player.getUsername())){
+		    	  offersCopyWithoutPlayer.add(offerx);
 		      }
 		    }
-		 model.addAttribute("offers", offers);
+		 model.addAttribute("offers", offersCopyWithoutPlayer);
 		
 		//meine eigenen offers
 	      model.addAttribute("myOffers", tradeRepository.findByPlayerUsername(name));
@@ -79,6 +81,7 @@ public class TradeController {
 	}
 	
 	@RequestMapping(value = "/tradeDelete", method = RequestMethod.GET)
+	@Transactional
 	  public String handleTradeDelete(Model model, Principal principal, @RequestParam int id) {;
 		  String name = principal.getName(); //get logged in username
 	      PlayerModel player = playerRepository.findByUsername(name);
@@ -96,6 +99,10 @@ public class TradeController {
 	      player.setStone(player.getStone()+trade.getStone());
 	      player.setWood(player.getWood()+trade.getWood());
 	      
+	      //history adden
+	      String historyMsg = "You removed your offer (id" +trade.getId()+")";
+	      player = addHistoryEntry(player,historyMsg,"trade");
+	      
 	      playerRepository.save(player);
 	      	      
 	      
@@ -106,6 +113,7 @@ public class TradeController {
 	}
 	
 	@RequestMapping(value = "/tradeBuy", method = RequestMethod.GET)
+	@Transactional
 	  public String handleTradeBuy(Model model, Principal principal, @RequestParam int id) {;
 		  String name = principal.getName(); //get logged in username
 	      PlayerModel player = playerRepository.findByUsername(name);
@@ -127,7 +135,7 @@ public class TradeController {
 	      player.setWood(player.getWood()+trade.getWood());
 	      
 	      String historyMsg = "You bought resources (id" +trade.getId()+") for "+ trade.getPrice() +" gold!";
-			seller = addHistoryEntry(player,historyMsg,"trade");
+	      player = addHistoryEntry(player,historyMsg,"trade");
 			
 	      playerRepository.save(player);
 	      
@@ -256,6 +264,7 @@ public class TradeController {
 		return playerRepository.findByUsername(string);
 	}
 	
+	@Transactional
 	private PlayerModel addHistoryEntry (PlayerModel player, String message, String type){
         LocalDateTime now = LocalDateTime.now();
         DateTimeFormatter df; 

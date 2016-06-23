@@ -18,5 +18,4 @@ public interface HistoryRepository extends JpaRepository<HistoryModel, String>{
 	List<HistoryModel> findAll();
 
 
-
 }

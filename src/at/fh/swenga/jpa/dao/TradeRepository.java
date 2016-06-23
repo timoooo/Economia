@@ -19,5 +19,7 @@ public interface TradeRepository extends JpaRepository<TradeModel, String> {
 
 	TradeModel findById(int id);
 	
+	List<TradeModel> findAll();
+	
 
 }
