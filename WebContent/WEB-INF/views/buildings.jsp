@@ -92,7 +92,7 @@
 			
 			<h2>Your Buildings:</h2>
 			<div align = "center">
-				<div class="label label-primary" align = "center">o. = output</div>
+				<div class="label label-primary" align = "center">output/5min</div>
 			</div>
 			<br>
 			<div class="row">
@@ -101,23 +101,22 @@
 						<thead>
 							<tr>
 								<th>Type</th>
-										<th>Type</th>
-										<th>Level <img alt=""
-											style="width: 35px; height: 35px;"
-											src="images/ress/level-icon.jpg"></th>
-										<th>Wood <img alt=""
-											style="width: 35px; height: 35px;"
-											src="images/ress/wood-icon.png"></th>
-										<th>Stone<img alt=""
-											style="width: 35px; height: 35px;"
-											src="images/ress/stone-icon.png"></th>
-										<th>Food<img alt=""
-											style="width: 35px; height: 35px;"
-											src="images/ress/food-icon.jpg"></th>
-										<th>Gold<img alt=""
-											style="width: 35px; height: 35px;"
-											src="images/ress/gold-icon.png"></th>
-										<th>Action</th>
+								<th>Level <img alt=""
+									style="width: 35px; height: 35px;"
+									src="images/ress/level-icon.jpg"></th>
+								<th>Wood <img alt=""
+									style="width: 35px; height: 35px;"
+									src="images/ress/wood-icon.png"></th>
+								<th>Stone<img alt=""
+									style="width: 35px; height: 35px;"
+									src="images/ress/stone-icon.png"></th>
+								<th>Food<img alt=""
+									style="width: 35px; height: 35px;"
+									src="images/ress/food-icon.jpg"></th>
+								<th>Gold<img alt=""
+									style="width: 35px; height: 35px;"
+									src="images/ress/gold-icon.png"></th>
+								<th>Action</th>
 							</tr>
 						</thead>
 						<tbody>

@@ -58,7 +58,6 @@ public class TradeController {
 		for(TradeModel offerx:offers){
 		      if(offerx.getPlayer().getUsername().equals(player.getUsername())){
 		    	  offers.remove(offerx);
-		        break;
 		      }
 		    }
 		 model.addAttribute("offers", offers);
@@ -127,11 +126,18 @@ public class TradeController {
 	      player.setStone(player.getStone()+trade.getStone());
 	      player.setWood(player.getWood()+trade.getWood());
 	      
+	      String historyMsg = "You bought resources (id" +trade.getId()+") for "+ trade.getPrice() +" gold!";
+			seller = addHistoryEntry(player,historyMsg,"trade");
+			
 	      playerRepository.save(player);
 	      
 	      
 	      //Set the Seller values
+	      
 	      seller.setGold(seller.getGold()+trade.getPrice());
+	      
+	      historyMsg = "You sold your resources (id" +trade.getId()+") for "+ trade.getPrice() +" gold!";
+	      seller = addHistoryEntry(seller,historyMsg,"trade");
 	      playerRepository.save(seller);
 	      
 	      
@@ -209,8 +215,6 @@ public class TradeController {
 		PlayerModel player = offer.getPlayer();
 		player.addTradeOffer(offer);
 		
-		String historyMsg = "You made a new offer (id" +newOffer.getId()+") for "+ newOffer.getPrice() +" gold!";
-		player = addHistoryEntry(player,historyMsg,"trade");
 		
 		playerRepository.save(player);
 		tradeRepository.save(offer);
@@ -241,7 +245,7 @@ public class TradeController {
 	    player.setStone(stoneLeft);
 	    player.setWood(woodLeft);
 	    
-		String historyMsg = "You bought a building (id" +newOffer.getId()+") for "+ newOffer.getPrice() +" gold  :D!";
+		String historyMsg = "You created an offer (id" +newOffer.getId()+") for "+ newOffer.getPrice() +" gold!";
 		player = addHistoryEntry(player,historyMsg,"trade");
 		
 	    playerRepository.save(player);

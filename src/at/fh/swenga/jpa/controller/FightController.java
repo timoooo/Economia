@@ -163,6 +163,9 @@ public class FightController {
 			
 			
 		}
+		
+		
+		
 		model.addAttribute("player",player1);
 		List<PlayerModel> players = getPlayerlist2Fight(player1, model);
 		model.addAttribute("players",players);
@@ -245,7 +248,6 @@ public class FightController {
 		for(PlayerModel playerx:players){
 		      if(playerx.getUsername().equals(player.getUsername())){
 		        players.remove(playerx);
-		        break;
 		      }
 		    }
 		return players;

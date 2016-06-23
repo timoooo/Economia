@@ -82,6 +82,7 @@
 								<thead>
 									<tr>
 										<th align="center" valign="middle">Icon</th>
+										<th align="center" valign="middle">Quantity</th>
 										<th align="center" valign="middle">Name</th>
 										<th align="center" valign="middle">Attack <img alt=""
 											style="width: 35px; height: 35px;"
@@ -92,7 +93,7 @@
 										<th align="center" valign="middle">Accuracy <img alt=""
 											style="width: 35px; height: 35px;"
 											src="images/ress/accuracy-icon.png"></th>
-										<th align="center" valign="middle">Quantity</th>
+
 										<th align="center" valign="middle">Wood<img alt=""
 											style="width: 35px; height: 35px;"
 											src="images/ress/wood-icon.png"></th>
@@ -113,12 +114,12 @@
 										<tr>
 											<td><img src="${recruit.icon}" align="center"
 												alt="${recruit.name}-Icon" style="${recruit.size}"></td>
+											<td><p align="center" valign="middle">${recruit.count}</p></td>
 											<td><p class="coll-md-1">${recruit.name}</p></td>
 											<td><p align="center" valign="middle">${recruit.attackPower}</p></td>
 											<td><p align="center" valign="middle">${recruit.deffPower}</p></td>
 											<td><p align="center" valign="middle">${recruit.accuracy}
 												</p></td>
-											<td><p align="center" valign="middle">${recruit.count}</p></td>
 											<td><p align="center" valign="middle">${recruit.neededWood}</p></td>
 											<td><p align="center" valign="middle">${recruit.neededStone}</p></td>
 											<td><p align="center" valign="middle">${recruit.neededFood}</p></td>

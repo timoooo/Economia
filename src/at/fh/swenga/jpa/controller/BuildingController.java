@@ -86,10 +86,10 @@ public class BuildingController {
 		int goldLeft = player.getGold()-newBuilding.getNeededGold();
 		
 		//Überprüfen, ob zu wenig Ressourcen verfügbar sind
-		if(woodLeft<=0){ model.addAttribute("errorMessage", "Wood stocks are too low Sire!!<br>"); 	return "forward:/buildings";}
-		if(stoneLeft<=0){ model.addAttribute("errorMessage", "Stone stocks are too low Sire!!<br>"); return "forward:/buildings";}
-		if(foodLeft<=0){ model.addAttribute("errorMessage", "Food stocks are too low Sire!!<br>"); 	return "forward:/buildings";}
-		if(goldLeft<=0){ model.addAttribute("errorMessage", "Not enough Gold Sire!!<br>"); 			return "forward:/buildings";}
+		if(woodLeft<0){ model.addAttribute("errorMessage", "Wood stocks are too low Sire!!<br>"); 	return "forward:/buildings";}
+		if(stoneLeft<0){ model.addAttribute("errorMessage", "Stone stocks are too low Sire!!<br>"); return "forward:/buildings";}
+		if(foodLeft<0){ model.addAttribute("errorMessage", "Food stocks are too low Sire!!<br>"); 	return "forward:/buildings";}
+		if(goldLeft<0){ model.addAttribute("errorMessage", "Not enough Gold Sire!!<br>"); 			return "forward:/buildings";}
 		
 		//building clonen oder level up UND WERTE ERHÖHEN
 		if(upgradeInsteadOfAdd) {
