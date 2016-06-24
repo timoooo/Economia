@@ -42,7 +42,7 @@ public class PlayerModel implements java.io.Serializable {
 	private int food = 20;
 
 	@Column(nullable = false)
-	private int gold = 0;
+	private int gold = 10;
 
 	@Column(nullable = false)
 	private int attackPowerUnits = 0;

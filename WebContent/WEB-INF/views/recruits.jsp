@@ -134,6 +134,7 @@
 									</c:forEach>
 								</tbody>
 							</table>
+							<br>
 							<button type="submit"
 								class="btn btn-primary btn-success btn-lg pull-right"
 								action="submitrecruits" autofocus>prepare troops for

@@ -1,19 +1,24 @@
 package at.fh.swenga.jpa.controller;
 
 import java.security.Principal;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import at.fh.swenga.jpa.dao.HistoryRepository;
 import at.fh.swenga.jpa.dao.PlayerRepository;
 import at.fh.swenga.jpa.dao.RecruitRepository;
+import at.fh.swenga.jpa.model.HistoryModel;
 import at.fh.swenga.jpa.model.PlayerModel;
 import at.fh.swenga.jpa.model.RecruitModel;
 
@@ -25,6 +30,9 @@ public class FightController {
 
 	@Autowired
 	RecruitRepository recruitRepository;
+	
+	@Autowired
+	HistoryRepository historyRepository;
 
 	@RequestMapping(value = "/fight", method = RequestMethod.GET)
 	public String handleFight(Model model, Principal principal) {
@@ -51,6 +59,7 @@ public class FightController {
 	}
 	//PUSH COMMENT 
 	@RequestMapping(value = "/fightnow", method = RequestMethod.GET)
+	@Transactional
 	public String calcWinnerAndLoser(Model model, Principal principal, @RequestParam String username) {
 		/*
 		 * 1. calc winner 2. set won ress 3. set loser lost ress 4. set loser
@@ -113,10 +122,20 @@ public class FightController {
 			model.addAttribute("wood", lostWood.intValue());
 			model.addAttribute("loser", null);
 			
+		    String historyMsg = "You won a fight against " + player2.getUsername()+ "!";
+		    player1 = addHistoryEntry(player1,historyMsg,"fight");
+		    historyMsg = "You lost a fight against " + player1.getUsername()+ "!";
+		    player2 = addHistoryEntry(player2,historyMsg,"fight");
+			
 
 		} else {
 			// player 2 won model attribut setzen
 			System.out.println("Player2 won");
+		      //history adden
+		    String historyMsg = "You deffended your castle against " + player1.getUsername()+ "!";
+		    player2 = addHistoryEntry(player2,historyMsg,"fight");
+		    historyMsg = "You lost a fight against " + player2.getUsername()+ "!";
+		    player1 = addHistoryEntry(player1,historyMsg,"fight");
 
 			List<RecruitModel> units = recruitRepository.findByPlayerUsername(name);
 
@@ -160,11 +179,9 @@ public class FightController {
 			
 			model.addAttribute("winner",null);
 			model.addAttribute("loser","smth");
-			
+
 			
 		}
-		
-		
 		
 		model.addAttribute("player",player1);
 		List<PlayerModel> players = getPlayerlist2Fight(player1, model);
@@ -217,7 +234,7 @@ public class FightController {
 
 		}
 		default:
-			System.out.println("BRUUUUUUUUUUH");
+			System.out.println("fail");
 
 		}
 
@@ -248,9 +265,27 @@ public class FightController {
 		for(PlayerModel playerx:players){
 		      if(playerx.getUsername().equals(player.getUsername())){
 		        players.remove(playerx);
+		        break;
 		      }
 		    }
 		return players;
+	}
+	
+	@Transactional
+	private PlayerModel addHistoryEntry (PlayerModel player, String message, String type){
+        LocalDateTime now = LocalDateTime.now();
+        DateTimeFormatter df; 
+        df = DateTimeFormatter.ofPattern("dd.MM.yyyy kk:mm");     // 31.01.2016 20:07
+		
+		HistoryModel history = new HistoryModel(); 
+		history.setPlayer(player);
+		history.setInfo(message);
+		history.setType(type);
+		history.setDate(now.format(df));
+		//Date date
+		player.addHistory(history);
+		historyRepository.save(history);
+		return player;
 	}
 	
 	
