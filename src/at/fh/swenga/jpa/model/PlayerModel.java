@@ -96,7 +96,7 @@ public class PlayerModel implements java.io.Serializable {
 		return username;
 	}
 	
-	
+	//commit comment
 	public void setUsername(String username) {
 		this.username = username;
 
